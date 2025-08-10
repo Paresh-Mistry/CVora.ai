@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "../Deletefile/TemplateTwo.tsx", "../Deletefile/TemplateOne.tsx", "../Deletefile/TemplateFour.tsx"]
 }

@@ -1,7 +1,7 @@
 from langchain_core.prompts import PromptTemplate
 from langchain_community.llms import ollama
 
-llm = ollama.Ollama(model="llama3.2:1b")  # shared LLM instance
+llm = ollama.Ollama(model="llama3.2:latest")  # shared LLM instance
 
 def overview_chain(name, role, skill, project_title, degree):
     prompt = PromptTemplate.from_template("""
@@ -30,23 +30,22 @@ def job_match_chain(skill, role, degree):
     - Skills: {skill}
     - Degree: {degree}
 
-    Suggest 3 recent job titles or roles with that align well with their profile and skills. Share some Links of Recent Job Postings.
+    Suggest some recent job titles or roles with that align well with their profile and skills. Share some Links of Recent Job Postings across various platform.
     """)
     return llm.invoke(prompt.format(skill=skill, role=role, degree=degree))
 
-def learning_advice_chain(skill, role):
+def learning_advice_chain(skill, role, currentyear):
     prompt = PromptTemplate.from_template("""
     Based on the role: {role} and current skills: {skill},
-    suggest what the person should learn next to stay relevant and grow in their field. Include resources or technologies they should focus on. Give me 3-4 lines maximum
+    In {currentyear}, suggest what the person should learn next to stay relevant and grow in their field. Include resources or technologies they should focus on. Give me 3-4 lines maximum
     """)
-    return llm.invoke(prompt.format(skill=skill, role=role))
+    return llm.invoke(prompt.format(skill=skill, role=role, currentyear=currentyear))
 
-# === Combined Chain Call ===
 
-def generate_resume_insight(name, role, skill, project_title, degree):
+def generate_resume_insight(name, role, skill, project_title, degree, currentyear):
     return {
         "overview": overview_chain(name, role, skill, project_title, degree),
         "activities": activities_chain(skill, role),
         "job_matches": job_match_chain(skill, role, degree),
-        "learning_advice": learning_advice_chain(skill, role)
+        "learning_advice": learning_advice_chain(skill, role, currentyear)
     }

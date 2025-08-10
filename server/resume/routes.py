@@ -1,5 +1,7 @@
 from flask import request, jsonify
 from . import resume_bp
+import time
+
 from .utils import (
     generate_resume_insight,
     overview_chain,
@@ -32,10 +34,10 @@ def resume_home():
         try:
 
             print("Calling generate_resume_insight...")
-            insight = generate_resume_insight(name, role, skill, project_title, degree)
+            insight = generate_resume_insight(name, role, skill, project_title, degree, time.strftime('Y'))
             print("Insight ready")
-
             print('--- All Analysis Generated ---')
+            
             return jsonify({
                 "name": name,
                 "role": role,
@@ -43,7 +45,7 @@ def resume_home():
             })
 
         except Exception as e:
-            print('❌ Error during resume analysis:', str(e))
+            print('Error during resume analysis:', str(e))
             return jsonify({
                 "error": "An error occurred while generating analysis.",
                 "details": str(e)

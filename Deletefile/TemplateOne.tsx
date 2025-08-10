@@ -1,4 +1,3 @@
-import React from 'react';
 
 interface ResumeData {
   name: string;
@@ -11,7 +10,7 @@ interface ResumeData {
 
 const TemplateOne = ({ form, insight }: { form: any; insight: any }) => {
   return (
-    <div className="p-8 mx-auto h-screen bg-white shadow-lg border border-red-200 space-y-6">
+    <div className="p-8 mx-auto h-full bg-white shadow-lg border border-red-200 space-y-6">
       {/* Header */}
       <div className="text-center border-b pb-4">
         <h1 className="text-4xl font-bold text-red-600">{form.name || "Your Name"}</h1>
@@ -61,7 +60,7 @@ const TemplateOne = ({ form, insight }: { form: any; insight: any }) => {
       {/* Projects */}
       <div>
         <h3 className="text-lg font-semibold text-gray-700 border-b pb-1">Projects</h3>
-        <ul className="mt-2 space-y-3">
+        <ul className="mt-2 flex flex-col gap-2 space-y-3">
           {form.project?.length > 0 && form.project[0].project_title !== '' ? (
             form.project.map((proj, index) => (
               <li key={index} className="bg-gray-50 pl-4 py-2 rounded shadow-sm">

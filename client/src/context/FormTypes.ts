@@ -43,7 +43,7 @@ export interface FormData {
 
 
 export interface FormContextType {
-  form: FormData;
+  form: FormData | any;
   setForm: React.Dispatch<React.SetStateAction<FormData>>;
   primaryColor: string;
   setPrimaryColor: React.Dispatch<React.SetStateAction<string>>;

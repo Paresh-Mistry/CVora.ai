@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import TemplateThree from '../templates/TemplateSoftwareEng';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Layout from '../Layout/PageLayout';
 import TemplateFinanceManager from '../templates/TemplateFinanceManager';
+import TemplateSoftwareEng from '../templates/TemplateSoftwareEng';
 
 
 const ResumeResult: React.FC = () => {
@@ -72,12 +72,12 @@ const ResumeResult: React.FC = () => {
                 <div className='md:w-6/12 bg-white shadow p-4 space-y-3'>
 
                     <div className="flex gap-4">
-                        <Link
-                            to={TemplateThree}
+                        <button
+                            // onClick={TemplateSoftwareEng}
                             className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700"
                         >
                             Download Resume
-                        </Link>
+                        </button>
 
                         <button
                             onClick={() => navigate('/')}
@@ -90,7 +90,7 @@ const ResumeResult: React.FC = () => {
                     <div className="bg-white rounded-lg ">
                         {/* <TemplateThree form={form} insight={insight} textcolor={textcolor} bgcolor={bgcolor} /> */}
                         {id === '1' ? (
-                            <TemplateThree form={form} insight={insight} textcolor={textcolor} bgcolor={bgcolor} />
+                            <TemplateSoftwareEng form={form} insight={insight} textcolor={textcolor} bgcolor={bgcolor} />
                         ) : id === '2' ? (
                             <TemplateFinanceManager form={form} insight={insight} textcolor={textcolor} bgcolor={bgcolor} />
                         ) : "No Resume template Found"}

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
 
-const TemplateCard = ({ id, name }: { id: string, name: string}) => {
+const TemplateCard = ({ id, name }: { id: number, name: string, component:React.ComponentType<any>}) => {
     const navigate = useNavigate()
     return (
         <>
@@ -14,6 +14,7 @@ const TemplateCard = ({ id, name }: { id: string, name: string}) => {
                     <span className="absolute bottom-2 border rounded-2xl border-amber-600 text-amber-600 right-2 text-xs px-1 font-semibold">{id}</span>
                 </div>
             </div>
+
         </>
     )
 }

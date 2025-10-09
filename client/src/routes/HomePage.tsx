@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Hero from '../components/HeroSection'
+import Hero from '../components/common/HeroSection'
 import Layout from '../Layout/PageLayout'
 
 const Home: React.FC = () => {

@@ -11,7 +11,7 @@ const fadeIn = {
 const TemplateFinanceManager: React.FC<FormData> = ({ form, insight, textcolor, bgcolor }: { form: any; insight: any, textcolor: string, bgcolor: string }) => {
     return (
         <div
-            className="relative w-full min-h-screen rounded-xl p-6 md:p-12 font-sans"
+            className="relative w-full min-h-screen p-6 md:p-12 font-sans"
             style={{
                 color: textcolor,
                 backgroundColor: bgcolor,

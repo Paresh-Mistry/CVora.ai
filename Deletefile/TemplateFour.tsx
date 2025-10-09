@@ -1,4 +1,3 @@
-import React from 'react';
 
 interface ResumeData {
   name: string;
@@ -36,12 +35,14 @@ const TemplateFour: React.FC<{ form?: ResumeData }> = ({ form = defaultData }) =
       <section>
         <h2 className="bg-indigo-100 text-indigo-700 inline-block px-4 py-1 text-sm font-bold rounded">EXPERIENCE</h2>
         <div className="mt-3 space-y-2">
+          <>
           {form.experience.map((exp, i) => (
             <div key={i}>
               <p className="font-semibold">{exp.role}</p>
               <p className="text-sm text-gray-500">{exp.company} – {exp.duration}</p>
             </div>
           ))}
+          </>
         </div>
       </section>
 

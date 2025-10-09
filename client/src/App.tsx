@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import Navbar from "./components/NavigationBar"
+import Navbar from "./components/common/NavigationBar"
 import Home from "./routes/HomePage"
 import Generate from "./routes/GenerateResume"
 import About from "./routes/AboutPage"

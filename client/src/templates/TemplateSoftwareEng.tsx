@@ -8,9 +8,11 @@ const fadeIn = {
   visible: { opacity: 1, y: 0 }
 };
 
-const TemplateThree: React.FC<FormData> = ({ form, insight, textcolor, bgcolor }: { form: any; insight: any, textcolor: string, bgcolor: string }) => {
+const TemplateSoftwareEng : React.FC<FormData> = (
+  { form, insight, textcolor, bgcolor }: { form: any; insight: any, textcolor: string, bgcolor: string }
+) => {
   return (
-    <div className="relative w-full rounded-md p-6 md:p-12 font-sans" style={{ color: textcolor, backgroundColor: bgcolor }}>
+    <div className="relative w-full p-6 md:p-12 font-sans" style={{ color: textcolor, backgroundColor: bgcolor }}>
 
 
       <div className="max-w-5xl mx-auto space-y-12">
@@ -252,7 +254,7 @@ const TemplateThree: React.FC<FormData> = ({ form, insight, textcolor, bgcolor }
             </motion.section>
           </div>
 
-          
+
         </div>
       </div>
     </div>
@@ -260,4 +262,4 @@ const TemplateThree: React.FC<FormData> = ({ form, insight, textcolor, bgcolor }
 };
 
 
-export default TemplateThree;
+export default TemplateSoftwareEng;

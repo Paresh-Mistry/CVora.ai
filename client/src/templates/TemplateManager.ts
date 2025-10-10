@@ -9,7 +9,8 @@ export interface ResumeTemplate {
 
 const templateMap: Record<string, ResumeTemplate> = {
     "1": { id: 1, name: "Software Engineers", component: TemplateSoftwareEng },
-    "2": { id: 2, name: "Finance Engineers", component: TemplateFinanceManager }
+    "2": { id: 2, name: "Finance Engineers", component: TemplateFinanceManager },
+    "3": { id: 3, name: "Graphic Designers", component: TemplateFinanceManager },
 }
 
 

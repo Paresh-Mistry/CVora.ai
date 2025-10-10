@@ -367,11 +367,11 @@ const Editing: React.FC = () => {
                             <Popover>
                                 <PopoverTrigger asChild>
                                     <Button
-                                        variant="secondary"
+                                        variant="outline"
                                         size="sm"
                                         className="border-gray-300 text-gray-700"
                                     >
-                                        🎨 Change Color
+                                        🎨 Customize
                                     </Button>
                                 </PopoverTrigger>
                                 <PopoverContent className="w-40 flex justify-center p-4">
@@ -390,6 +390,7 @@ const Editing: React.FC = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4 }}
                             className="bg-white p-1 shadow-lg border border-gray-200 overflow-auto max-h-[80vh]"
+                            style={{ "scrollbarColor": "transparent transparent" }}
                         >
                             <TemplateComponent
                                 form={form}

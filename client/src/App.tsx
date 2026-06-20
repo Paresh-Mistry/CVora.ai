@@ -1,27 +1,27 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import Navbar from "./components/common/NavigationBar"
 import Home from "./routes/HomePage"
-import Generate from "./routes/GenerateResume"
-import About from "./routes/AboutPage"
+import Generate from "./routes/TemplateView"
 import './App.css'
 import { Error } from "./routes/ErrorPage"
 import Editing from "./routes/ResumeEditor"
-import ResumeResult from "./routes/ResumePreview"
 import { FormProvider } from "./context/FormContext"
+import PricingPage from "./routes/PricingPage"
+import AuthPage from "./routes/LoginPage"
+import HistoryPage from "./routes/HistoryPage"
 
 function App() {
 
   return (
     <>
       <Router>
-        <Navbar />
         <FormProvider>
           <Routes>
+            <Route path={"/login"} element={<AuthPage />} />
             <Route path={"/"} element={<Home />} />
             <Route path={"/dashboard"} element={<Generate />} />
-            <Route path={"/about"} element={<About />} />
+            <Route path={"/pricing"} element={<PricingPage />} />
+            <Route path={"/history"} element={<HistoryPage />} />
             <Route path={"/template/:id/resume"} element={<Editing />} />
-            <Route path="/resume/result" element={<ResumeResult />} />
             <Route path={"/*"} element={<Error />} />
           </Routes>
         </FormProvider>

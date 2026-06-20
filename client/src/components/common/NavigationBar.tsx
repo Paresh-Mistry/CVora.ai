@@ -1,65 +1,59 @@
-// import { Link } from 'react-router-dom';
-
-// const Navbar: React.FC = () => {
-
-
-//   const NavLink = ({ path, name }: { path: string, name: string }) => {
-//     return (
-//       <Link to={path}>{name}</Link>
-//     )
-//   }
-
-//   return (
-//     <>
-//       <nav className='w-full fixed z-20 backdrop-blur-md bg-gradient-to-br md:border-none border-b border-gray-200 py-5 text-[#085776] flex justify-around'>
-//         <div className='flex items-center gap-2 text-[#212834]'>
-//           <Link to={'/'} className='text-xl orbitron-head'><span className='mozilla-headline-hero'>Cv</span> Gen</Link>
-//         </div>
-//         <div className='hidden sm:block space-x-6'>
-//           <NavLink path='/' name='Home' />
-//           <NavLink path='/dashboard' name='Builder' />
-//           <NavLink path='/about' name='About' />
-//         </div>
-//       </nav>
-//     </>
-//   );
-// };
-
-// export default Navbar;
-
-
-
-
-
-
-
-
-
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { CreditCardIcon, File, LogOutIcon, Menu, Star, User, UserIcon, X, Zap } from "lucide-react";
+import { useLogout, useUser } from "../../hooks/useAuth";
+import { Button } from "../ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { useCredits } from "../../hooks/useAI";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
+  const [open, setOpen] = useState(false);
+
+  const navItems = [
+    { path: "/", name: "Features" },
+    { path: "/dashboard", name: "Templates" },
+    { path: "/pricing", name: "Pricing" },
+    { path: "/about", name: "Resources" },
+  ];
+
+  const { data: credits } = useCredits();
+  const totalRemaining =
+    (credits?.ai.remaining ?? 0) +
+    (credits?.ats.remaining ?? 0) +
+    (credits?.cover_letter.remaining ?? 0);
+
+  const { data: user } = useUser();
+  const logout = useLogout();
+  console.log("User data : ", user)
 
   const NavLink = ({
     path,
     name,
+    mobile = false,
   }: {
     path: string;
     name: string;
+    mobile?: boolean;
   }) => {
     const isActive = location.pathname === path;
+
     return (
-      <motion.div whileHover={{ scale: 1.05 }}>
+      <motion.div
+        whileHover={{ scale: mobile ? 1 : 1.05 }}
+        onClick={() => setOpen(false)}
+      >
         <Link
           to={path}
-          className={`relative font-medium transition-colors duration-300 ${
-            isActive ? "text-[#11a8e4]" : "text-[#212834] hover:text-[#11a8e4]"
-          }`}
+          className={`relative font-medium transition-colors duration-300 ${isActive
+            ? "text-[#11a8e4]"
+            : "text-[#212834] hover:text-[#11a8e4]"
+            }`}
         >
           {name}
-          {isActive && (
+
+          {isActive && !mobile && (
             <motion.span
               layoutId="active-link"
               className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#11a8e4] rounded-full"
@@ -70,26 +64,157 @@ const Navbar: React.FC = () => {
     );
   };
 
-  const navItems = [
-    { path: "/", name: "Home" },
-    { path: "/dashboard", name: "Builder" },
-    { path: "/about", name: "About" },
-  ];
-
   return (
-    <nav className="w-full fixed z-20 backdrop-blur-md border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-5 flex items-center gap-2 text-[#212834] justify-center md:justify-between py-4">
-        {/* Logo */}
-        <Link to={'/'} className='text-xl orbitron-head'><span className='mozilla-headline-hero'>Cv</span> Gen</Link>
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="text-xl orbitron-head">
+            <span className="mozilla-headline-hero">Cv</span> Gen
+          </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <NavLink key={item.path} {...item} />
-          ))}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <NavLink key={item.path} {...item} />
+            ))}
+          </div>
+
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center gap-4">
+
+            {user && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline"><User />{user.full_name}</Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem>
+                    <UserIcon />
+                    Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <File />
+                    <Link to={"/history"}>My Templates</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <CreditCardIcon />
+                    Billing
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="bg-[#f6edd4]">
+                    <Star fill="#eab420" />
+                    {user.plan.toUpperCase()} Plan
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="bg-[#d4f0f6] mt-1"
+                    title={`AI: ${credits?.ai.remaining} · ATS: ${credits?.ats.remaining} · Cover Letter: ${credits?.cover_letter.remaining}`}
+                  >
+                    <Zap fill="#46afc7" />
+                  {totalRemaining} CREDITS
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={logout} variant="destructive">
+                  <LogOutIcon />
+                  Log out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+              </DropdownMenu>
+          ) || (
+          <Link
+            to="/login"
+            className="text-sm font-medium text-gray-700 hover:text-gray-900 transition"
+          >
+            Login
+          </Link>
+              )}
+
+          <Link
+            to="/dashboard"
+            className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2 rounded-full transition"
+          >
+            Get Started
+          </Link>
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          aria-label="Toggle Menu"
+          onClick={() => setOpen(!open)}
+          className="md:hidden"
+        >
+          {open ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
-    </nav>
+    </nav >
+
+      {/* Mobile Menu */ }
+      <AnimatePresence>
+  {
+    open && (
+      <>
+        <motion.div
+          className="fixed inset-0 bg-black/20 z-40"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setOpen(false)}
+        />
+
+        <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "100%" }}
+          transition={{ duration: 0.25 }}
+          className="fixed top-0 right-0 h-screen w-[280px] bg-white shadow-xl z-50 p-6"
+        >
+          <div className="flex justify-end mb-10">
+            <button onClick={() => setOpen(false)}>
+              <X size={24} />
+            </button>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                {...item}
+                mobile
+              />
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-col gap-4">
+            {user && (
+              <div className="flex items-center gap-3">
+                <span>{user.email}</span>
+                <span className={`badge ${user.plan === "premium" ? "bg-yellow-400" : "bg-gray-200"}`}>
+                  {user.plan}
+                </span>
+                <button onClick={logout}>Logout</button>
+              </div>
+            ) || (
+                <Link
+                  to="/login"
+                  onClick={() => setOpen(false)}
+                  className="text-center border border-gray-200 rounded-full py-2 font-medium"
+                >
+                  Login
+                </Link>
+              )}
+            <Link
+              to="/dashboard"
+              onClick={() => setOpen(false)}
+              className="bg-blue-600 text-white text-center rounded-full py-2 font-medium"
+            >
+              Get Started
+            </Link>
+          </div>
+        </motion.div>
+      </>
+    )
+  }
+      </AnimatePresence >
+    </>
   );
 };
 

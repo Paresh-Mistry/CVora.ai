@@ -3,12 +3,12 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
-import { Card } from "../ui/card";
 import clsx from "clsx";
+import ProfileGif from "../../assets/Profile data.gif"
 
 const Hero: React.FC = () => {
   return (
-    <section className="container max-w-7xl mx-auto py-16 px-4 relative overflow-hidden">
+    <section className="container bg-white max-w-7xl mx-auto py-16 px-4 relative overflow-hidden">
       <div className="absolute bg-gradient-to-r from-blue-50 via-transparent to-pink-50 opacity-50 -z-10" />
 
       <div className="flex flex-col md:flex-row items-center justify-between gap-14">
@@ -26,16 +26,16 @@ const Hero: React.FC = () => {
             Get Hired
           </Badge>
 
-          <h1 className="text-4xl md:text-5xl xl:text-6xl font-semibold leading-tight tracking-tight text-[#11a8e4]">
-            Build Your <br />
-            <span className={clsx("orbitron-head" ,"text-[#212834] font-orbitron")}>
-              AI-Powered Resume
+          <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight">
+            Build <br />
+            <span className={clsx("orbitron-head", "text-[#193e7e] font-orbitron")}>
+              ATS-Friendly
             </span>
-            <br /> in Minutes
+            <br /> Resumes with AI in Minutes
           </h1>
 
           <p className="text-gray-500 max-w-xl md:text-lg font-light">
-            Design, customize, and download a professional CV with our smart
+            <span className="font-semibold capitalize">Design, customize, & download</span> a professional CV with our smart
             editor. Save time. Impress recruiters. Land the job.
           </p>
 
@@ -59,13 +59,15 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
           className="relative"
         >
-          <Card className="overflow-hidden rounded-3xl border-0 shadow-2xl shadow-blue-200 hover:scale-[1.02] transition-all duration-300">
+          <div className="relative flex justify-center items-center">
+
+            {/* Main Image */}
             <img
-              src="https://resumegenius.com/wp-content/uploads/picture-photo-resume-template-black-Hub.png"
+              src={ProfileGif}
               alt="Resume Preview"
-              className="w-[22rem] h-auto object-cover"
+              className="relative z-10 w-[30rem] h-auto"
             />
-          </Card>
+          </div>
 
           {/* Fancy Glow Effect */}
           <div className="absolute -inset-2 bg-gradient-to-r from-blue-300 to-pink-300 blur-3xl opacity-20 -z-10" />

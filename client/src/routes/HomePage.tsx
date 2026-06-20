@@ -8,7 +8,6 @@ const Home: React.FC = () => {
     document.title = "Home | CvGen"
   }, [])
 
-
   return (
     <Layout>
       <Hero />

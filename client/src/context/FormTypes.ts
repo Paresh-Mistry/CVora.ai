@@ -3,10 +3,10 @@
 // ─── Array item shapes ────────────────────────────────────────────────────────
 
 export interface ExperienceItem {
-  title: string;
+  role: string;
   company: string;
-  dates: string;
-  bullets: string[];
+  duration: string;
+  description: string[];
 }
 
 export interface ProjectItem {
@@ -18,8 +18,8 @@ export interface ProjectItem {
 
 export interface EducationItem {
   degree: string;
-  school: string;
-  dates: string;
+  institute: string;
+  year: string;
   grade: string;
 }
 
@@ -46,7 +46,7 @@ export type RequiredField = {
   name: string;
   domain: string;
   skill: string[];
-  experience: Pick<ExperienceItem, "title" | "company">[];
+  experience: Pick<ExperienceItem, "role" | "company">[];
   education: Pick<EducationItem, "degree">[];
 };
 
@@ -132,7 +132,7 @@ export const defaultFormData: FormData = {
 
   // experience
   experience: [
-    { title: "", company: "", dates: "", bullets: [] },
+    { role: "", company: "", duration: "", description: [] },
   ],
 
   // projects
@@ -142,7 +142,7 @@ export const defaultFormData: FormData = {
 
   // education
   education: [
-    { degree: "", school: "", dates: "", grade: "" },
+    { degree: "", institute: "", year: "", grade: "" },
   ],
 
   // achievements

@@ -1,5 +1,6 @@
 // src/api/resume.api.ts
 import { api } from "./axios";
+import type { ComponentType } from "react";
 
 export interface ResumeData {
   name: string;
@@ -10,7 +11,7 @@ export interface ResumeData {
   linkedin: string;
   summary: string;
   skill: string[];
-  experience: { role: string; company: string; duration: string; description: string }[];
+  experience: { role: string; company: string; duration: string; description: string[] | string }[];
   projects: { project_title: string; tech_stack: string; link: string; description: string }[];
   education: { degree: string; institute: string; year: string; grade: string }[];
   achievements: { title: string; description: string }[];
@@ -40,6 +41,42 @@ export interface UpdateResumePayload {
   title?: string;
   template_id?: string;
   data?: Partial<ResumeData>;
+}
+
+
+export interface ContactItem {
+  prefix: string;
+  icon: ComponentType<{ size?: number; className?: string }>;
+  value?: string;
+}
+
+export interface ContactItem {
+  prefix: string;
+  icon: ComponentType<{ size?: number; className?: string }>;
+  value?: string;
+}
+
+export interface ResolvedContactItem extends ContactItem {
+  value: string;
+}
+
+export interface ThemeTokens {
+  font?: string;
+  displayFont?: string;
+  accent?: string;
+  bannerBg?: string;
+  nameSize?: string;
+  sideWidth?: string;
+  sidebarBg?: string;
+  sidebarText?: string;
+  sidebarAccent?: string;
+  skillStyle?: "pill" | "dot" | "bar";
+  avatar?: "circle" | "square";
+}
+
+export interface LayoutProps {
+  d: ResumeData;
+  tk?: ThemeTokens;
 }
 
 export const resumeApi = {

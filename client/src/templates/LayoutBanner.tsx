@@ -4,42 +4,14 @@ import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import { Separator } from "../components/ui/separator";
 import { DefaultData } from "../data.json";
 import type {
-  AchievementItem,
-  CertificationItem,
   ContactItem,
-  EducationItem,
-  ExperienceItem,
-  LanguageItem,
   LayoutProps,
-  ProjectItem,
   ResolvedContactItem,
   ResumeData,
-} from "../types/index";
+} from "../services/resume.services";
 import { Badge } from "../components/ui/badge";
 import { cn } from "../lib/utils";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// ATS notes:
-// - Every visible string lives in real text nodes (h1/h2/h3/p/li/a), never in
-//   ::before/::after content or background-image text, so parsers can read it.
-// - Headings use real <h2>/<h3> tags so a resume parser (and a screen reader)
-//   can build an outline of the document, not just a flat div soup.
-// - Icons are purely decorative (aria-hidden) — the data they sit next to is
-//   always plain text, so nothing is "icon-only" information.
-// - Reading order in the DOM is Summary → Experience → Education → Projects →
-//   Achievements → Skills → Languages → Certifications → Contact, which is the
-//   order most parsers expect, regardless of the two-column visual layout.
-// - The two-column grid is visual-only (CSS), so DOM order is preserved when
-//   parsers strip styling.
-// ─────────────────────────────────────────────────────────────────────────────
-
-// ─── Helpers ────────────────────────────────────────────────────────────────
-
-/**
- * Checks whether an array has at least one "filled" entry. Entries can be
- * plain strings (e.g. skills) or objects keyed by `key` (e.g. experience
- * items keyed by "title").
- */
 function hasItems<T>(arr: T[] | undefined, key: keyof T | null): boolean {
   if (!Array.isArray(arr)) return false;
   return arr.some((item) =>
@@ -60,29 +32,29 @@ function withDefaults(d: ResumeData | undefined | null): ResumeData {
     ...d,
     summary: d.summary?.trim() || (DefaultData as ResumeData).summary,
     skill: hasItems(d.skill, null) ? d.skill : (DefaultData as ResumeData).skill,
-    experience: hasItems<ExperienceItem>(d.experience, "title")
+    experience: hasItems(d.experience, "role")
       ? d.experience
       : (DefaultData as ResumeData).experience,
-    education: hasItems<EducationItem>(d.education, "degree")
+    education: hasItems(d.education, "degree")
       ? d.education
       : (DefaultData as ResumeData).education,
-    projects: hasItems<ProjectItem>(d.projects, "project_title")
+    projects: hasItems(d.projects, "project_title")
       ? d.projects
       : (DefaultData as ResumeData).projects,
-    achievements: hasItems<AchievementItem>(d.achievements, "title")
+    achievements: hasItems(d.achievements, "title")
       ? d.achievements
       : (DefaultData as ResumeData).achievements,
-    languages: hasItems<LanguageItem>(d.languages, "language")
+    languages: hasItems(d.languages, "language")
       ? d.languages
       : (DefaultData as ResumeData).languages,
-    certifications: hasItems<CertificationItem>(d.certifications, "title")
+    certifications: hasItems(d.certifications, "title")
       ? d.certifications
       : (DefaultData as ResumeData).certifications,
   };
 }
 
 /** Splits a bullets field into a clean array, regardless of source shape. */
-function normalizeBullets(bullets: ExperienceItem["bullets"]): string[] {
+function normalizeBullets(bullets:["experience"]): string[] {
   if (Array.isArray(bullets)) return bullets;
   if (typeof bullets === "string") {
     return bullets
@@ -215,8 +187,8 @@ export default function LayoutBanner({ d: rawD, tk = {} }: LayoutProps) {
   // ── Experience ──────────────────────────────────────────────────────────
   const renderExperience = () =>
     (d.experience || []).map((exp, idx) => {
-      const bullets = normalizeBullets(exp.bullets);
-      const rawBulletsIsString = typeof exp.bullets === "string";
+      const bullets = normalizeBullets(exp.description);
+      const rawBulletsIsString = typeof exp.description === "string";
 
       return (
         <article
@@ -239,15 +211,15 @@ export default function LayoutBanner({ d: rawD, tk = {} }: LayoutProps) {
                 margin: 0,
               }}
             >
-              {exp.title || "—"}
+              {exp.role}
             </h3>
 
-            {exp.dates && (
+            {exp.duration && (
               <span
                 className="whitespace-nowrap"
                 style={{ fontFamily: f, fontSize: "9px", color: "#777" }}
               >
-                {exp.dates}
+                {exp.duration}
               </span>
             )}
           </div>
@@ -294,7 +266,7 @@ export default function LayoutBanner({ d: rawD, tk = {} }: LayoutProps) {
                 lineHeight: 1.45,
               }}
             >
-              {exp.bullets as string}
+              {exp.description as string}
             </p>
           ) : null}
         </article>
@@ -316,7 +288,7 @@ export default function LayoutBanner({ d: rawD, tk = {} }: LayoutProps) {
           {edu.degree || "—"}
         </h3>
         <p style={{ fontFamily: f, fontSize: "10.5px", color: "#666", margin: "1px 0 0" }}>
-          {[edu.school, edu.dates].filter(Boolean).join(" · ")}
+          {[edu.institute, edu.year].filter(Boolean).join(" · ")}
         </p>
         {edu.grade && (
           <p style={{ fontFamily: f, fontSize: "10px", color: "#888", margin: "1px 0 0" }}>
@@ -488,7 +460,7 @@ export default function LayoutBanner({ d: rawD, tk = {} }: LayoutProps) {
   // ─── Render ────────────────────────────────────────────────────────────────
   return (
     // Tailwind: chrome, shadow, border-radius, overflow
-    <div className="w-full overflow-hidden rounded-lg border border-black/5 shadow-lg">
+    <div className="w-full overflow-hidden border border-black/5 shadow-lg">
       {/* ── Banner ────────────────────────────────────────────────────────── */}
       <header className="px-9 pb-5 pt-7" style={{ background: bg }}>
         <h1

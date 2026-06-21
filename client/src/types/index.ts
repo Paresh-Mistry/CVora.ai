@@ -44,7 +44,6 @@ export interface CertificationItem {
 
 export interface ResumeData {
   name?: string;
-  title?: string;
   domain?: string;
   summary?: string;
   email?: string;

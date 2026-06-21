@@ -87,7 +87,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
             github:        form.github,
             linkedin:      form.linkedin,
             summary:       form.summary,
-            role:          form.experience[0]?.title          || '',
+            role:          form.experience[0]?.role          || '',
             skill:         form.skill.filter(Boolean),
             project_title: form.projects[0]?.project_title   || '',
             degree:        form.education[0]?.degree         || '',

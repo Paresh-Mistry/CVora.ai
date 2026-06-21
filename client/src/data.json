@@ -1,7 +1,6 @@
 {
     "DefaultData": {
         "name": "Alexandra Chen",
-        "title": "Senior Product Designer",
         "email": "alex.chen@email.com",
         "phone": "+1 (555) 234-5678",
         "location": "San Francisco, CA",
@@ -9,94 +8,22 @@
         "summary": "Product designer with 8+ years crafting intuitive digital experiences at Notion, Figma & Dropbox. Passionate about building products that make a real difference.",
         "experience": [
             {
-                "id": 1,
-                "title": "Senior Product Designer",
+                "role": "Senior Product Designer",
                 "company": "Notion",
-                "dates": "2021–Present",
-                "bullets": [
+                "duration": "2021–Present",
+                "description": [
                     "Led end-to-end editor redesign, boosting user retention by 22% and platform engagement.",
                     "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Led end-to-end editor redesign, boosting user retention by 22% and platform engagement.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap."
-                
-                ]
-            },
-            {
-                "id": 2,
-                "title": "Product Designer",
-                "company": "Figma",
-                "dates": "2018–2021",
-                "bullets": [
-                    "Shipped collaborative features to 3M+ users",
-                    "Component library cut handoff time by 35%",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap."
-
-                ]
-            },
-            {
-                "id": 3,
-                "title": "UX Designer",
-                "company": "Dropbox",
-                "dates": "2016–2018",
-                "bullets": [
-                    "Redesigned onboarding, +18% activation",
-                    "Partnered with research on usability studies"
+                    "Led end-to-end editor redesign, boosting user retention by 22% and platform engagement."
                 ]
             }
         ],
         "education": [
             {
-                "id": 1,
+                "grade": "9.28 CGPA",
                 "degree": "B.F.A. Interaction Design",
-                "school": "California College of the Arts",
-                "dates": "2012–2016"
+                "institute": "California College of the Arts",
+                "year": "2012–2016"
             }
         ],
         "skills": [

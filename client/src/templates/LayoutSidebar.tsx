@@ -5,8 +5,7 @@ import type {
   LayoutProps,
   ResolvedContactItem,
   ContactItem,
-  LanguageItem,
-} from "../types/index";
+} from "../services/resume.services";
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
 
 
@@ -231,10 +230,10 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
   // ── Contact ──────────────────────────────────────────────────────────────
   const contactItems: ResolvedContactItem[] = (
     [
-      { icon: Mail, label: "Email", val: d.email },
-      { icon: Phone, label: "Phone", val: d.phone },
-      { icon: Github, label: "Github", val: d.github },
-      { icon: Linkedin, label: "LinkedIn", val: d.linkedin },
+      { prefix: "mailto:", icon: Mail, value: d.email },
+      { prefix: "tel:", icon: Phone, value: d.phone },
+      { prefix: "https://", icon: Linkedin, value: d.linkedin },
+      { prefix: "https://github.com/", icon: Github, value: d.github },
     ] as ContactItem[]
   ).filter((c): c is ResolvedContactItem => Boolean(c.value));
 
@@ -270,14 +269,14 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
           >
             {d.name}
           </h1>
-          {d.title && (
+          {d.domain && (
             <p style={{ fontFamily: f, fontSize: "10px", color: sideAccent, marginTop: "4px", marginBottom: 0 }}>
-              {d.title}
+              {d.domain}
             </p>
           )}
         </div>
 
-        {contactItems.length > 0 && (
+        {/* {contactItems.length > 0 && ( */}
           <section aria-labelledby="sidebar-contact">
             <SideLabel font={f ?? ''} accent={sideAccent}>
               <span id="sidebar-contact">Contact</span>
@@ -303,7 +302,7 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
               </ul>
             </address>
           </section>
-        )}
+        {/* )} */}
 
         {skills.length > 0 && (
           <section aria-labelledby="sidebar-skills">
@@ -359,10 +358,10 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
               <span id="main-experience">Experience</span>
             </MainTitle>
             {experience.map((exp, i) => {
-              const bullets = normalizeBullets(exp.bullets);
+              const bullets = normalizeBullets(exp.description);
               return (
                 <article
-                  key={exp.title ?? i}
+                  key={exp.role ?? i}
                   style={{
                     marginBottom: "14px",
                     paddingLeft: "10px",
@@ -371,9 +370,9 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
                 >
                   <div className="flex justify-between gap-2">
                     <h3 style={{ fontFamily: f, fontWeight: 700, fontSize: "12px", margin: 0 }}>
-                      {exp.title}
+                      {exp.role}
                     </h3>
-                    {exp.dates && (
+                    {exp.duration && (
                       <span
                         className="whitespace-nowrap"
                         style={{
@@ -385,7 +384,7 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
                           borderRadius: "10px",
                         }}
                       >
-                        {exp.dates}
+                        {exp.duration}
                       </span>
                     )}
                   </div>
@@ -428,7 +427,7 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
                   {e.degree}
                 </h3>
                 <p style={{ fontFamily: f, fontSize: "10.5px", color: ac, margin: "1px 0 0" }}>
-                  {[e.school, e.dates].filter(Boolean).join(" · ")}
+                  {[e.institute, e.year].filter(Boolean).join(" · ")}
                 </p>
                 {e.grade && (
                   <p style={{ fontFamily: f, fontSize: "10px", color: "#888", margin: "1px 0 0" }}>

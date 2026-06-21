@@ -211,7 +211,7 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
                   <InputGroupInput
                     type="text"
                     value={exp.title}
-                    onChange={(e) => handleChange(e, 'experience', index, 'title')}
+                    onChange={(e) => handleChange(e, 'experience', index, 'role')}
                     placeholder="Job title  (e.g. Senior Developer)"
                   />
                   <InputGroupAddon><SearchIcon size={15} /></InputGroupAddon>
@@ -231,7 +231,7 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
                   <InputGroupInput
                     type="text"
                     value={exp.dates}
-                    onChange={(e) => handleChange(e, 'experience', index, 'dates')}
+                    onChange={(e) => handleChange(e, 'experience', index, 'duration')}
                     placeholder="Duration  (e.g. Jan 2022 – Mar 2024)"
                   />
                   <InputGroupAddon><SearchIcon size={15} /></InputGroupAddon>
@@ -241,7 +241,7 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
                   <InputGroupTextarea
                     value={exp.bullets}
                     name={`experience-${index}-description`}
-                    onChange={(e) => handleChange(e, 'experience', index, 'bullets')}
+                    onChange={(e) => handleChange(e, 'experience', index, 'description')}
                     placeholder="Describe your responsibilities and achievements…"
                     rows={3}
                   />
@@ -257,10 +257,10 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
             <AddButtonGroup
               onAdd={() =>
                 addField('experience', {
-                  title: '',
+                  role: '',
                   company: '',
-                  dates: '',
-                  bullets: [],
+                  duration: '',
+                  description: [],
                 })
               }
               label="Add experience"
@@ -405,7 +405,7 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
                     type="text"
                     placeholder="Institution name"
                     value={edu.school}
-                    onChange={(e) => handleChange(e, 'education', index, 'school')}
+                    onChange={(e) => handleChange(e, 'education', index, 'institute')}
                     name={`education-${index}-institute`}
                   />
                   <InputGroupAddon><BookOpenIcon size={15} /></InputGroupAddon>
@@ -417,7 +417,7 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
                       type="text"
                       placeholder="Year  (e.g. 2020–2024)"
                       value={edu.dates}
-                      onChange={(e) => handleChange(e, 'education', index, 'dates')}
+                      onChange={(e) => handleChange(e, 'education', index, 'year')}
                       name={`education-${index}-year`}
                     />
                   </InputGroup>

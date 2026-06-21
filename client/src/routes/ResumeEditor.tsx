@@ -56,15 +56,11 @@ const Editing: React.FC = () => {
   const createResume = useCreateResume();
   const updateResume = useUpdateResume(resumeId);
 
-  console.log("Templates from:", templates)
-
   const activeTmpl =
     templates?.find((t) => t.id === templateId);
 
   useEffect(() => {
     if (!activeTmpl) return;
-
-    console.log(activeTmpl);
   }, [activeTmpl]);
 
 
@@ -73,16 +69,11 @@ const Editing: React.FC = () => {
     : LayoutStack;
 
 
-  console.log(activeTmpl)
-
-
   const [step, setStep] = useState(0);
-
-  const { form, setForm, handleSubmit } = useFormContext();
+  const { form, setForm } = useFormContext();
 
   useEffect(() => {
     if (!existingResume || !isEdit) return;
-
     setForm(existingResume?.data);
   }, [existingResume, isEdit, setForm]);
 

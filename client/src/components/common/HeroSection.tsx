@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import clsx from "clsx";
-import ProfileGif from "../../assets/Profile data.gif"
+import ProfileGif from "../../assets/heros-section.png"
 
 const Hero: React.FC = () => {
   return (
-    <section className="container bg-white max-w-7xl mx-auto py-16 px-4 relative overflow-hidden">
+    <section className="container bg-white max-w-7xl mx-auto py-16 px-4 relative overflow-hidden bg-cover bg-center bg-no-repeat">
       <div className="absolute bg-gradient-to-r from-blue-50 via-transparent to-pink-50 opacity-50 -z-10" />
 
       <div className="flex flex-col md:flex-row items-center justify-between gap-14">
@@ -65,12 +65,9 @@ const Hero: React.FC = () => {
             <img
               src={ProfileGif}
               alt="Resume Preview"
-              className="relative z-10 w-[30rem] h-auto"
+              className="relative z-10 w-[30rem] h-auto drop-shadow-[0_0_25px_rgba(6,182,212,0.4)] transition-all duration-700 hover:drop-shadow-[0_0_35px_rgba(6,182,212,0.7)]"
             />
           </div>
-
-          {/* Fancy Glow Effect */}
-          <div className="absolute -inset-2 bg-gradient-to-r from-blue-300 to-pink-300 blur-3xl opacity-20 -z-10" />
         </motion.div>
       </div>
     </section>

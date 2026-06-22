@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { CreditCardIcon, File, LogOutIcon, Menu, Star, User, UserIcon, X, Zap } from "lucide-react";
+import { CreditCard, CreditCardIcon, File, LayoutTemplate, LogOutIcon, Menu, Sparkles, Star, User, UserIcon, X, Zap } from "lucide-react";
 import { useLogout, useUser } from "../../hooks/useAuth";
 import { Button } from "../ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
@@ -11,12 +11,12 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const [open, setOpen] = useState(false);
 
-  const navItems = [
-    { path: "/", name: "Features" },
-    { path: "/dashboard", name: "Templates" },
-    { path: "/pricing", name: "Pricing" },
-    { path: "/about", name: "Resources" },
-  ];
+const navItems = [
+  { path: "/", icon: Sparkles, name: "Features" },
+  { path: "/dashboard", icon: LayoutTemplate, name: "Templates" },
+  { path: "/pricing", icon: CreditCard, name: "Pricing" },
+  // { path: "/about", icon: BookOpen, name: "Resources" },
+];
 
   const { data: credits } = useCredits();
   const totalRemaining =
@@ -32,13 +32,15 @@ const Navbar: React.FC = () => {
     path,
     name,
     mobile = false,
+    icon
   }: {
     path: string;
     name: string;
     mobile?: boolean;
+    icon?: React.ElementType | any
   }) => {
     const isActive = location.pathname === path;
-
+    const Icon = icon
     return (
       <motion.div
         whileHover={{ scale: mobile ? 1 : 1.05 }}
@@ -46,11 +48,12 @@ const Navbar: React.FC = () => {
       >
         <Link
           to={path}
-          className={`relative font-medium transition-colors duration-300 ${isActive
+          className={`relative flex items-center gap-1.5 font-medium transition-colors duration-300 ${isActive
             ? "text-[#11a8e4]"
             : "text-[#212834] hover:text-[#11a8e4]"
             }`}
         >
+          <Icon key={name} size={18}/>
           {name}
 
           {isActive && !mobile && (
@@ -75,9 +78,10 @@ const Navbar: React.FC = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
+            {navItems.map((item) => {
+              return (
               <NavLink key={item.path} {...item} />
-            ))}
+            )})}
           </div>
 
           {/* Desktop Actions */}
@@ -183,16 +187,44 @@ const Navbar: React.FC = () => {
             ))}
           </div>
 
-          <div className="mt-10 flex flex-col gap-4">
+          <div className="mt-6 flex flex-col gap-4">
             {user && (
-              <div className="flex items-center gap-3">
-                <span>{user.email}</span>
-                <span className={`badge ${user.plan === "premium" ? "bg-yellow-400" : "bg-gray-200"}`}>
-                  {user.plan}
-                </span>
-                <button onClick={logout}>Logout</button>
-              </div>
-            ) || (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline"><User />{user.full_name}</Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem>
+                    <UserIcon />
+                    Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <File />
+                    <Link to={"/history"}>My Templates</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <CreditCardIcon />
+                    Billing
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="bg-[#f6edd4]">
+                    <Star fill="#eab420" />
+                    {user.plan.toUpperCase()} Plan
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="bg-[#d4f0f6] mt-1"
+                    title={`AI: ${credits?.ai.remaining} · ATS: ${credits?.ats.remaining} · Cover Letter: ${credits?.cover_letter.remaining}`}
+                  >
+                    <Zap fill="#46afc7" />
+                  {totalRemaining} CREDITS
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={logout} variant="destructive">
+                  <LogOutIcon />
+                  Log out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+              </DropdownMenu>
+          )  || (
                 <Link
                   to="/login"
                   onClick={() => setOpen(false)}

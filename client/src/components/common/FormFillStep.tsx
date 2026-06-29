@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useFormContext } from '../../context/FormContext';
 import {
   InputGroup,
@@ -89,7 +89,7 @@ const AddButtonGroup: React.FC<{ onAdd: () => void; label?: string }> = ({
 
 const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
   const { form, addField, removeField, updateSkills, setForm, handleChange } = useFormContext();
-
+  const [showAdditionalPersonal, setShowAdditionalPersonal] = useState(false);
 
 
   const renderStep = () => {
@@ -98,7 +98,7 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
       // ── Personal ──────────────────────────────────────────────────────────
       case 'personal':
         return (
-          <div className="space-y-3">
+          <div className="space-y-4">
             <FieldLabel icon={<UserIcon size={12} />} text="Basic info" />
 
             <InputGroup>
@@ -107,26 +107,32 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
                 onChange={(e) => handleChange(e, 'name')}
                 placeholder="Full Name"
               />
-              <InputGroupAddon><SearchIcon size={15} /></InputGroupAddon>
+              <InputGroupAddon>
+                <SearchIcon size={15} />
+              </InputGroupAddon>
             </InputGroup>
 
             <InputGroup>
               <InputGroupInput
                 value={form.domain}
                 onChange={(e) => handleChange(e, 'domain')}
-                placeholder="Job title / domain  (e.g. Frontend Developer)"
+                placeholder="Job title / domain (e.g. Frontend Developer)"
               />
-              <InputGroupAddon><BriefcaseIcon size={15} /></InputGroupAddon>
+              <InputGroupAddon>
+                <BriefcaseIcon size={15} />
+              </InputGroupAddon>
             </InputGroup>
 
             <InputGroup>
               <InputGroupInput
+                type="email"
                 value={form.email}
                 onChange={(e) => handleChange(e, 'email')}
-                type="email"
                 placeholder="Email address"
               />
-              <InputGroupAddon><MailIcon size={15} /></InputGroupAddon>
+              <InputGroupAddon>
+                <MailIcon size={15} />
+              </InputGroupAddon>
             </InputGroup>
 
             <InputGroup>
@@ -135,16 +141,21 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
                 onChange={(e) => handleChange(e, 'phone')}
                 placeholder="Phone number"
               />
-              <InputGroupAddon><CreditCardIcon size={15} /></InputGroupAddon>
-              <InputGroupAddon align="inline-end"><CheckIcon size={15} /></InputGroupAddon>
+              <InputGroupAddon>
+                <CreditCardIcon size={15} />
+              </InputGroupAddon>
+              <InputGroupAddon align="inline-end">
+                <CheckIcon size={15} />
+              </InputGroupAddon>
             </InputGroup>
 
-            <FieldLabel icon={<GlobeIcon size={12} />} text="Online presence" />
+            <FieldLabel icon={<GlobeIcon size={12} />} text="Online Presence" />
 
             <InputGroup>
               <InputGroupAddon>
                 <InputGroupText>linkedin.com/in/</InputGroupText>
               </InputGroupAddon>
+
               <InputGroupInput
                 value={form.linkedin}
                 onChange={(e) => handleChange(e, 'linkedin')}
@@ -157,6 +168,7 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
               <InputGroupAddon>
                 <InputGroupText>github.com/</InputGroupText>
               </InputGroupAddon>
+
               <InputGroupInput
                 value={form.github}
                 onChange={(e) => handleChange(e, 'github')}
@@ -164,6 +176,85 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
                 className="!pl-0.5"
               />
             </InputGroup>
+
+            <button
+              type="button"
+              onClick={() => setShowAdditionalPersonal(!showAdditionalPersonal)}
+              className="w-full rounded-lg border border-dashed border-gray-300 py-2 text-sm font-medium text-gray-600 transition hover:border-blue-500 hover:text-blue-600"
+            >
+              {showAdditionalPersonal
+                ? "Hide Additional Personal Details"
+                : "+ Add Additional Personal Details"}
+            </button>
+
+            {showAdditionalPersonal && (
+              <div className="space-y-3 rounded-xl border bg-gray-50 p-4">
+
+                <FieldLabel
+                  icon={<UserIcon size={12} />}
+                  text="Additional Personal Details"
+                />
+
+                <div className="grid grid-cols-2 gap-3">
+
+                  <InputGroup>
+                    <InputGroupInput
+                      type="date"
+                      value={form.dob}
+                      onChange={(e) => handleChange(e, "dob")}
+                    />
+                  </InputGroup>
+                  <InputGroup>
+                    <InputGroupInput
+                      value={form.nationality}
+                      onChange={(e) => handleChange(e, "nationality")}
+                      placeholder="Nationality"
+                    />
+                  </InputGroup>
+                </div>
+
+                <InputGroup>
+                  <InputGroupInput
+                    value={form.address}
+                    onChange={(e) => handleChange(e, "address")}
+                    placeholder="Street Address"
+                  />
+                </InputGroup>
+
+                <div className="grid grid-cols-2 gap-3">
+
+                  <InputGroup>
+                    <InputGroupInput
+                      value={form.country}
+                      onChange={(e) => handleChange(e, "country")}
+                      placeholder="Country"
+                    />
+                  </InputGroup>
+
+                  <InputGroup>
+                    <InputGroupInput
+                      value={form.postalCode}
+                      onChange={(e) => handleChange(e, "postalCode")}
+                      placeholder="Postal Code"
+                    />
+                  </InputGroup>
+
+                </div>
+
+                <InputGroup>
+                  <InputGroupInput
+                    type="url"
+                    value={form.website}
+                    onChange={(e) => handleChange(e, "website")}
+                    placeholder="Portfolio / Personal Website"
+                  />
+                  <InputGroupAddon>
+                    <GlobeIcon size={15} />
+                  </InputGroupAddon>
+                </InputGroup>
+
+              </div>
+            )}
           </div>
         );
 
@@ -227,15 +318,47 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
                   <InputGroupAddon><BriefcaseIcon size={15} /></InputGroupAddon>
                 </InputGroup>
 
-                <InputGroup>
-                  <InputGroupInput
-                    type="text"
-                    value={exp.dates}
-                    onChange={(e) => handleChange(e, 'experience', index, 'duration')}
-                    placeholder="Duration  (e.g. Jan 2022 – Mar 2024)"
+                <div className="grid grid-cols-2 gap-4">
+                  {/* Start Date */}
+                  <InputGroup>
+                    <InputGroupInput
+                      type="date"
+                      value={exp.startDate}
+                      onChange={(e) =>
+                        handleChange(e, "experience", index, "startDate")
+                      }
+                    />
+                    <InputGroupAddon>Start</InputGroupAddon>
+                  </InputGroup>
+
+                  {/* End Date */}
+                  <InputGroup>
+                    <InputGroupInput
+                      type="date"
+                      value={exp.endDate}
+                      onChange={(e) =>
+                        handleChange(e, "experience", index, "endDate")
+                      }
+                    />
+                    <InputGroupAddon>End</InputGroupAddon>
+                  </InputGroup>
+                </div>
+
+                <div className="flex items-center gap-2 mt-2">
+                  <input
+                    type="checkbox"
+                    checked={exp.current || false}
+                    onChange={(e) =>
+                      handleChange(
+                        { target: { value: e.target.checked } },
+                        "experience",
+                        index,
+                        "current"
+                      )
+                    }
                   />
-                  <InputGroupAddon><SearchIcon size={15} /></InputGroupAddon>
-                </InputGroup>
+                  <label>Currently Working</label>
+                </div>
 
                 <InputGroup>
                   <InputGroupTextarea

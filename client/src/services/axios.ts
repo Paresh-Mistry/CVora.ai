@@ -1,4 +1,3 @@
-// src/api/axios.ts
 import axios from "axios";
 
 export const api = axios.create({
@@ -6,16 +5,13 @@ export const api = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-// ── Attach access token to every request ──────────────────────────────────────
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("access_token");
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 
-// ── Auto-refresh on 401 ───────────────────────────────────────────────────────
 let refreshing = false;
-
 api.interceptors.response.use(
   (res) => res,
   async (error) => {

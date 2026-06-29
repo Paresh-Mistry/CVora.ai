@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { CreditCard, CreditCardIcon, File, LayoutTemplate, LogOutIcon, Menu, Sparkles, Star, User, UserIcon, X, Zap } from "lucide-react";
+import { ChevronDown, CreditCard, CreditCardIcon, File, LayoutTemplate, LogOutIcon, Menu, Sparkles, Star, User, X, Zap } from "lucide-react";
 import { useLogout, useUser } from "../../hooks/useAuth";
 import { Button } from "../ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
@@ -70,10 +70,10 @@ const navItems = [
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="text-xl orbitron-head">
-            <span className="mozilla-headline-hero">Cv</span> Gen
+            <span className="mozilla-headline-hero">Cv</span> Ora
           </Link>
 
           {/* Desktop Navigation */}
@@ -90,11 +90,11 @@ const navItems = [
             {user && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline"><User />{user.full_name}</Button>
+                  <Button variant="outline">{user.full_name}<ChevronDown /></Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem>
-                    <UserIcon />
+                    <User />
                     Profile
                   </DropdownMenuItem>
                   <DropdownMenuItem>
@@ -195,7 +195,7 @@ const navItems = [
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem>
-                    <UserIcon />
+                    <User />
                     Profile
                   </DropdownMenuItem>
                   <DropdownMenuItem>

@@ -2304,3 +2304,1040 @@
 2026-06-22 11:10:52 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
 2026-06-22 11:10:53 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
 2026-06-22 11:14:33 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 11:16:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 11:20:45 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 11:25:01 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 11:26:18 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:24:31 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:25:58 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:25:58 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:26:13 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:26:13 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:26:18 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:26:18 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:26:24 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:26:24 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:27:27 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:27:29 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:27:46 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:27:46 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:27:56 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:27:56 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:29:02 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:29:02 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:29:19 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:29:19 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:29:38 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:29:39 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:33:34 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:33:34 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:33:37 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:33:37 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:33:45 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:33:45 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:33:45 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:33:45 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:34:18 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:34:18 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:34:23 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:34:23 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:34:58 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:34:58 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:35:39 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:35:39 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:35:49 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:35:49 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:35:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:35:57 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:36:04 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:36:04 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:36:07 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:36:07 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:36:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:36:57 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:37:00 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:37:00 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:37:39 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:37:39 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:37:41 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:37:41 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:37:47 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:37:47 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:37:54 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:37:54 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:38:18 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:38:18 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:38:40 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:38:40 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:38:55 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:38:55 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:38:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:38:59 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:39:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:39:10 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:39:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:39:12 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:39:29 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:39:29 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:39:31 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:39:31 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:39:42 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:39:42 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:39:43 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:39:43 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:39:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:39:50 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:40:06 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:40:06 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:40:09 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:40:09 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:40:14 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:40:14 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:40:17 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:40:17 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:40:19 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:40:19 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:40:38 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:40:38 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:40:41 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:40:41 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:42:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:42:12 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:42:14 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:42:14 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:42:16 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:42:16 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:42:19 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:42:19 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:42:21 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:42:21 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:43:10 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:43:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:43:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:43:12 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:45:29 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:45:29 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:45:43 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:45:43 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:45:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:45:50 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:45:52 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:45:52 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:45:55 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:45:55 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:46:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:46:01 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:46:11 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:46:11 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:46:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:46:12 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:46:15 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:46:15 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:46:22 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:46:22 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:46:29 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:46:29 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:46:30 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:46:30 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:46:33 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:46:33 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:46:34 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:46:34 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:46:38 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:46:38 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:46:45 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:46:45 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:47:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:47:01 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:47:08 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:47:08 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:47:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:47:10 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:47:15 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:47:15 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:47:26 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:47:26 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:47:41 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:47:41 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:48:08 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:48:08 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:48:16 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:48:16 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:48:18 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:48:18 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:48:36 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:48:36 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:48:46 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:48:46 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:48:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:48:53 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:48:56 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:48:56 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:52:29 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:52:29 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:52:49 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:52:49 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:53:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:53:01 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:53:33 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:53:33 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:53:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:53:51 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:54:03 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:54:03 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-22 20:54:07 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-22 20:54:07 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:05:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:06:38 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:06:38 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:06:39 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:06:52 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:08:00 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:08:00 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:08:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:08:01 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:08:06 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:08:06 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:08:32 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:08:32 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:08:33 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:08:33 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:08:41 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:08:41 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:08:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:08:53 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:08:54 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:08:54 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:09:05 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:09:05 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:09:48 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:09:48 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:10:33 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:10:33 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:10:48 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:10:48 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:11:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:11:01 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:11:41 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:11:41 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:12:34 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:12:34 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:12:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:12:53 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:12:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:12:57 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:12:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:12:59 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:13:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:13:01 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:13:04 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:13:04 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:13:20 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:13:20 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:13:24 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:13:24 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:13:25 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:13:25 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:13:36 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:13:36 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:13:37 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:13:37 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:14:13 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:14:13 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:16:38 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:16:38 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:16:44 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:16:44 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:16:48 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:16:48 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:17:03 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:17:03 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:17:09 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:17:09 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:17:13 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:17:13 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:17:16 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:17:16 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:17:17 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:17:17 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:20:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:20:10 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:20:34 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:20:34 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:20:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:20:50 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:21:05 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:21:05 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:21:20 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:21:20 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:21:29 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:21:29 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:21:35 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:21:36 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:23:31 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:23:31 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:23:35 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:23:35 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:23:36 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:23:36 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:23:37 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:23:37 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:25:15 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:25:15 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:26:07 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:26:07 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:26:09 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:26:09 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:26:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:26:12 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:26:15 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:26:15 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:26:17 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:26:17 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:27:17 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:27:17 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:27:17 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:27:17 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:27:37 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:27:37 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:28:21 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:28:21 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:28:23 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:28:23 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:28:29 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:28:29 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:28:31 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:28:31 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:28:32 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:28:32 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:29:31 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:29:31 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:29:33 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:29:33 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:29:41 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:29:41 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:29:52 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:29:52 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:29:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:29:53 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:29:56 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:29:56 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:29:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:29:57 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:29:58 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:29:58 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:30:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:30:12 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:33:42 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:33:42 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:33:46 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:33:46 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:33:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:33:51 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:33:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:33:51 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:35:06 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:35:06 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:35:09 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:35:09 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:35:29 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:35:29 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:53:21 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:53:21 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:53:49 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:53:49 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:53:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:53:51 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 09:54:35 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:55:21 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:55:31 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:56:06 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:56:06 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 09:56:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:00:43 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:01:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:01:28 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:03:30 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:03:32 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:09:23 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:09:46 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:13:07 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:14:48 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:15:38 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:17:20 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:22:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:23:34 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:24:03 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:24:07 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:25:17 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:25:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:27:22 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:27:55 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:27:58 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:27:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:28:00 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:28:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:34:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:34:47 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:39:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:40:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:40:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:40:56 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:41:25 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:41:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:42:11 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:44:30 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:44:31 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:48:06 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:53:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:53:39 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:54:25 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:55:13 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:55:25 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:55:27 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:55:32 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:55:45 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:56:05 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:56:13 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 10:56:24 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:41:17 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:41:21 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:42:40 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:45:21 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:45:54 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:46:29 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:46:31 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:46:38 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:47:39 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:47:44 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:47:47 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:47:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:48:00 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:48:13 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:48:35 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:48:39 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:48:40 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:48:40 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:48:41 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:48:44 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:48:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:48:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:48:56 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:49:02 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:49:11 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:49:14 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:49:24 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:49:27 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:49:35 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:49:45 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:50:08 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:50:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:50:18 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:50:28 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:50:35 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:50:38 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:50:45 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:50:52 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:51:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:51:15 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:51:16 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:51:34 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:52:21 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:52:26 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:52:29 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:52:36 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:52:49 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:52:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:53:02 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:53:05 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:53:09 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:53:11 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:54:35 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:54:54 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:54:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:55:58 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:56:00 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:56:19 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:56:20 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:56:33 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:56:35 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:56:43 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:56:44 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:56:55 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:57:00 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:57:05 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:57:09 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:57:42 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:57:45 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:57:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:57:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:58:08 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:58:11 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:58:21 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:59:16 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:59:20 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:59:28 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:59:35 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 11:59:40 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:00:08 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:00:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:00:11 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:00:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:00:47 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:00:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:01:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:01:04 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:01:05 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:01:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:01:54 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:02:04 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:02:17 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:02:27 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:02:28 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:02:43 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:02:43 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:02:48 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:02:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:02:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:02:56 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:02:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:50:41 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:52:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:52:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:56:40 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:56:40 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:56:48 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:56:48 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:56:58 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:56:58 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:57:05 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:57:05 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:57:07 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:57:07 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:57:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:57:10 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:57:18 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:57:18 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:57:24 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:57:24 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:57:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:57:50 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:58:00 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:58:00 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:58:19 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:58:19 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:58:27 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:58:27 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:58:34 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:58:34 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:58:49 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:58:49 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:58:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:58:50 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 12:58:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 12:58:50 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:01:00 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:01:00 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:01:05 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:01:05 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:01:06 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:01:06 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:01:24 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:01:25 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:01:30 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:01:30 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:01:33 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:01:33 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:02:06 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:02:06 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:02:11 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:02:11 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:02:34 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:02:34 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:03:00 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:03:00 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:03:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:03:01 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:03:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:03:10 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:03:13 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:03:13 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:03:18 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:03:18 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:03:19 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:03:19 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:03:32 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:03:32 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:03:38 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:03:38 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:03:42 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:03:42 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:03:43 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:03:43 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:03:48 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:03:48 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:03:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:03:51 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:03:55 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:03:55 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:04:34 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:04:34 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:04:35 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:04:35 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:04:39 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:04:39 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:04:46 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:04:47 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:04:58 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:04:58 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:05:00 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:05:00 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:05:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:05:01 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:05:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:05:10 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-23 13:05:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-23 13:05:12 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-24 18:33:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:37:04 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:37:06 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:37:06 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-24 18:37:06 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-24 18:38:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:38:55 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:38:56 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:39:00 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:39:03 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:39:05 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:39:22 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:40:07 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:40:08 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:40:09 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:40:17 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:40:56 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-24 18:45:38 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:48:20 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-24 18:49:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-24 18:49:51 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:14:46 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:14:56 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:34:44 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:34:47 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:35:27 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:35:27 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:41:08 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:44:05 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:44:05 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:44:05 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:44:07 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:44:19 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:44:19 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:46:40 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:46:40 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:46:42 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:46:42 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:47:02 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:47:02 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:47:19 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:47:19 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:47:39 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:47:39 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:47:41 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:47:41 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:47:47 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:47:47 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:48:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:48:10 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:48:14 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:48:14 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:48:21 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:48:21 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:48:24 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:48:24 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:48:40 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:48:40 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:48:44 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:48:44 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:48:45 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:48:45 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:48:58 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:48:58 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:49:11 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:49:11 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:49:19 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:49:19 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:49:36 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:49:37 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:49:40 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:49:40 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:49:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:49:50 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:49:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:49:51 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:50:33 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:50:33 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:50:33 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:50:33 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:50:39 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:50:39 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 10:50:42 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 10:50:42 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 11:17:46 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 11:21:43 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 11:40:48 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 11:44:20 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 11:44:52 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 11:44:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 11:44:59 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 11:49:24 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 11:49:24 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 11:54:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 12:09:20 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 12:09:31 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-25 12:15:35 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-25 12:15:38 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:21:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:22:27 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:22:27 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:22:35 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:22:35 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:23:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:23:01 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:23:04 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:23:04 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:23:06 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:23:06 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:23:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:23:10 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:23:33 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:23:33 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:23:43 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:23:43 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:23:46 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:23:46 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:23:52 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:23:52 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:23:54 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:23:54 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:23:55 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:23:55 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:23:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:23:57 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:23:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:23:59 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:24:04 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:24:04 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:24:07 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:24:07 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:24:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:24:10 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:24:11 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:24:11 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:24:14 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:24:14 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:24:19 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:24:21 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:24:22 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:24:22 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:24:26 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:24:26 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:24:27 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:24:27 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:24:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:24:51 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:24:56 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:24:56 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:25:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:25:59 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:26:19 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:26:19 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:26:31 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:26:31 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:26:33 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:26:33 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:26:35 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:26:35 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:26:39 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:26:39 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:27:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:28:43 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:28:46 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:28:54 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:28:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:29:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:29:18 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:29:27 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:29:29 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:29:32 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:29:33 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:29:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:29:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:29:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:30:08 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:30:16 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:30:26 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:30:29 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:30:36 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:30:38 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:30:42 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:30:45 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:30:48 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:30:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:30:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:31:03 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:31:05 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:31:14 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:31:25 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:33:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:33:30 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:33:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:34:22 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:34:28 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:36:36 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:40:25 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:41:45 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:41:45 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:41:46 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:41:46 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:41:49 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:41:49 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:41:51 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:41:51 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:43:30 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:43:30 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:43:37 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:43:37 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:46:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:46:59 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:47:04 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:47:04 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:47:08 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:47:08 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:47:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:47:12 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:47:48 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:47:48 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:47:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:47:50 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:47:54 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:47:54 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:48:03 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:48:03 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:48:05 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:48:05 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:48:17 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:48:17 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:48:28 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:48:28 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:48:36 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:48:37 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:48:38 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:48:38 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:48:43 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:48:43 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:48:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:48:50 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:48:55 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:48:55 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:49:24 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:49:24 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:49:31 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:49:31 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:49:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:49:50 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:50:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:50:12 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:50:25 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:50:25 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:50:30 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:50:30 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:50:37 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:50:37 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:50:39 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:50:39 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:50:54 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:50:54 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:50:55 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:50:55 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:51:36 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:51:36 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:51:42 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:51:42 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:51:42 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:51:42 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:52:05 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:52:05 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:52:13 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:52:13 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:52:52 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:52:52 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:53:36 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 14:53:36 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:53:37 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 14:53:37 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:00:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:04:40 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:05:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:09:49 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:10:23 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:13:40 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:13:40 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:13:42 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:13:43 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:18:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:18:59 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:23:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:23:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:23:59 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:26:11 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:26:11 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:31:46 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:31:47 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:38:03 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:47:22 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:51:09 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:55:43 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:55:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:55:53 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:55:58 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:56:00 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:56:02 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:56:04 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:56:31 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:56:32 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:56:43 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:56:43 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:56:45 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:56:45 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:57:02 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:57:02 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:57:04 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:57:04 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:57:17 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:57:17 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:57:17 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:57:17 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:58:24 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:58:24 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:58:31 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:58:31 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:58:34 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:58:34 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:58:39 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:58:39 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:59:00 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:59:00 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:59:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:59:01 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:59:03 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:59:03 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:59:07 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:59:07 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:59:08 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:59:08 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:59:19 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:59:19 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 15:59:22 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 15:59:22 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:00:04 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:00:04 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:00:11 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:00:11 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:00:18 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:00:18 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:00:24 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:00:24 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:00:26 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:00:26 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:00:52 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:00:52 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:00:55 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:00:55 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:02:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:02:53 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:02:54 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:02:54 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:02:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:02:59 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:03:04 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:03:04 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:03:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:03:10 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:04:22 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:04:22 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:04:52 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:04:52 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:05:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:05:01 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:05:16 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:05:16 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:05:37 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:05:37 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:05:53 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:05:53 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:05:56 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:05:56 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:05:57 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:05:57 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:05:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:05:59 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:06:07 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:06:07 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:06:09 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:06:09 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:06:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:06:12 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:06:14 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:06:14 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:06:16 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:06:16 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:06:17 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:06:17 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:06:39 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:06:39 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:06:40 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:06:40 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:06:46 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:06:46 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:06:49 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:06:49 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:06:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:06:50 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:07:26 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:07:26 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:07:47 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:07:47 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:07:48 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:07:48 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:07:55 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:07:55 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:10:26 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:10:26 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:10:54 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:10:54 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:14:48 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:14:48 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:15:15 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:15:16 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:21:10 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:21:10 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:21:12 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:21:12 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:21:50 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:21:50 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:21:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:21:59 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:27:01 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:32:59 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:41:27 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:41:27 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:43:37 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:43:37 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:43:45 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:43:45 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:46:02 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:46:03 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:49:02 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:49:02 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis
+2026-06-28 16:49:41 | INFO     | app.api.v1.endpoints.auth:me:119 - Current User in Session: Paresh Mistry
+2026-06-28 16:49:41 | INFO     | app.api.v1.endpoints.templates:list_templates:28 - Serving Redis

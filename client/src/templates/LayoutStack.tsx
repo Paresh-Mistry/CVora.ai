@@ -1,292 +1,515 @@
-import React from "react";
+import * as React from "react";
+import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+
+import { cn } from "../lib/utils";
+
+interface DesignTokens {
+  displayFont?: string;
+  bodyFont?: string;
+  primaryColor?: string;
+  secondaryColor?: string;
+  textColor?: string;
+  mutedTextColor?: string;
+  backgroundColor?: string;
+  borderColor?: string;
+  headerStyle?: "default" | "centered" | "split";
+  headerAlignment?: "left" | "center" | "right";
+  headerBackground?: string;
+  headerTextColor?: string;
+  sectionTitleStyle?: "uppercase" | "none";
+  sectionTitleColor?: string;
+  sectionTitleSize?: string;
+  sectionDivider?: "none" | "underline" | "leftbar" | "band";
+  nameSize?: string;
+  titleSize?: string;
+  bodySize?: string;
+  nameWeight?: number;
+  headingWeight?: number;
+  bodyWeight?: number;
+  lineHeight?: number;
+  pagePadding?: string;
+  sectionGap?: string;
+  itemGap?: string;
+  skillStyle?: "pill" | "tag" | "bar";
+  skillColor?: string;
+  skillBackground?: string;
+  showIcons?: boolean;
+  cardStyle?: "flat" | "elevated" | "bordered";
+  cardRadius?: string;
+  atsMode?: boolean;
+}
 
 interface Props {
   d: any;
-  tk: any;
+  tk: DesignTokens;
 }
 
-export default function LayoutStack({
-  d = {},
-  tk = {},
-}: Props) {
-  const accent = tk.accent || "#2563eb";
+function normalizeBullets(bullets: unknown): string[] {
+  if (Array.isArray(bullets)) return bullets;
+  if (typeof bullets === "string") {
+    return bullets
+      .split(/\n|•|◦|▪/)
+      .map((b) => b.trim())
+      .filter(Boolean);
+  }
+  return [];
+}
 
-  const SectionTitle = ({
-    children,
-  }: {
-    children: React.ReactNode;
-  }) => {
-    switch (tk.divider) {
-      case "underline":
-        return (
-          <h2
-            className="mb-3 mt-6 border-b pb-1 text-xs font-bold uppercase tracking-[2px]"
-            style={{ color: accent }}
-          >
-            {children}
-          </h2>
-        );
+function hasContent(arr: any[] | undefined, key?: string): boolean {
+  if (!Array.isArray(arr)) return false;
+  if (!key) return arr.filter(Boolean).length > 0;
+  return arr.some((item) => typeof item?.[key] === "string" && item[key].trim().length > 0);
+}
 
-      case "leftbar":
-        return (
-          <h2
-            className="mb-3 mt-6 border-l-4 pl-2 text-xs font-bold uppercase tracking-[2px]"
-            style={{
-              color: accent,
-              borderColor: accent,
-            }}
-          >
-            {children}
-          </h2>
-        );
+export default function LayoutStack({ d = {}, tk = {} }: Props) {
+  // ── Resolve tokens with fallbacks ────────────────────────────────────────
+  const ats = tk.atsMode ?? false;
 
-      case "band":
-        return (
-          <div
-            className="mb-3 mt-6 inline-block rounded px-3 py-1 text-[10px] font-bold uppercase tracking-[2px] text-white"
-            style={{
-              backgroundColor: accent,
-            }}
-          >
-            {children}
-          </div>
-        );
+  const bodyFont = tk.bodyFont || "Inter, ui-sans-serif, sans-serif";
+  const displayFont = tk.displayFont || bodyFont;
 
-      default:
-        return (
-          <h2
-            className="mb-3 mt-6 text-xs font-bold uppercase tracking-[2px]"
-            style={{ color: accent }}
-          >
-            {children}
-          </h2>
-        );
-    }
+  const accent = ats ? "#111827" : tk.primaryColor || "#2563eb";
+  const secondary = ats ? "#374151" : tk.secondaryColor || "#1e293b";
+  const textColor = ats ? "#111827" : tk.textColor || "#111827";
+  const mutedColor = ats ? "#4b5563" : tk.mutedTextColor || "#6b7280";
+  const borderColor = ats ? "#d1d5db" : tk.borderColor || "#e5e7eb";
+  const pageBg = tk.backgroundColor || "#ffffff";
+
+  const headerBg = ats ? "transparent" : tk.headerBackground;
+  const headerTextColor = headerBg ? tk.headerTextColor || "#ffffff" : accent;
+  const headerAlignment = tk.headerAlignment || "left";
+
+  const sectionTitleColor = ats ? textColor : tk.sectionTitleColor || accent;
+  const sectionTitleSize = tk.sectionTitleSize || "11px";
+  const sectionTitleUppercase = (tk.sectionTitleStyle || "uppercase") === "uppercase";
+  const divider = ats ? "underline" : tk.sectionDivider || "underline";
+
+  const nameSize = tk.nameSize || "34px";
+  const titleSize = tk.titleSize || "13px";
+  const bodySize = tk.bodySize || "13px";
+
+  const nameWeight = tk.nameWeight ?? 800;
+  const headingWeight = tk.headingWeight ?? 700;
+  const bodyWeight = tk.bodyWeight ?? 400;
+  const lineHeight = tk.lineHeight ?? 1.6;
+
+  const pagePadding = tk.pagePadding || "32px 36px";
+  const sectionGap = tk.sectionGap || "px";
+  const itemGap = tk.itemGap || "10px";
+
+  const showIcons = tk.showIcons ?? true;
+
+  const skillColor = ats ? textColor : tk.skillColor || accent;
+  const skillTrackColor = tk.skillBackground || "#eef0f3";
+
+  const cardStyle = tk.cardStyle || "elevated";
+  const cardRadius = tk.cardRadius || "10px";
+
+  const bodyTextStyle: React.CSSProperties = {
+    fontFamily: bodyFont,
+    fontSize: bodySize,
+    fontWeight: bodyWeight,
+    lineHeight,
+    paddingInline:"8px",
+    color: mutedColor,
   };
 
-  const renderHeader = () => {
-    switch (tk.headerStyle) {
-      case "centered":
-        return (
-          <div
-            className="mb-4 border-b-2 pb-4 text-center"
-            style={{ borderColor: accent}}
-          >
-            <h1
-              className="font-bold leading-none"
-              style={{
-                color: accent,
-                fontSize: tk.nameSize || "28px",
-              }}
-            >
-              {d.name}
-            </h1>
+  // ── Section title (handles all divider variants + empty-state hiding) ───
+  const SectionTitle = ({ children }: { children: React.ReactNode }) => {
+    const titleTextStyle: React.CSSProperties = {
+      fontFamily: bodyFont,
+      fontSize: sectionTitleSize,
+      fontWeight: headingWeight,
+      textTransform: sectionTitleUppercase ? "uppercase" : "none",
+      letterSpacing: sectionTitleUppercase ? "1.8px" : "0",
+      color: sectionTitleColor,
+    };
 
-            <p className="mt-1 text-[13px] text-muted-foreground">
-              {d.domain}
-            </p>
-
-            <div className="mt-3 flex flex-wrap justify-center gap-4 text-xs text-muted-foreground">
-              {[d.email, d.phone, d.location]
-                .filter(Boolean)
-                .map((item, i) => (
-                  <span key={i}>{item}</span>
-                ))}
-            </div>
-          </div>
-        );
-
-      case "split":
-        return (
-          <div
-            className="mb-4 flex items-end justify-between border-b-2 pb-4"
-            style={{ borderColor: accent }}
-          >
-            <div>
-              <h1
-                className="font-bold leading-none"
-                style={{
-                  color: accent,
-                  fontSize: tk.nameSize || "26px",
-                }}
-              >
-                {d.name}
-              </h1>
-
-              <p className="mt-1 text-[13px] text-muted-foreground">
-                {d.domain}
-              </p>
-            </div>
-
-            <div className="text-right text-xs text-muted-foreground">
-              {[d.email, d.phone, d.location]
-                .filter(Boolean)
-                .map((item, i) => (
-                  <div key={i}>{item}</div>
-                ))}
-            </div>
-          </div>
-        );
-
-      default:
-        return (
-          <div className="mb-4">
-            <h1
-              className="font-light leading-none tracking-tight"
-              style={{
-                fontSize: tk.nameSize || "36px",
-                color: accent
-              }}
-            >
-              {d.name}
-            </h1>
-
-            <div className="mt-3 flex items-center justify-between">
-              <span className="text-[13px] text-muted-foreground">
-                {d.domain}
-              </span>
-
-              <span className="text-xs text-muted-foreground">
-                {d.linkedin} • {d.email} • {d.phone}
-              </span>
-            </div>
-
-            <div className="mt-3 h-px bg-black" />
-          </div>
-        );
-    }
-  };
-
-  const renderSkills = () => {
-    const skills = d.skills || [];
-
-    if (tk.skillStyle === "pill") {
+    if (divider === "band") {
       return (
-        <div className="flex flex-wrap gap-2">
-          {skills.map((skill: string, i: number) => (
-            <span
-              key={i}
-              className="rounded-full px-3 py-1 text-xs font-medium"
-              style={{
-                backgroundColor: `${accent}20`,
-                color: accent,
-              }}
-            >
-              {skill}
-            </span>
-          ))}
+        <div
+          className="mb-2 inline-block rounded px-3 py-1 text-white"
+          style={{ ...titleTextStyle, color: "#fff", backgroundColor: accent, borderRadius: "6px" }}
+        >
+          {children}
         </div>
       );
     }
 
-    if (tk.skillStyle === "tag") {
+    if (divider === "leftbar") {
       return (
-        <div className="flex flex-wrap gap-2">
-          {skills.map((skill: string, i: number) => (
-            <span
-              key={i}
-              className="rounded border px-3 py-1 text-xs"
-              style={{
-                borderColor: accent,
-                color: accent,
-              }}
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
+        <h2 className="mb-2 border-l-[3px] pl-2.5" style={{ ...titleTextStyle, borderColor: accent }}>
+          {children}
+        </h2>
       );
     }
 
+    if (divider === "none") {
+      return <h2 className="mb-2" style={titleTextStyle}>{children}</h2>;
+    }
+
+    // underline (default)
     return (
-      <p className="text-[13px] text-muted-foreground">
-        {skills.join(" • ")}
-      </p>
+      <h2 className="mb-2 flex items-center gap-2.5" style={titleTextStyle}>
+        <span className="whitespace-nowrap">{children}</span>
+        <span aria-hidden="true" className="h-px flex-1" style={{ background: `${accent}30` }} />
+      </h2>
     );
   };
 
+  const Section = ({
+    title,
+    show,
+    children,
+  }: {
+    title: string;
+    show: boolean;
+    children: React.ReactNode;
+  }) => {
+    if (!show) return null;
+    return (
+      <section style={{ marginBottom: sectionGap }}>
+        <SectionTitle>{title}</SectionTitle>
+        {children}
+      </section>
+    );
+  };
+
+  // ── Header ────────────────────────────────────────────────────────────────
+  const contactLine = [d.email, d.phone, d.linkedin, d.github].filter(Boolean);
+
+  const contactIcon = (idx: number) => {
+    if (!showIcons) return null;
+    const icons = [Mail, Phone, Linkedin, Github];
+    const Icon = icons[idx] || Mail;
+    return <Icon size={11} aria-hidden="true" className="shrink-0" />;
+  };
+
+  const renderHeader = () => {
+    // const headerWrapStyle: React.CSSProperties = headerBg
+    //   ? { background: headerBg, color: headerTextColor, padding: pagePadding, margin: `-${pagePadding} -${pagePadding} ${sectionGap} -${pagePadding}` }
+    //   : { borderBottom: `2px solid ${accent}`, paddingBottom: "10px", marginBottom: sectionGap };
+
+    const nameStyle: React.CSSProperties = {
+      fontFamily: displayFont,
+      fontWeight: nameWeight,
+      fontSize: nameSize,
+      color: headerBg ? headerTextColor : accent,
+      letterSpacing: "-0.5px",
+      lineHeight: 1,
+    };
+
+    const domainStyle: React.CSSProperties = {
+      fontFamily: bodyFont,
+      fontSize: bodySize,
+      color: headerBg ? `${headerTextColor}cc` : mutedColor,
+      marginTop: "6px",
+    };
+
+    const metaStyle: React.CSSProperties = {
+      fontFamily: bodyFont,
+      fontSize: "11.5px",
+      color: headerBg ? `${headerTextColor}b3` : mutedColor,
+    };
+
+    if (tk.headerStyle === "centered") {
+      return (
+        <div className="text-center">
+          <h1 style={nameStyle}>{d.name}</h1>
+          {d.domain && <p style={domainStyle}>{d.domain}</p>}
+          {contactLine.length > 0 && (
+            <div className="mt-3 flex flex-wrap justify-center gap-2">
+              {contactLine.map((item, i) => (
+                <span key={i} className="flex items-center gap-1.5" style={metaStyle}>
+                  {contactIcon(i)}
+                  {item}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    if (tk.headerStyle === "split") {
+      return (
+        <div className="flex items-end justify-between">
+          <div>
+            <h1 style={nameStyle}>{d.name}</h1>
+            {d.domain && <p style={domainStyle}>{d.domain}</p>}
+          </div>
+          {contactLine.length > 0 && (
+            <div className="text-right">
+              {contactLine.map((item, i) => (
+                <div key={i} className="flex items-center justify-end gap-1.5" style={{ ...metaStyle, marginBottom: "2px" }}>
+                  {item}
+                  {contactIcon(i)}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    // default — respects headerAlignment
+    const justify =
+      headerAlignment === "center" ? "center" : headerAlignment === "right" ? "flex-end" : "flex-start";
+    const textAlign = headerAlignment as React.CSSProperties["textAlign"];
+
+    return (
+      <div style={{ textAlign }}>
+        <h1 style={nameStyle}>{d.name}</h1>
+        {d.domain && <span style={domainStyle}>{d.domain}</span>}
+        <div className="mt-2 flex flex-wrap items-center gap-3" style={{ justifyContent: justify }}>
+          {contactLine.length > 0 && (
+            <span className="flex flex-wrap items-center gap-3" style={metaStyle}>
+              {contactLine.map((item, i) => (
+                <span key={i} className="flex items-center gap-1.5">
+                  {contactIcon(i)}
+                  {item}
+                </span>
+              ))}
+            </span>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  // ── Skills ────────────────────────────────────────────────────────────────
+  const skills: string[] = (d.skill || d.skills || []).filter(Boolean);
+
+  const renderSkills = () => {
+    if (tk.skillStyle === "tag") {
+      return (
+        <div className="flex flex-wrap gap-2">
+          {skills.map((skill, i) => (
+            <span
+              key={i}
+              className="rounded border px-3 py-1"
+              style={{ fontFamily: bodyFont, fontSize: "11.5px", borderColor: skillColor, color: skillColor }}
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      );
+    }
+
+    if (tk.skillStyle === "bar") {
+      return (
+        <ul className="m-0 grid list-none grid-cols-2 gap-x-6 gap-y-3 p-0">
+          {skills.map((skill, i) => (
+            <li key={i}>
+              <div style={{ fontFamily: bodyFont, fontSize: "11.5px", color: textColor, marginBottom: "4px" }}>
+                {skill}
+              </div>
+              <div
+                aria-hidden="true"
+                style={{ height: "4px", background: skillTrackColor, borderRadius: "3px", overflow: "hidden" }}
+              >
+                <div
+                  style={{
+                    height: "4px",
+                    borderRadius: "3px",
+                    background: skillColor,
+                    width: `${60 + ((i * 13) % 40)}%`,
+                  }}
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
+      );
+    }
+
+    // pill (default) — modern soft chip
+    return (
+      <div className="flex flex-wrap gap-2">
+        {skills.map((skill, i) => (
+          <span
+            key={i}
+            className="rounded-full px-3.5 py-1.5 font-medium"
+            style={{
+              fontFamily: bodyFont,
+              fontSize: "11.5px",
+              backgroundColor: ats ? "#f3f4f6" : `${skillColor}16`,
+              color: skillColor,
+            }}
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    );
+  };
+
+  // ── Experience ────────────────────────────────────────────────────────────
+  const experience = d.experience || [];
+  const renderExperience = () => (
+    <div className="flex flex-col" style={{ gap: itemGap }}>
+      {experience.map((exp: any, idx: number) => {
+        const bullets = normalizeBullets(exp.description);
+        const rawIsString = typeof exp.description === "string";
+
+        return (
+          <div key={exp.id ?? idx}>
+            <div className="flex items-start justify-between gap-3">
+              <h3 style={{ fontFamily: displayFont, fontWeight: headingWeight, fontSize: "14.5px", color: textColor }}>
+                {exp.role}
+              </h3>
+              {exp.duration && (
+                <span className="whitespace-nowrap" style={{ fontFamily: bodyFont, fontSize: "11px", color: mutedColor }}>
+                  {exp.duration}
+                </span>
+              )}
+            </div>
+
+            {exp.company && (
+              <div
+                className="mt-0.5 mb-1.5 font-medium"
+                style={{ fontFamily: bodyFont, fontSize: "12.5px", color: ats ? secondary : accent }}
+              >
+                {exp.company}
+              </div>
+            )}
+
+            {bullets.length > 0 ? (
+              <ul className="list-disc space-y-1 pl-4">
+                {bullets.map((bullet, i) => (
+                  <li key={i} style={bodyTextStyle}>
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            ) : rawIsString ? (
+              <p style={bodyTextStyle}>{exp.description}</p>
+            ) : null}
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  // ── Education ─────────────────────────────────────────────────────────────
+  const education = d.education || [];
+  const renderEducation = () => (
+    <div className="flex flex-col" style={{ gap: itemGap }}>
+      {education.map((edu: any, idx: number) => (
+        <div key={edu.id ?? idx} className="flex items-start justify-between gap-3">
+          <div>
+            <div style={{ fontFamily: displayFont, fontWeight: headingWeight, fontSize: "13.5px", color: textColor }}>
+              {edu.degree}
+            </div>
+            <div style={{ fontFamily: bodyFont, fontSize: "12px", color: mutedColor, marginTop: "1px" }}>
+              {edu.institute}
+            </div>
+            {edu.grade && (
+              <div style={{ fontFamily: bodyFont, fontSize: "11.5px", color: mutedColor, marginTop: "1px" }}>
+                Grade: {edu.grade}
+              </div>
+            )}
+          </div>
+          {edu.year && (
+            <span className="whitespace-nowrap" style={{ fontFamily: bodyFont, fontSize: "11px", color: mutedColor }}>
+              {edu.year}
+            </span>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+
+  // ── Projects ──────────────────────────────────────────────────────────────
+  const projects = (d.projects || []).filter((p: any) => p?.project_title);
+  const renderProjects = () => (
+    <div className="flex flex-col" style={{ gap: itemGap }}>
+      {projects.map((proj: any, idx: number) => (
+        <div key={proj.id ?? idx}>
+          <div className="flex items-center justify-between gap-3">
+            <h3 style={{ fontFamily: displayFont, fontWeight: headingWeight, fontSize: "14px", color: textColor }}>
+              {proj.project_title}
+            </h3>
+            {proj.link && (
+              <a
+                href={proj.link}
+                target="_blank"
+                rel="noreferrer"
+                className="whitespace-nowrap no-underline"
+                style={{ fontFamily: bodyFont, fontSize: "11px", color: ats ? secondary : accent }}
+              >
+                ↗ link
+              </a>
+            )}
+          </div>
+          {proj.tech_stack && (
+            <p
+              className="font-medium"
+              style={{ fontFamily: bodyFont, fontSize: "11.5px", color: ats ? secondary : accent, margin: "3px 0 4px" }}
+            >
+              {proj.tech_stack}
+            </p>
+          )}
+          {proj.description && <p style={bodyTextStyle}>{proj.description}</p>}
+        </div>
+      ))}
+    </div>
+  );
+
+  // ── Empty-state flags ─────────────────────────────────────────────────────
+  const hasSummary = Boolean(d.summary?.trim?.());
+  const hasExperience = hasContent(experience, "role");
+  const hasEducation = hasContent(education, "degree");
+  const hasProjects = projects.length > 0;
+  const hasSkills = skills.length > 0;
+
   return (
     <div
-      className="bg-white p-2 text-[13px] text-slate-900"
+      className="w-full"
       style={{
-        padding: tk.padding || "40px 44px",
-        fontFamily: tk.font || "Inter",
+        padding: pagePadding,
+        fontFamily: bodyFont,
+        background: pageBg,
+        color: textColor,
       }}
     >
       {renderHeader()}
 
-      {d.summary && (
-        <>
-          <SectionTitle>Summary</SectionTitle>
-
-          <p className=" text-slate-600">
-            {d.summary}
-          </p>
-        </>
-      )}
-
-      <SectionTitle>Experience</SectionTitle>
-
-      {(d.experience || []).map((exp: any) => (
-        <div key={exp.id} className="mb-4">
-          <div className="flex justify-between">
-            <h3 className="font-semibold">
-              {exp.title}
-            </h3>
-
-            <span className="text-xs text-muted-foreground">
-              {exp.dates}
-            </span>
-          </div>
-
-          <div
-            className="mb-1 text-[13px] font-medium"
-            style={{ color: accent }}
-          >
-            {exp.company}
-          </div>
-
-          <ul className="list-disc pl-4">
-            {(exp.bullets || []).map(
-              (bullet: string, i: number) => (
-                <li
-                  key={i}
-                  className="text-[13px] text-slate-600"
-                >
-                  {bullet}
-                </li>
-              )
-            )}
-          </ul>
-        </div>
-      ))}
-
-      <SectionTitle>Education</SectionTitle>
-
-      {(d.education || []).map((edu: any) => (
+      <Section title="Summary" show={hasSummary}>
         <div
-          key={edu.id}
-          className="flex justify-between"
+          className={cn(
+            cardStyle === "elevated" && "shadow-sm",
+            cardStyle === "bordered" && "border"
+          )}
+          style={{
+            borderRadius: cardRadius,
+            padding: cardStyle === "flat" ? 0 : "10px 14px",
+            background: ats || cardStyle === "flat" ? "transparent" : cardStyle === "elevated" ? `${accent}06` : pageBg,
+            borderColor: cardStyle === "bordered" ? borderColor : undefined,
+            borderLeft: cardStyle === "flat" ? `3px solid ${accent}` : undefined,
+            paddingLeft: cardStyle === "flat" ? "12px" : undefined,
+          }}
         >
-          <div>
-            <div className="font-semibold">
-              {edu.degree}
-            </div>
-
-            <div className="text-[13px] text-muted-foreground">
-              {edu.school}
-            </div>
-          </div>
-
-          <div className="text-xs text-muted-foreground">
-            {edu.dates}
-          </div>
+          <p style={bodyTextStyle}>{d.summary}</p>
         </div>
-      ))}
+      </Section>
 
-      <SectionTitle>Skills</SectionTitle>
+      <Section title="Experience" show={hasExperience}>
+        {renderExperience()}
+      </Section>
 
-      {renderSkills()}
+      <Section title="Education" show={hasEducation}>
+        {renderEducation()}
+      </Section>
+
+      <Section title="Projects" show={hasProjects}>
+        {renderProjects()}
+      </Section>
+
+      <Section title="Skills" show={hasSkills}>
+        {renderSkills()}
+      </Section>
     </div>
   );
 }

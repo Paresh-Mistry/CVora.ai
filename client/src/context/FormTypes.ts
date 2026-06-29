@@ -6,6 +6,9 @@ export interface ExperienceItem {
   role: string;
   company: string;
   duration: string;
+  endDate: "";
+  startDate: "";
+  current: boolean;
   description: string[];
 }
 
@@ -60,8 +63,12 @@ export interface FormData {
   phone: string;
   github: string;
   linkedin: string;
-
-  // summary
+  dob: "",
+  nationality: "",
+  address: "",
+  country: "",
+  postalCode: "",
+  website: "",
   summary: string;
 
   // arrays
@@ -117,12 +124,18 @@ export interface FormContextType {
 
 export const defaultFormData: FormData = {
   // personal
-  name:     "",
-  email:    "",
-  domain:   "",
-  phone:    "",
-  github:   "",
+  name: "",
+  email: "",
+  domain: "",
+  phone: "",
+  github: "",
   linkedin: "",
+  dob: "",
+  nationality: "",
+  address: "",
+  country: "",
+  postalCode: "",
+  website: "",
 
   // summary
   summary: "",
@@ -132,7 +145,7 @@ export const defaultFormData: FormData = {
 
   // experience
   experience: [
-    { role: "", company: "", duration: "", description: [] },
+    { role: "", company: "", startDate:"", endDate:"", current: false, duration: "", description: [] },
   ],
 
   // projects
@@ -181,13 +194,13 @@ export const FORM_STEPS = [
 export type StepId = (typeof FORM_STEPS)[number];
 
 export const STEP_META: Record<StepId, { label: string; emoji: string }> = {
-  personal:       { label: "Personal",        emoji: "👤" },
-  summary:        { label: "Summary",          emoji: "📝" },
-  experience:     { label: "Experience",       emoji: "💼" },
-  education:      { label: "Education",        emoji: "🎓" },
-  skills:         { label: "Skills",           emoji: "🔧" },
-  projects:       { label: "Projects",         emoji: "📁" },
-  achievements:   { label: "Achievements",     emoji: "🏆" },
-  languages:      { label: "Languages",        emoji: "🌐" },
-  certifications: { label: "Certifications",   emoji: "🏅" },
+  personal: { label: "Personal", emoji: "👤" },
+  summary: { label: "Summary", emoji: "📝" },
+  experience: { label: "Experience", emoji: "💼" },
+  education: { label: "Education", emoji: "🎓" },
+  skills: { label: "Skills", emoji: "🔧" },
+  projects: { label: "Projects", emoji: "📁" },
+  achievements: { label: "Achievements", emoji: "🏆" },
+  languages: { label: "Languages", emoji: "🌐" },
+  certifications: { label: "Certifications", emoji: "🏅" },
 };

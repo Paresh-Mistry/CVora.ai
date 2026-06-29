@@ -21,6 +21,7 @@ import { useCreateResume, useResume, useUpdateResume } from "../hooks/useResume"
 
 const steps: Record<string, React.ElementType> = {
   personal: UserIcon,
+  summary: UserIcon,
   experience: Wallet,
   education: UserIcon,
   skills: Brain,
@@ -216,7 +217,7 @@ const Editing: React.FC = () => {
                           type="button"
                           onClick={() => setStep((prev) => prev - 1)}
                           variant="outline"
-                          size="icon-sm"
+                          size="default"
                           aria-label="Previous"
                         >
                           <ArrowLeftIcon />
@@ -227,15 +228,16 @@ const Editing: React.FC = () => {
                           type="button"
                           onClick={() => setStep((prev) => prev + 1)}
                           variant="outline"
-                          size="icon-sm"
+                          size="default"
+                          className="bg-[#11a8e4] text-white"
                           aria-label="Next"
                         >
-                          <ArrowRightIcon />
+                          Next : {capitalize(stepKeys[step + 1])}
                         </Button>
                       ) : (
                         <Button
                           type="submit"
-                          size="sm"
+                          size="default"
                           className="text-xs"
                           variant="default"
                           disabled={updateResume.isPending}

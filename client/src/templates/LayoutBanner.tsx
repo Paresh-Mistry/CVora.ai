@@ -65,11 +65,6 @@ function normalizeBullets(bullets:["experience"]): string[] {
   return [];
 }
 
-// ─── Shared section heading ─────────────────────────────────────────────────
-// Real <h2> so the section is a landmark for parsers and screen readers, not
-// just a styled div. A thin rule under the label reinforces the section break
-// visually without adding any non-text content.
-
 function SectionHeading({
   children,
   font,
@@ -101,16 +96,12 @@ function SectionHeading({
   );
 }
 
-// ─── Layout ──────────────────────────────────────────────────────────────────
 
 export default function LayoutBanner({ d: rawD, tk = {} }: LayoutProps) {
   const d = withDefaults(rawD);
-
   const f = tk.font || "Inter, ui-sans-serif, sans-serif";
   const ac = tk.accent || "#2563eb";
   const bg = tk.bannerBg || ac;
-
-  // ── Skills ──────────────────────────────────────────────────────────────
   const skills = (d.skill || []).filter(Boolean);
 
   const renderSkills = () => {

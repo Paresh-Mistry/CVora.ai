@@ -7,6 +7,7 @@ import type {
   ContactItem,
 } from "../services/resume.services";
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { LanguageItem } from "../context/FormTypes";
 
 
 function SideLabel({

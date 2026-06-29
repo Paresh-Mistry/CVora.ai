@@ -1,67 +1,123 @@
 {
-    "DefaultData": {
-        "name": "Alexandra Chen",
-        "email": "alex.chen@email.com",
-        "phone": "+1 (555) 234-5678",
-        "location": "San Francisco, CA",
-        "linkedin": "linkedin.com/in/alexchen",
-        "summary": "Product designer with 8+ years crafting intuitive digital experiences at Notion, Figma & Dropbox. Passionate about building products that make a real difference.",
-        "experience": [
-            {
-                "role": "Senior Product Designer",
-                "company": "Notion",
-                "duration": "2021–Present",
-                "description": [
-                    "Led end-to-end editor redesign, boosting user retention by 22% and platform engagement.",
-                    "Managed a scalable design system, streamlining collaboration for a 15-person engineering team. Conducted 40+ user interviews to extract insights and directly shape the feature roadmap.",
-                    "Led end-to-end editor redesign, boosting user retention by 22% and platform engagement."
-                ]
-            }
-        ],
-        "education": [
-            {
-                "grade": "9.28 CGPA",
-                "degree": "B.F.A. Interaction Design",
-                "institute": "California College of the Arts",
-                "year": "2012–2016"
-            }
-        ],
-        "skills": [
-            "Figma",
-            "Prototyping",
-            "User Research",
-            "Design Systems",
-            "Framer",
-            "Accessibility",
-            "SQL"
-        ],
-        "languages": [
-            "English (Native)",
-            "Mandarin (Fluent)"
-        ],
-        "achievements": [
-            {
-                "title": "1st Place – Google UX Design Challenge 2022",
-                "description": "Won among 4,000+ global participants."
-            },
-            {
-                "title": "Speaker – Config 2023 (Figma Conference)",
-                "description": "Presented on scalable design systems."
-            }
-        ],
-        "certifications": [
-            {
-                "title": "Google UX Design Certificate",
-                "issuer": "Google / Coursera",
-                "date": "Mar 2021",
-                "url": ""
-            },
-            {
-                "title": "Certified Usability Analyst (CUA)",
-                "issuer": "Human Factors International",
-                "date": "Sep 2022",
-                "url": ""
-            }
+  "DefaultData": {
+    "name": "Michael Anderson",
+    "domain": "Software Development Engineer",
+    "email": "michael.anderson.dev@gmail.com",
+    "phone": "+1 (555) 987-6543",
+    "location": "Seattle, WA",
+    "linkedin": "linkedin.com/in/michaelanderson",
+    "github": "github.com/michaelanderson",
+    "portfolio": "michaelanderson.dev",
+    "summary": "Full Stack Software Developer with 5+ years of experience building scalable web applications, REST APIs, and cloud-native solutions. Proficient in JavaScript, TypeScript, React, Node.js, and PostgreSQL. Passionate about creating efficient software systems, improving performance, and delivering exceptional user experiences.",
+    "experience": [
+      {
+        "role": "Senior Software Engineer",
+        "company": "Stripe",
+        "duration": "2022–Present",
+        "description": [
+          "Developed and maintained high-performance payment APIs serving millions of transactions daily.",
+          "Led migration of legacy services to a microservices architecture, reducing deployment time by 40%.",
+          "Optimized database queries and caching strategies, improving API response times by 35%.",
+          "Collaborated with cross-functional teams to design and launch new fintech features."
         ]
-    }
+      },
+      {
+        "role": "Software Engineer",
+        "company": "Microsoft",
+        "duration": "2019–2022",
+        "description": [
+          "Built scalable backend services using Node.js, TypeScript, and Azure Cloud.",
+          "Implemented CI/CD pipelines that reduced release cycles from weekly to daily deployments.",
+          "Designed and integrated RESTful APIs used by multiple internal and external applications.",
+          "Mentored junior developers and participated in architecture reviews."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "grade": "3.85 GPA",
+        "degree": "B.S. Computer Science",
+        "institute": "University of Washington",
+        "year": "2015–2019"
+      }
+    ],
+    "skills": [
+      "JavaScript",
+      "TypeScript",
+      "React.js",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "NestJS",
+      "Python",
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "Docker",
+      "Kubernetes",
+      "AWS",
+      "Git",
+      "REST APIs",
+      "GraphQL",
+      "CI/CD"
+    ],
+    "languages": [
+      "English (Native)",
+      "Spanish (Professional)"
+    ],
+    "achievements": [
+      {
+        "title": "Engineering Excellence Award 2023",
+        "description": "Recognized for leading a platform optimization project that reduced infrastructure costs by 25%."
+      },
+      {
+        "title": "Open Source Contributor",
+        "description": "Contributed to several popular GitHub projects with over 5,000 combined stars."
+      }
+    ],
+    "certifications": [
+      {
+        "title": "AWS Certified Solutions Architect – Associate",
+        "issuer": "Amazon Web Services",
+        "date": "Jun 2023",
+        "url": ""
+      },
+      {
+        "title": "Docker Certified Associate",
+        "issuer": "Docker Inc.",
+        "date": "Jan 2022",
+        "url": ""
+      },
+      {
+        "title": "Microsoft Azure Developer Associate",
+        "issuer": "Microsoft",
+        "date": "Aug 2021",
+        "url": ""
+      }
+    ],
+    "projects": [
+      {
+        "project_title": "E-Commerce Platform",
+        "description": "Built a full-stack e-commerce application with React, Node.js, PostgreSQL, and Stripe integration.",
+        "tech_stack": [
+          "React",
+          "Node.js",
+          "PostgreSQL",
+          "Stripe"
+        ],
+        "link":"https://github.com/ecom.git"
+      },
+      {
+        "project_title": "Real-Time Chat Application",
+        "description": "Developed a scalable chat platform supporting thousands of concurrent users using WebSockets and Redis.",
+        "tech_stack": [
+          "Next.js",
+          "Socket.IO",
+          "Redis",
+          "MongoDB"
+        ],
+        "link":"https://github.com/ecom.git"
+      }
+    ]
+  }
 }

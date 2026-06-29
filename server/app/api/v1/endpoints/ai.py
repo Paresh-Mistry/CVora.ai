@@ -67,7 +67,7 @@ async def ats_score(body: ATSRequest, user: CurrentUser, db: DB):
         data=resume.data,
         job_description=body.job_description,
     )
-    remaining = await svc.consume(user, "ats")
+    remaining = await svc.consume(user, "ats")  
 
     return ATSResponse(
         score=result.get("score", 0),

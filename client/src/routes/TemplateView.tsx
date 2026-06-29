@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useMemo, useRef } from "react";
 import Layout from "../Layout/PageLayout";
 import MiniResumeThumbnail from "../components/common/MiniResumeThumbnail";
 import { useNavigate } from "react-router-dom";
-import { Crown, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, Crown, Search, Star } from "lucide-react";
 import { useTemplates } from "../hooks/useAI";
+import { useResumes } from "../hooks/useResume";
 
 type LayoutKey = "A" | "B" | "C";
 
@@ -15,26 +16,45 @@ const layoutDescs: Record<LayoutKey, string> = {
   C: "Bold top banner + 2 columns",
 };
 
+const MINE_COLOR = "#b45309";
+
 const Generate: React.FC = () => {
   const [selected, setSelected] = useState("t4");
   const [filterLayout, setFilterLayout] = useState<LayoutKey | "all">("all");
+  const [filterMine, setFilterMine] = useState(false);
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const {
     data: templates
   } = useTemplates()
+
+  const { data: resumes, isLoading: resumesLoading, isError: resumesError } = useResumes();
+
+  const usedTemplateIds = useMemo(() => {
+    if (!resumes) return new Set<string>();
+    return new Set(resumes.map((r) => r.template_id));
+  }, [resumes]);
 
   const filtered = templates?.filter((t) => {
     const layoutMatch =
       filterLayout === "all" ||
       t.layout === filterLayout;
 
+    const mineMatch =
+      !filterMine ||
+      usedTemplateIds.has(t.id);
+
     const searchMatch =
       t.name.toLowerCase().includes(search.toLowerCase());
 
-    return layoutMatch && searchMatch;
+    return layoutMatch && mineMatch && searchMatch;
   });
+
+  const scrollCarousel = (dir: 1 | -1) => {
+    carouselRef.current?.scrollBy({ left: dir * 260, behavior: "smooth" });
+  };
 
   return (
     <Layout>
@@ -55,10 +75,70 @@ const Generate: React.FC = () => {
           </div>
         </div>
 
+        <div className="mb-10">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#9ca3af] uppercase tracking-[0.8px]">
+              <Clock size={12} />
+              Jump back in
+            </div>
+            <div className="flex gap-1.5">
+              <button
+                onClick={() => scrollCarousel(-1)}
+                className="w-6 h-6 rounded-full border border-[#e5e7eb] flex items-center justify-center text-[#9ca3af] hover:text-[#111] hover:border-[#c7cad1] transition-colors"
+                aria-label="Scroll left"
+              >
+                <ChevronLeft size={13} />
+              </button>
+              <button
+                onClick={() => scrollCarousel(1)}
+                className="w-6 h-6 rounded-full border border-[#e5e7eb] flex items-center justify-center text-[#9ca3af] hover:text-[#111] hover:border-[#c7cad1] transition-colors"
+                aria-label="Scroll right"
+              >
+                <ChevronRight size={13} />
+              </button>
+            </div>
+          </div>
+        </div>
+
 
         <div className="flex flex-col lg:flex-row gap-6">
 
           <div className="lg:w-[280px] shrink-0 max-h-[80vh] overflow-y-auto">
+            <div className="px-4 pt-[14px] pb-[10px] border border-[#e5e7eb] mb-3">
+              <div className="text-[10px] font-bold text-[#9ca3af] uppercase tracking-[0.8px] mb-[10px]">
+                My templates
+              </div>
+
+              <div
+                onClick={() => setFilterMine((prev) => !prev)}
+                className="flex items-center gap-[10px] px-[10px] py-[7px] rounded-[7px] cursor-pointer"
+                style={{
+                  background: filterMine ? `${MINE_COLOR}10` : "transparent",
+                  border: filterMine ? `1px solid ${MINE_COLOR}30` : "1px solid transparent",
+                }}
+              >
+                <div
+                  className="w-[22px] h-[22px] rounded-[5px] flex items-center justify-center text-white shrink-0"
+                  style={{ background: MINE_COLOR }}
+                >
+                  <Star size={12} fill="currentColor" />
+                </div>
+
+                <div>
+                  <div className="text-[11px] font-semibold text-[#111]">
+                    Used before
+                  </div>
+                  <div className="text-[10px] text-[#9ca3af]">
+                    {resumesLoading
+                      ? "Loading your resumes…"
+                      : resumesError
+                        ? "Couldn't load your resumes"
+                        : `${usedTemplateIds.size} template${usedTemplateIds.size === 1 ? "" : "s"} used`}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="px-4 pt-[14px] pb-[10px] border border-[#e5e7eb]">
               <div className="text-[10px] font-bold text-[#9ca3af] uppercase tracking-[0.8px] mb-[10px]">
                 Base layouts
@@ -105,12 +185,15 @@ const Generate: React.FC = () => {
                   </div>
                 ))}
 
-                {filterLayout !== "all" && (
+                {(filterLayout !== "all" || filterMine) && (
                   <button
-                    onClick={() => setFilterLayout("all")}
+                    onClick={() => {
+                      setFilterLayout("all");
+                      setFilterMine(false);
+                    }}
                     className="text-[10px] text-[#6b7280] bg-transparent text-left px-[10px] py-[2px] cursor-pointer"
                   >
-                    ← Show all layouts
+                    ← Clear filters
                   </button>
                 )}
               </div>
@@ -120,10 +203,14 @@ const Generate: React.FC = () => {
           {/* Template grid */}
           <div className="flex-1 md:px-4">
             <div className="flex md:flex-row flex-col justify-between items-center text-[10px] font-bold text-[#9ca3af] uppercase tracking-[0.8px] mb-[10px]">
-              {filterLayout === "all"
-                ? "All templates"
-                : `${layoutNames[filterLayout]} variants`}{" "}
-              ({filtered?.length})
+              {filterMine && filterLayout === "all"
+                ? "My templates"
+                : filterMine
+                  ? `My ${layoutNames[filterLayout]} variants`
+                  : filterLayout === "all"
+                    ? "All templates"
+                    : `${layoutNames[filterLayout]} variants`}{" "}
+              ({filtered?.length ?? 0})
 
               <div className="relative w-full md:w-80 md:mt-0 mt-3">
                 {/* The Icon */}
@@ -141,6 +228,11 @@ const Generate: React.FC = () => {
 
             </div>
 
+            {filterMine && !resumesLoading && !resumesError && filtered?.length === 0 && (
+              <div className="text-[12px] text-[#9ca3af] border border-dashed border-[#e5e7eb] rounded-[10px] p-6 text-center">
+                You haven't used any templates matching this filter yet.
+              </div>
+            )}
 
             <div className="
               grid
@@ -195,6 +287,27 @@ const Generate: React.FC = () => {
                         PRO
                       </div>
                     )}
+                    {usedTemplateIds.has(tmpl.id) && (
+                      <div className="
+                      absolute
+                      top-2
+                      left-2
+                      z-20
+                      bg-amber-50
+                      text-amber-700
+                      px-2
+                      py-1
+                      rounded-full
+                      flex
+                      items-center
+                      gap-1
+                      text-[10px]
+                      font-semibold
+                    ">
+                        <Star size={11} fill="currentColor" />
+                        Used
+                      </div>
+                    )}
                     <MiniResumeThumbnail
                       tmpl={tmpl}
                       scale={0.245}
@@ -240,6 +353,3 @@ const Generate: React.FC = () => {
 };
 
 export default Generate;
-
-
-

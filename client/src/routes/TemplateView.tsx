@@ -2,9 +2,12 @@ import { useState, useMemo, useRef } from "react";
 import Layout from "../Layout/PageLayout";
 import MiniResumeThumbnail from "../components/common/MiniResumeThumbnail";
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft, ChevronRight, Clock, Crown, Search, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, Crown, FileText, Search, Star } from "lucide-react";
 import { useTemplates } from "../hooks/useAI";
-import { useResumes } from "../hooks/useResume";
+import { useDeleteResume, useResumes } from "../hooks/useResume";
+import HistoryCard from "../components/common/HistoryCard";
+import { ResumeOut } from "../services/resume.services";
+import { TemplateOut } from "../services/ai.services";
 
 type LayoutKey = "A" | "B" | "C";
 
@@ -25,10 +28,12 @@ const Generate: React.FC = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const carouselRef = useRef<HTMLDivElement>(null);
+  const [pendingDelete, setPendingDelete] = useState<{ id: string; title: string } | null>(null)
 
   const {
     data: templates
   } = useTemplates()
+  const deleteResume = useDeleteResume();
 
   const { data: resumes, isLoading: resumesLoading, isError: resumesError } = useResumes();
 
@@ -52,13 +57,34 @@ const Generate: React.FC = () => {
     return layoutMatch && mineMatch && searchMatch;
   });
 
+
+  const handleEdit = (resume: ResumeOut) => {
+    navigate(`/template/${resume.template_id}/resume`, {
+      state: {
+        resumeId: resume.id,
+        resumeData: resume,
+        isEdit: true,
+      },
+    });
+  };
+
+
+  const handleDeleteConfirm = () => {
+    if (!pendingDelete) return;
+    deleteResume.mutate(pendingDelete.id, {
+      onSuccess: () => setPendingDelete(null),
+      onError: () => setPendingDelete(null), // could show a toast here instead
+    });
+  };
+
+
   const scrollCarousel = (dir: 1 | -1) => {
     carouselRef.current?.scrollBy({ left: dir * 260, behavior: "smooth" });
   };
 
   return (
     <Layout>
-      <section className="container max-w-7xl mx-auto py-14 px-4">
+      <section className="container max-w-7xl mx-auto py-8 md:py-14 px-4">
 
         {/* Page header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10">
@@ -75,7 +101,6 @@ const Generate: React.FC = () => {
           </div>
         </div>
 
-        <div className="mb-10">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#9ca3af] uppercase tracking-[0.8px]">
               <Clock size={12} />
@@ -98,13 +123,53 @@ const Generate: React.FC = () => {
               </button>
             </div>
           </div>
-        </div>
+
+        {resumesLoading ? (
+          <div className="text-[12px] text-[#9ca3af] border border-dashed border-[#e5e7eb] rounded-[10px] p-6 text-center">
+            Loading your resumes…
+          </div>
+        ) : resumesError ? (
+          <div className="text-[12px] text-[#9ca3af] border border-dashed border-[#e5e7eb] rounded-[10px] p-6 text-center">
+            Couldn't load your resumes
+          </div>
+        ) : resumes?.length === 0 ? (
+          <div className="text-[12px] text-[#9ca3af] border border-dashed border-[#e5e7eb] rounded-[10px] p-6 text-center">
+            You haven't created any resumes yet.
+          </div>
+        ) : (
+          <div
+            ref={carouselRef}
+            className="flex gap-4 overflow-x-auto mb-4"
+            style={{scrollbarColor:"transparent transparent"}}
+          >
+            {resumes?.map((resume: ResumeOut) => {
+              const tmpl: TemplateOut | undefined = templates?.find(
+                (t: TemplateOut) => t.id === resume.template_id
+              );
+              return (
+                <>
+                  <HistoryCard
+                    key={resume.id}
+                    resume={resume}
+                    tmpl={tmpl}
+                    isDeleting={deleteResume.isPending && pendingDelete?.id === resume.id}
+                    onEdit={handleEdit}
+                    onRequestDelete={setPendingDelete}
+                    onConfirmDelete={handleDeleteConfirm}
+                    onCancelDelete={() => setPendingDelete(null)}
+                  />
+                </>
+              );
+            })}
+          </div>
+        )}
 
 
-        <div className="flex flex-col lg:flex-row gap-6">
+
+        <div className="flex flex-col lg:flex-row gap-3">
 
           <div className="lg:w-[280px] shrink-0 max-h-[80vh] overflow-y-auto">
-            <div className="px-4 pt-[14px] pb-[10px] border border-[#e5e7eb] mb-3">
+            <div className="px-4 pt-[14px] pb-[10px] border border-b-0 rounded-t-md border-[#e5e7eb]">
               <div className="text-[10px] font-bold text-[#9ca3af] uppercase tracking-[0.8px] mb-[10px]">
                 My templates
               </div>
@@ -238,7 +303,6 @@ const Generate: React.FC = () => {
               grid
               grid-cols-2
               lg:grid-cols-3
-              xl:grid-cols-4
               md:gap-4 gap-2
               ">
               {filtered?.map((tmpl) => (
@@ -310,7 +374,8 @@ const Generate: React.FC = () => {
                     )}
                     <MiniResumeThumbnail
                       tmpl={tmpl}
-                      scale={0.245}
+                      // Handle scale based on different devices
+                      scale={0.345}
                     />
                   </div>
 

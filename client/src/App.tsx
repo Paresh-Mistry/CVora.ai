@@ -8,6 +8,7 @@ import { FormProvider } from "./context/FormContext"
 import PricingPage from "./routes/PricingPage"
 import AuthPage from "./routes/LoginPage"
 import HistoryPage from "./routes/HistoryPage"
+import { Toaster } from "sonner"
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
     <>
       <Router>
         <FormProvider>
+          <Toaster />
           <Routes>
             <Route path={"/login"} element={<AuthPage />} />
             <Route path={"/"} element={<Home />} />

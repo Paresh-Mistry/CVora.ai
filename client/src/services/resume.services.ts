@@ -1,4 +1,3 @@
-// src/api/resume.api.ts
 import { api } from "./axios";
 import type { ComponentType } from "react";
 

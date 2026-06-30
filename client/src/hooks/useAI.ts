@@ -4,7 +4,6 @@ import {
   aiApi,
   AIGeneratePayload,
   ATSPayload,
-  CoverLetterPayload,
   creditsApi,
   jobsApi,
   templateApi,
@@ -43,13 +42,10 @@ export function useAIGenerate() {
 
   return useMutation({
     mutationFn: (payload: AIGeneratePayload) => aiApi.generate(payload),
-
     onSuccess: (result, variables) => {
-      // Update the resume in cache with the new insight
       queryClient.setQueryData(queryKeys.resume(variables.resume_id), (old: any) =>
         old ? { ...old, insight: result.insight } : old
       );
-      // Refresh credit count shown in the UI
       queryClient.invalidateQueries({ queryKey: queryKeys.credits() });
     },
   });
@@ -62,20 +58,6 @@ export function useATSScore() {
 
   return useMutation({
     mutationFn: (payload: ATSPayload) => aiApi.ats(payload),
-
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.credits() });
-    },
-  });
-}
-
-// ── Cover letter ──────────────────────────────────────────────────────────────
-
-export function useCoverLetter() {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: (payload: CoverLetterPayload) => aiApi.coverLetter(payload),
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.credits() });

@@ -48,11 +48,6 @@ export const aiApi = {
     const { data } = await api.post("/ai/ats", payload);
     return data;
   },
-
-  coverLetter: async (payload: CoverLetterPayload): Promise<CoverLetterResponse> => {
-    const { data } = await api.post("/ai/cover-letter", payload);
-    return data;
-  },
 };
 
 // ── Templates ─────────────────────────────────────────────────────────────────
@@ -109,6 +104,7 @@ export interface JobResult {
   posted_at: string | null;
   match_score: number | null;
 }
+
 export interface JobSearchResponse {
   jobs: JobResult[];
   query_used: string;

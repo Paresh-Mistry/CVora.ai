@@ -30,7 +30,6 @@ export function useRegister() {
     onSuccess: (tokens) => {
       localStorage.setItem("access_token",  tokens.access_token);
       localStorage.setItem("refresh_token", tokens.refresh_token);
-      // Pre-fetch user so the navbar has data immediately
       queryClient.invalidateQueries({ queryKey: queryKeys.user() });
       navigate("/");
     },

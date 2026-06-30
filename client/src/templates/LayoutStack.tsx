@@ -466,7 +466,7 @@ export default function LayoutStack({ d = {}, tk = {} }: Props) {
 
   return (
     <div
-      className="w-full"
+      className="w-full space-y-3"
       style={{
         padding: pagePadding,
         fontFamily: bodyFont,

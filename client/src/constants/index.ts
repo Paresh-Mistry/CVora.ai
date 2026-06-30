@@ -200,6 +200,7 @@ export const TABS = [
     { id: "preview", label: "Preview", icon: "👁" },
     { id: "templates", label: "Templates", icon: "⊞" },
     { id: "ai", label: "AI Generate", icon: "✦" },
+    { id: "score", label: "ATS score", icon: "✦" },
 ];
 
 

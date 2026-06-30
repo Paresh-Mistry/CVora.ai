@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import Layout from "../Layout/PageLayout";
 import { ArchiveRestoreIcon, ArrowLeftIcon, ArrowRightIcon, Brain, FileType, Languages, Milestone, UserIcon, Wallet } from "lucide-react";
@@ -17,6 +16,7 @@ import { cn } from "../lib/utils";
 import ResumeRightPanel from "../components/common/ResumeRightPanel";
 import { useTemplates } from "../hooks/useAI";
 import { useCreateResume, useResume, useUpdateResume } from "../hooks/useResume";
+import { toast } from "sonner";
 
 
 const steps: Record<string, React.ElementType> = {
@@ -93,16 +93,14 @@ const Editing: React.FC = () => {
     try {
       if (isEdit && resumeId) {
         await updateResume.mutateAsync(payload);
-
-        alert("Resume Updated Successfully!");
+        toast.success("Resume Updated Successfully!", { position: "bottom-left" })
       } else {
         await createResume.mutateAsync(payload);
-
-        alert("Resume Created Successfully!");
+        toast.success("Resume Created Successfully!", { position: "bottom-left" })
       }
     } catch (err) {
-      console.error(err);
-      alert("Failed to save resume");
+      console.error("ERROR",err);
+      toast.warning("Failed to save resume", { position: "bottom-left" })      
     }
   };
 
@@ -131,7 +129,7 @@ const Editing: React.FC = () => {
     <Layout>
       <div className="flex flex-col md:flex-row w-full ">  {/* //bg-[#f1f8fc] */}
         {/* Tracker Sidebar */}
-        <aside className="hidden md:flex flex-col w-[14%] p-4  border-r">
+        <aside className="hidden md:flex flex-col w-[14%] min-w-[180px] p-4  border-r">
           <div className="flex justify-between text-[#213963] mb-4">
             <h3 className={"font-semibold mozilla-headline-hero text-2xl"}>Tracker</h3>
           </div>
@@ -149,7 +147,7 @@ const Editing: React.FC = () => {
                     <>
                       <div
                         className={cn(
-                          "w-8 h-8 rounded-full flex items-center justify-center font-semibold border",
+                          "w-8 h-8 rounded-full flex items-center justify-center font-semibold border shrink-0",
                           i === step
                             ? "bg-[#11a8e4] text-white border-[#11a8e4]"
                             : "border-gray-300 text-gray-500"
@@ -159,7 +157,7 @@ const Editing: React.FC = () => {
                       </div>
                       <span
                         className={cn(
-                          "font-medium text-sm",
+                          "font-medium text-sm truncate",
                           i === step ? "text-[#213963]" : "text-gray-600"
                         )}
                       >
@@ -176,16 +174,16 @@ const Editing: React.FC = () => {
         {/* Main Content */}
         <main className="flex-1 flex flex-col md:flex-row">
           {/* Left - Form */}
-          <div className="md:w-5/12 p-3 space-y-6">
+          <div className="md:w-5/12 p-3 space-y-6 min-w-0">
             <Card className="border-none shadow-none">
               <CardHeader>
-                <h1 className="text-2xl font-semibold text-[#212834] orbitron-head">
+                <h1 className="text-xl sm:text-2xl font-semibold text-[#212834] orbitron-head">
                   <div className="flex items-center orbitron-head gap-2 mb-2">
                     {(() => {
                       const Icon = steps[stepKeys[step]];
-                      return <Icon className="w-6 h-6" />;
+                      return <Icon className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" />;
                     })()}
-                    {capitalize(stepKeys[step])}
+                    <span className="truncate">{capitalize(stepKeys[step])}</span>
                   </div>
                 </h1>
                 <h4 className="text-sm">
@@ -196,13 +194,13 @@ const Editing: React.FC = () => {
                 <form onSubmit={handleFinalSubmit}>
                   <FormFillStep steps={stepKeys} step={step} />
 
-                  <div className="flex justify-between mt-6">
-                    <ButtonGroup>
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mt-6">
+                    <ButtonGroup className="flex-wrap gap-1.5">
                       {stepKeys.map((_, i) => (
                         <Button
                           type="button"
                           key={i}
-                          className={cn(i === step && "bg-gray-200")}
+                          className={cn("shrink-0", i === step && "bg-gray-200")}
                           variant="outline"
                           size="sm"
                           onClick={() => setStep(i)}
@@ -211,7 +209,7 @@ const Editing: React.FC = () => {
                         </Button>
                       ))}
                     </ButtonGroup>
-                    <ButtonGroup>
+                    <ButtonGroup className="self-stretch sm:self-auto">
                       {step > 0 && (
                         <Button
                           type="button"
@@ -219,6 +217,7 @@ const Editing: React.FC = () => {
                           variant="outline"
                           size="default"
                           aria-label="Previous"
+                          className="shrink-0"
                         >
                           <ArrowLeftIcon />
                         </Button>
@@ -229,16 +228,17 @@ const Editing: React.FC = () => {
                           onClick={() => setStep((prev) => prev + 1)}
                           variant="outline"
                           size="default"
-                          className="bg-[#11a8e4] text-white"
+                          className="bg-[#11a8e4] text-white flex-1 sm:flex-initial min-w-0"
                           aria-label="Next"
                         >
-                          Next : {capitalize(stepKeys[step + 1])}
+                          <span className="truncate">Next : {capitalize(stepKeys[step + 1])}</span>
+                          <ArrowRightIcon className="shrink-0" />
                         </Button>
                       ) : (
                         <Button
                           type="submit"
                           size="default"
-                          className="text-xs"
+                          className="text-xs flex-1 sm:flex-initial"
                           variant="default"
                           disabled={updateResume.isPending}
                         >
@@ -260,6 +260,8 @@ const Editing: React.FC = () => {
             DefaultData={DefaultData}
             ActiveLayout={ActiveLayout}
             activeTmpl={activeTmpl}
+            layoutMap={LAYOUT_MAP}
+            resumeId={resumeId}
           />
         </main>
       </div>

@@ -9,7 +9,6 @@ from app.model.resume import Resume
 from app.schema.schemas import (
     AIGenerateRequest, AIGenerateResponse,
     ATSRequest, ATSResponse,
-    CoverLetterRequest, CoverLetterResponse,
 )
 from app.services import ai_services
 from app.services.credit_services import CreditService
@@ -24,8 +23,6 @@ async def _get_resume(db: AsyncSession, resume_id: str, user_id: str) -> Resume:
         raise HTTPException(status_code=404, detail="Resume not found")
     return resume
 
-
-# ── AI insight / improvements  (2 free, 150 premium) ─────────────────────────
 
 @router.post("/generate", response_model=AIGenerateResponse)
 async def ai_generate(body: AIGenerateRequest, user: CurrentUser, db: DB):
@@ -52,7 +49,6 @@ async def ai_generate(body: AIGenerateRequest, user: CurrentUser, db: DB):
     return AIGenerateResponse(insight=insight, credits_remaining=remaining)
 
 
-# ── ATS score  (1 free credit) ────────────────────────────────────────────────
 
 @router.post("/ats", response_model=ATSResponse)
 async def ats_score(body: ATSRequest, user: CurrentUser, db: DB):
@@ -75,25 +71,3 @@ async def ats_score(body: ATSRequest, user: CurrentUser, db: DB):
         suggestions=result.get("suggestions", []),
         credits_remaining=remaining,
     )
-
-
-# ── Cover letter  (1 free credit) ─────────────────────────────────────────────
-
-@router.post("/cover-letter", response_model=CoverLetterResponse)
-async def cover_letter(body: CoverLetterRequest, user: CurrentUser, db: DB):
-    svc = CreditService(db)
-
-    if not await svc.has_credit(user, "cover_letter"):
-        raise HTTPException(status_code=402, detail="No cover letter credits remaining. Upgrade to premium for unlimited.")
-
-    resume = await _get_resume(db, body.resume_id, user.id)
-
-    letter = await ai_services.generate_cover_letter(
-        data=resume.data,
-        job_title=body.job_title,
-        company_name=body.company_name,
-        job_description=body.job_description,
-    )
-    remaining = await svc.consume(user, "cover_letter")
-
-    return CoverLetterResponse(cover_letter=letter, credits_remaining=remaining)

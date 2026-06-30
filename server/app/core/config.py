@@ -1,6 +1,6 @@
 from pydantic_settings import BaseSettings
 from typing import List
-
+import os
 
 class Settings(BaseSettings):
     APP_NAME: str = "CV-GEN: AI Resume Builder"
@@ -20,9 +20,10 @@ class Settings(BaseSettings):
     REFRESH_TOKEN_EXPIRE_DAYS: int = 30
 
     # ── AI ────────────────────────────────────────────────────────────────────
-    OPENAI_API_KEY: str = "skjdskdjsjdsjkdjsdkasasg"
-    OPENAI_MODEL: str = "gpt-4o-mini"          # cheap + fast for most tasks
-    OPENAI_MODEL_PREMIUM: str = "gpt-4o"       # richer output for premium
+    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY")
+    GEMINI_MODEL: str = os.getenv("GEMINI_MODEL")        # cheap + fast for most tasks
+    GEMINI_MODEL_PREMIUM: str = os.getenv("GEMINI_MODEL_PREMIUM")        # cheap + fast for most tasks
+      # richer output for premium
 
     # ── Credits ───────────────────────────────────────────────────────────────
     FREE_AI_CREDITS: int = 2

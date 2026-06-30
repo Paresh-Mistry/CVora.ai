@@ -147,18 +147,6 @@ class ATSResponse(BaseModel):
     credits_remaining: int
 
 
-class CoverLetterRequest(BaseModel):
-    resume_id: str
-    job_title: str
-    company_name: str
-    job_description: Optional[str] = None
-
-
-class CoverLetterResponse(BaseModel):
-    cover_letter: str
-    credits_remaining: int
-
-
 # ─── Templates ────────────────────────────────────────────────────────────────
 
 class TemplateOut(BaseModel):
@@ -188,7 +176,6 @@ class CreditOut(BaseModel):
 class AllCreditsOut(BaseModel):
     ai: CreditOut
     ats: CreditOut
-    cover_letter: CreditOut
 
 
 # ─── Jobs ─────────────────────────────────────────────────────────────────────

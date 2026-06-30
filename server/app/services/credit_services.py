@@ -6,11 +6,9 @@ from app.model.credit import Credit
 from app.model.user import User
 
 
-# Maps feature → (free_total, premium_total)
 CREDIT_LIMITS: dict[str, tuple[int, int]] = {
     "ai":           (settings.FREE_AI_CREDITS,           settings.PREMIUM_AI_CREDITS),
     "ats":          (settings.FREE_ATS_CREDITS,          9999),
-    "cover_letter": (settings.FREE_COVER_LETTER_CREDITS, 9999),
 }
 
 
@@ -18,8 +16,7 @@ class CreditService:
     def __init__(self, db: AsyncSession):
         self.db = db
 
-    # ── Ensure credit row exists for every feature ────────────────────────────
-
+    # Ensure credit row exists for every feature 
     async def ensure_credits(self, user: User):
         """
         Called once after registration (or lazily on first use).
@@ -36,8 +33,7 @@ class CreditService:
             await self.db.execute(stmt)
         await self.db.commit()
 
-    # ── Check ─────────────────────────────────────────────────────────────────
-
+    # Check 
     async def has_credit(self, user: User, feature: str) -> bool:
         credit = await Credit.get(self.db, user.id, feature)
         if not credit:
@@ -45,8 +41,7 @@ class CreditService:
             credit = await Credit.get(self.db, user.id, feature)
         return credit is not None and credit.remaining > 0
 
-    # ── Consume ───────────────────────────────────────────────────────────────
-
+    # Consume 
     async def consume(self, user: User, feature: str) -> int:
         """Deducts one credit and returns remaining count."""
         credit = await Credit.get(self.db, user.id, feature)
@@ -57,8 +52,7 @@ class CreditService:
         await self.db.commit()
         return credit.remaining
 
-    # ── Read ──────────────────────────────────────────────────────────────────
-
+    # Read 
     async def get_all(self, user: User) -> dict[str, Credit]:
         await self.ensure_credits(user)
         result = {}
@@ -67,8 +61,7 @@ class CreditService:
             result[feature] = credit
         return result
 
-    # ── Upgrade plan (called by payment webhook) ──────────────────────────────
-
+    # Upgrade plan (called by payment webhook) 
     async def upgrade_to_premium(self, user: User):
         for feature, limits in CREDIT_LIMITS.items():
             credit = await Credit.get(self.db, user.id, feature)

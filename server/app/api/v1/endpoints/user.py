@@ -32,7 +32,6 @@ async def get_credits(user: CurrentUser, db: DB):
     return AllCreditsOut(
         ai=to_out(data["ai"]),
         ats=to_out(data["ats"]),
-        cover_letter=to_out(data["cover_letter"]),
     )
 
 

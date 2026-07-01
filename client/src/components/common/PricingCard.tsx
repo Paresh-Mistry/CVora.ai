@@ -23,7 +23,7 @@ export function PricingCard({
     return (
         <Card
             className={`relative h-full transition-all rounded-lg duration-300 hover:-translate-y-2 ${popular
-                    ? "border-blue-600 shadow-xl scale-105"
+                    ? "border-blue-600 shadow-xl scale-105 z-20 bg-blue-100"
                     : "border-border"
                 }`}
         >
@@ -35,7 +35,7 @@ export function PricingCard({
                 </div>
             )}
 
-            <CardContent className="p-8 flex flex-col h-full">
+            <CardContent className={"p-8 flex flex-col h-full"}>
                 <div>
                     <h3 className="text-2xl font-bold">{title}</h3>
                     <p className="text-muted-foreground mt-2">
@@ -43,7 +43,7 @@ export function PricingCard({
                     </p>
 
                     <div className="mt-6">
-                        <span className="text-5xl font-bold">{price}</span>
+                        <span className="text-4xl orbitron-head">{price}</span>
                         <span className="text-muted-foreground ml-2">
                             /month
                         </span>

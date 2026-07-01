@@ -60,6 +60,7 @@ export interface TemplateOut {
   preview_bg: string;
   is_premium: boolean;
   tokens: Record<string, string>;
+  sections: Record<string, string>;
   preview_url: string | null;
 }
 

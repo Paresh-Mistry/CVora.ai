@@ -2,7 +2,7 @@ import { useState, useMemo, useRef } from "react";
 import Layout from "../Layout/PageLayout";
 import MiniResumeThumbnail from "../components/common/MiniResumeThumbnail";
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft, ChevronRight, Clock, Crown, FileText, Search, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, Crown, Search, Star } from "lucide-react";
 import { useTemplates } from "../hooks/useAI";
 import { useDeleteResume, useResumes } from "../hooks/useResume";
 import HistoryCard from "../components/common/HistoryCard";
@@ -142,12 +142,12 @@ const Generate: React.FC = () => {
             className="flex gap-4 overflow-x-auto mb-4"
             style={{scrollbarColor:"transparent transparent"}}
           >
-            {resumes?.map((resume: ResumeOut) => {
-              const tmpl: TemplateOut | undefined = templates?.find(
+            {resumes?.map((resume: ResumeOut, index) => {
+              const tmpl = templates?.find(
                 (t: TemplateOut) => t.id === resume.template_id
               );
               return (
-                <>
+                <div key={index}>
                   <HistoryCard
                     key={resume.id}
                     resume={resume}
@@ -158,7 +158,7 @@ const Generate: React.FC = () => {
                     onConfirmDelete={handleDeleteConfirm}
                     onCancelDelete={() => setPendingDelete(null)}
                   />
-                </>
+                </div>
               );
             })}
           </div>
@@ -166,7 +166,7 @@ const Generate: React.FC = () => {
 
 
 
-        <div className="flex flex-col lg:flex-row gap-3">
+        <div className="flex flex-col lg:flex-row gap-3 mt-4">
 
           <div className="lg:w-[280px] shrink-0 max-h-[80vh] overflow-y-auto">
             <div className="px-4 pt-[14px] pb-[10px] border border-b-0 rounded-t-md border-[#e5e7eb]">
@@ -374,8 +374,7 @@ const Generate: React.FC = () => {
                     )}
                     <MiniResumeThumbnail
                       tmpl={tmpl}
-                      // Handle scale based on different devices
-                      scale={0.345}
+                      scale={window.innerWidth < 768 ? 0.198 : 0.345}
                     />
                   </div>
 

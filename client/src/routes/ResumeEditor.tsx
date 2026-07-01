@@ -80,7 +80,7 @@ const Editing: React.FC = () => {
 
 
   const handleFinalSubmit = async (
-    e: React.FormEvent
+    e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
 
@@ -99,8 +99,8 @@ const Editing: React.FC = () => {
         toast.success("Resume Created Successfully!", { position: "bottom-left" })
       }
     } catch (err) {
-      console.error("ERROR",err);
-      toast.warning("Failed to save resume", { position: "bottom-left" })      
+      console.error("ERROR", err);
+      toast.warning("Failed to save resume", { position: "bottom-left" })
     }
   };
 
@@ -261,7 +261,6 @@ const Editing: React.FC = () => {
             ActiveLayout={ActiveLayout}
             activeTmpl={activeTmpl}
             layoutMap={LAYOUT_MAP}
-            resumeId={resumeId}
           />
         </main>
       </div>

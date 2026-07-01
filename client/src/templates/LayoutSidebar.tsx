@@ -9,14 +9,48 @@ import type {
 import { Github, Linkedin, Mail, Phone, Trophy, Award, ArrowUpRight } from "lucide-react";
 import { LanguageItem } from "../context/FormTypes";
 
+const DEFAULT_FONT = "Inter, system-ui, sans-serif";
+const DEFAULT_ACCENT = "#2563eb";
+
+
+function dividerStyle(divider: string | undefined, color: string): React.CSSProperties {
+  switch (divider) {
+    case "none":
+      return {};
+    case "line":
+      return { borderBottom: `1px solid ${color}` };
+    case "thick":
+      return { borderBottom: `3px solid ${color}` };
+    case "dashed":
+      return { borderBottom: `1px dashed ${color}` };
+    case "underline":
+    default:
+      return { borderBottom: `1.5px solid ${color}` };
+  }
+}
+
+function getInitials(name?: string): string {
+  if (!name) return "";
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
 function SideLabel({
   children,
   font,
   accent,
+  divider,
+  showIcons,
 }: {
   children: React.ReactNode;
   font: string;
   accent: string;
+  divider?: string;
+  showIcons: boolean;
 }) {
   return (
     <h2
@@ -28,8 +62,8 @@ function SideLabel({
         letterSpacing: "2px",
         color: accent,
         marginBottom: "8px",
-        borderBottom: "1px solid rgba(255,255,255,0.15)",
         paddingBottom: "4px",
+        ...dividerStyle(divider, "rgba(255,255,255,0.2)"),
       }}
     >
       {children}
@@ -41,10 +75,14 @@ function MainTitle({
   children,
   font,
   accent,
+  divider,
+  sectionSpacing,
 }: {
   children: React.ReactNode;
   font: string;
   accent: string;
+  divider?: string;
+  sectionSpacing: string;
 }) {
   return (
     <h2
@@ -55,10 +93,10 @@ function MainTitle({
         textTransform: "uppercase",
         letterSpacing: "2px",
         color: accent,
-        borderBottom: `1.5px solid ${accent}22`,
         paddingBottom: "4px",
         marginBottom: "10px",
-        marginTop: "16px",
+        marginTop: sectionSpacing,
+        ...dividerStyle(divider, `${accent}33`),
       }}
     >
       {children}
@@ -78,23 +116,36 @@ function normalizeBullets(bullets: string[] | string | undefined): string[] {
   return [];
 }
 
-function languageLabel(l: LanguageItem): string {
+type LanguageData = LanguageItem | { language?: string; proficiency?: string };
+
+function languageLabel(l: LanguageData): string {
   return typeof l === "string" ? l : l.language ?? "";
 }
 
-function languageProficiency(l: LanguageItem): string | undefined {
+function languageProficiency(l: LanguageData): string | undefined {
   return typeof l === "string" ? undefined : l.proficiency;
 }
 
 // ─── Layout ──────────────────────────────────────────────────────────────────
 
 export default function LayoutSidebar({ d, tk }: LayoutProps) {
-  const f = tk?.font ?? '';
-  const ac = tk?.accent ?? '';
-  const sideWidth = tk?.sideWidth || "190px";
+  const f = tk?.font || DEFAULT_FONT;
+  const ac = tk?.accent || DEFAULT_ACCENT;
+  const sideWidth = tk?.sidebarWidth || "190px";
   const sideBg = tk?.sidebarBg || ac;
   const sideText = tk?.sidebarText || "#fff";
-  const sideAccent = tk?.sidebarAccent || "rgba(255,255,255,0.5)";
+  const sideAccent = tk?.sidebarAccent || "rgba(255,255,255,0.7)";
+
+  const sectionSpacing = tk?.sectionSpacing || "16px";
+  const paragraphSpacing = tk?.paragraphSpacing || "6px";
+  const radius = tk?.borderRadius || "4px";
+
+  // Toggle tokens (default to "on" when not specified, matching a sensible full-featured resume)
+  const showIcons = tk?.showIcons ?? true;
+  const showProgress = tk?.showProgress ?? true;
+  const showBadges = tk?.showBadges ?? true;
+  const useTimeline = tk?.timeline ?? false;
+  const showAvatar = Boolean(tk?.avatar);
 
   const skills = d?.skill || [];
   const experience = d.experience || [];
@@ -103,93 +154,138 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
   const certificates = d.certifications || [];
   const achievements = d.achievements || [];
 
+  const photoUrl = (d as any)?.photo || (d as any)?.avatarUrl || null;
+
   // ── Skills ──────────────────────────────────────────────────────────────
+  const skillChipStyle = (i: number): React.CSSProperties => {
+    const pill = tk?.skillStyle === "pill";
+    return {
+      fontFamily: f,
+      fontSize: "9px",
+      color: sideText,
+      borderRadius: pill ? "999px" : radius,
+      padding: "2px 8px",
+      background: showBadges ? "rgba(255,255,255,0.15)" : "transparent",
+      border: showBadges ? "none" : "1px solid rgba(255,255,255,0.3)",
+    };
+  };
+
   const renderSideSkills = () => {
     if (skills.length === 0) return null;
 
-    if (tk?.skillStyle === "bar") {
-      return (
-        <ul className="m-0 list-none p-0">
-          {skills.map((s, i) => (
-            <li key={i} style={{ marginBottom: "6px" }}>
-              <div
-                style={{
-                  fontFamily: f,
-                  fontSize: "10px",
-                  color: sideText,
-                  marginBottom: "3px",
-                  opacity: 0.85,
-                }}
-              >
-                {s}
-              </div>
-              <div
-                aria-hidden="true"
-                style={{ height: "2px", background: "rgba(255,255,255,0.15)", borderRadius: "2px" }}
-              >
+    switch (tk?.skillStyle) {
+      case "bar":
+        return (
+          <ul className="m-0 list-none p-0">
+            {skills.map((s, i) => (
+              <li key={s ?? i} style={{ marginBottom: paragraphSpacing }}>
                 <div
                   style={{
-                    height: "2px",
-                    borderRadius: "2px",
-                    background: sideText,
-                    width: `${62 + (i * 11) % 38}%`,
-                    opacity: 0.7,
+                    fontFamily: f,
+                    fontSize: "10px",
+                    color: sideText,
+                    marginBottom: "3px",
+                    opacity: 0.85,
                   }}
-                />
-              </div>
-            </li>
-          ))}
-        </ul>
-      );
-    }
+                >
+                  {s}
+                </div>
+                {showProgress && (
+                  <div
+                    aria-hidden="true"
+                    style={{ height: "2px", background: "rgba(255,255,255,0.15)", borderRadius: radius }}
+                  >
+                    <div
+                      style={{
+                        height: "2px",
+                        borderRadius: radius,
+                        background: sideText,
+                        width: `${62 + (i * 11) % 38}%`,
+                        opacity: 0.7,
+                      }}
+                    />
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        );
 
-    return (
-      <ul className="m-0 flex list-none flex-wrap gap-1 p-0">
-        {skills.map((s, i) => (
-          <li key={i}>
-            <Badge
-              variant="secondary"
-              className="border-0 font-normal"
-              style={{
-                fontFamily: f,
-                fontSize: "9px",
-                background: "rgba(255,255,255,0.15)",
-                color: sideText,
-                borderRadius: "3px",
-                padding: "2px 6px",
-              }}
-            >
-              {s}
-            </Badge>
-          </li>
-        ))}
-      </ul>
-    );
+      case "dot":
+        return (
+          <ul className="m-0 list-none p-0">
+            {skills.map((s, i) => (
+              <li
+                key={s ?? i}
+                className="flex items-center gap-[6px]"
+                style={{ marginBottom: paragraphSpacing, fontFamily: f, fontSize: "10px", color: sideText, opacity: 0.9 }}
+              >
+                {showIcons && (
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      width: "5px",
+                      height: "5px",
+                      borderRadius: "50%",
+                      background: sideText,
+                      opacity: 0.7,
+                      flexShrink: 0,
+                    }}
+                  />
+                )}
+                {s}
+              </li>
+            ))}
+          </ul>
+        );
+
+      case "grid":
+        return (
+          <ul className="m-0 grid grid-cols-2 list-none gap-1 p-0">
+            {skills.map((s, i) => (
+              <li key={s ?? i} style={skillChipStyle(i)} className="text-center truncate">
+                {s}
+              </li>
+            ))}
+          </ul>
+        );
+
+      case "tag":
+      case "pill":
+      default:
+        return (
+          <ul className="m-0 flex list-none flex-wrap gap-1 p-0">
+            {skills.map((s, i) =>
+              showBadges ? (
+                <li key={s ?? i}>
+                  <Badge variant="secondary" className="border-0 font-normal" style={skillChipStyle(i)}>
+                    {s}
+                  </Badge>
+                </li>
+              ) : (
+                <li key={s ?? i} style={skillChipStyle(i)}>
+                  {s}
+                </li>
+              )
+            )}
+          </ul>
+        );
+    }
   };
 
   // ── Avatar / Photo ────────────────────────────────────────────────────────
   const renderAvatar = () => {
-    // Check if a dedicated photo URL exists, otherwise check fallback string or token config
-    const photoUrl = d.education  || (typeof tk?.avatar === 'string' && tk.avatar.startsWith('http') ? tk.avatar : null);
+    if (!showAvatar) return null;
 
-    if (!photoUrl && !tk?.avatar) return null;
-
-    const initials = d.name
-      ? d.name
-        .split(" ")
-        .map((n) => n[0])
-        .join("")
-        .slice(0, 2)
-      : "";
-
-    const isSquare = tk?.avatar === "square";
+    const initials = getInitials(d.name);
+    const isSquare = tk?.avatarShape === "square";
 
     return (
       <div
         style={{
-          width: isSquare ? "200px" : "120px",
-          height: isSquare ? "200px" : "120px",
-          borderRadius: isSquare ? "6px" : "50%",
+          width: "120px",
+          height: "120px",
+          borderRadius: isSquare ? radius : "50%",
           background: "rgba(255,255,255,0.15)",
           border: "2px solid rgba(255,255,255,0.3)",
           display: "flex",
@@ -204,11 +300,7 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
         }}
       >
         {photoUrl ? (
-          <img
-            src={"https://paresh-mistry.github.io/assets/Profileimg-Dk0oU7yT.jpg"}
-            alt={d.name || "Profile photo"}
-            className="w-[100%] h-[100%] object-cover"
-          />
+          <img src={photoUrl} alt={d.name || "Profile photo"} className="h-full w-full object-cover" />
         ) : (
           initials
         )}
@@ -219,10 +311,18 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
   // ── Contact ──────────────────────────────────────────────────────────────
   const contactItems: ResolvedContactItem[] = (
     [
-      { prefix: "mailto:", icon: Mail, value: d.email },
-      { prefix: "tel:", icon: Phone, value: d.phone },
-      { prefix: "https://", icon: Linkedin, value: d.linkedin },
-      { prefix: "https://github.com/", icon: Github, value: d.github },
+      { icon: Mail, value: d.email, href: d.email ? `mailto:${d.email}` : undefined },
+      { icon: Phone, value: d.phone, href: d.phone ? `tel:${d.phone}` : undefined },
+      {
+        icon: Linkedin,
+        value: d.linkedin,
+        href: d.linkedin ? (d.linkedin.startsWith("http") ? d.linkedin : `https://${d.linkedin}`) : undefined,
+      },
+      {
+        icon: Github,
+        value: d.github,
+        href: d.github ? (d.github.startsWith("http") ? d.github : `https://github.com/${d.github}`) : undefined,
+      },
     ] as ContactItem[]
   ).filter((c): c is ResolvedContactItem => Boolean(c.value));
 
@@ -234,32 +334,33 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
     >
       {/* Sidebar */}
       <aside
-        className="flex flex-col gap-[18px]"
+        className="flex flex-col"
         style={{
           width: sideWidth,
           minWidth: sideWidth,
           background: sideBg,
-          padding: "28px 16px",
+          padding: "28px 26px",
+          gap: sectionSpacing,
         }}
         aria-label="Profile and contact details"
       >
-        {renderAvatar() || "No Image"}
- 
-        <div style={{ textAlign: tk?.avatar || d.photo ? "center" : "left" }}>
+        <div style={{ textAlign: showAvatar ? "center" : "left" }}>
+
+          {renderAvatar()}
+
           <h1
             style={{
               fontFamily: tk?.displayFont || f,
-              fontSize: "15px",
+              fontSize: tk?.nameSize || "15px",
               fontWeight: 700,
               color: sideText,
-              lineHeight: 1.2,
               margin: 0,
             }}
           >
             {d.name}
           </h1>
           {d.domain && (
-            <p style={{ fontFamily: f, fontSize: "10px", color: sideAccent, marginTop: "4px", marginBottom: 0 }}>
+            <p style={{ fontFamily: f, fontSize: "10px", color: sideAccent, marginTop: "3px", marginBottom: 0 }}>
               {d.domain}
             </p>
           )}
@@ -267,26 +368,50 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
 
         {contactItems.length > 0 && (
           <section aria-labelledby="sidebar-contact">
-            <SideLabel font={f ?? ''} accent={sideAccent}>
+            <SideLabel font={f} accent={sideAccent} divider={tk?.divider} showIcons={showIcons}>
               <span id="sidebar-contact">Contact</span>
             </SideLabel>
             <address className="not-italic">
               <ul className="m-0 list-none p-0">
                 {contactItems.map((c, i) => {
-                  const Icon = c.icon
-                  return (
-                    <li
-                      key={i}
-                      className="flex gap-[5px] break-all"
-                      style={{ fontFamily: f, fontSize: "9.5px", color: sideText, opacity: 0.75, marginBottom: "5px" }}
-                    >
-                      <span aria-hidden="true" style={{ opacity: 0.5 }}>
-                        <Icon size={10} />
-                      </span>
-                      <span className="sr-only">{c.prefix}:</span>
+                  const Icon = c.icon;
+                  const rowStyle: React.CSSProperties = {
+                    fontFamily: f,
+                    fontSize: "9.5px",
+                    color: sideText,
+                    opacity: 0.75,
+                    marginBottom: paragraphSpacing,
+                    textDecoration: "none",
+                  };
+                  const content = (
+                    <>
+                      {showIcons && (
+                        <span aria-hidden="true" style={{ opacity: 0.5, flexShrink: 0 }}>
+                          <Icon size={10} />
+                        </span>
+                      )}
                       <span>{c.value}</span>
+                    </>
+                  );
+                  return (
+                    <li key={c.value ?? i} className="flex gap-[5px] break-all">
+                      {c.href ? (
+                        <a
+                          href={c.href}
+                          className="flex gap-[5px]"
+                          style={rowStyle}
+                          target={c.href.startsWith("http") ? "_blank" : undefined}
+                          rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        >
+                          {content}
+                        </a>
+                      ) : (
+                        <span className="flex gap-[5px]" style={rowStyle}>
+                          {content}
+                        </span>
+                      )}
                     </li>
-                  )
+                  );
                 })}
               </ul>
             </address>
@@ -295,7 +420,7 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
 
         {skills.length > 0 && (
           <section aria-labelledby="sidebar-skills">
-            <SideLabel font={f} accent={sideAccent}>
+            <SideLabel font={f} accent={sideAccent} divider={tk?.divider} showIcons={showIcons}>
               <span id="sidebar-skills">Skills</span>
             </SideLabel>
             {renderSideSkills()}
@@ -304,22 +429,20 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
 
         {languages.length > 0 && (
           <section aria-labelledby="sidebar-languages">
-            <SideLabel font={f} accent={sideAccent}>
+            <SideLabel font={f} accent={sideAccent} divider={tk?.divider} showIcons={showIcons}>
               <span id="sidebar-languages">Languages</span>
             </SideLabel>
-            <ul className="m-0 list-none space-y-1.5 p-0">
+            <ul className="m-0 list-none p-0" style={{ display: "flex", flexDirection: "column", gap: paragraphSpacing }}>
               {languages.map((l, i) => {
                 const proficiency = languageProficiency(l);
                 return (
                   <li
-                    key={i}
+                    key={languageLabel(l) || i}
                     className="flex justify-between text-[11px]"
                     style={{ color: "rgba(255,255,255,0.85)" }}
                   >
                     <span>{languageLabel(l)}</span>
-                    {proficiency && (
-                      <span style={{ color: "rgba(255,255,255,0.5)" }}>{proficiency}</span>
-                    )}
+                    {proficiency && <span style={{ color: "rgba(255,255,255,0.5)" }}>{proficiency}</span>}
                   </li>
                 );
               })}
@@ -329,10 +452,10 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1" style={{ padding: "28px 26px" }}>
+      <main className="flex-1" style={{ padding: "28px 26px", background: tk?.accentLight || "#fff" }}>
         {d.summary && (
           <section aria-labelledby="main-about">
-            <MainTitle font={f} accent={ac}>
+            <MainTitle font={f} accent={ac} divider={tk?.divider} sectionSpacing="0px">
               <span id="main-about">About</span>
             </MainTitle>
             <p style={{ fontFamily: f, fontSize: "11px", color: "#444", lineHeight: 1.7, margin: 0 }}>
@@ -343,7 +466,7 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
 
         {experience.length > 0 && (
           <section aria-labelledby="main-experience">
-            <MainTitle font={f} accent={ac}>
+            <MainTitle font={f} accent={ac} divider={tk?.divider} sectionSpacing={sectionSpacing}>
               <span id="main-experience">Experience</span>
             </MainTitle>
             {experience.map((exp, i) => {
@@ -351,16 +474,30 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
               return (
                 <article
                   key={exp.role ?? i}
+                  className="relative"
                   style={{
-                    marginBottom: "14px",
-                    paddingLeft: "10px",
-                    borderLeft: `2.5px solid ${i === 0 ? ac : `${ac}40`}`,
+                    marginBottom: paragraphSpacing,
+                    paddingLeft: "12px",
+                    borderLeft: `2.5px solid ${ac}`,
                   }}
                 >
+                  {useTimeline && (
+                    <span
+                      aria-hidden="true"
+                      style={{
+                        position: "absolute",
+                        left: "-5.5px",
+                        top: "3px",
+                        width: "9px",
+                        height: "9px",
+                        borderRadius: "50%",
+                        background: ac,
+                        border: `2px solid ${ac}`,
+                      }}
+                    />
+                  )}
                   <div className="flex justify-between gap-2">
-                    <h3 style={{ fontFamily: f, fontWeight: 700, fontSize: "12px", margin: 0 }}>
-                      {exp.role}
-                    </h3>
+                    <h3 style={{ fontFamily: f, fontWeight: 700, fontSize: "12px", margin: 0 }}>{exp.role}</h3>
                     {exp.duration && (
                       <span
                         className="whitespace-nowrap"
@@ -378,22 +515,17 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
                     )}
                   </div>
                   {exp.company && (
-                    <p
-                      style={{
-                        fontFamily: f,
-                        fontSize: "10.5px",
-                        color: ac,
-                        fontWeight: 600,
-                        margin: "0 0 4px",
-                      }}
-                    >
+                    <p style={{ fontFamily: f, fontSize: "10.5px", color: ac, fontWeight: 600, margin: "0 0 4px" }}>
                       {exp.company}
                     </p>
                   )}
                   {bullets.length > 0 && (
                     <ul style={{ margin: 0, paddingLeft: "14px" }}>
                       {bullets.map((b, j) => (
-                        <li key={j} style={{ fontFamily: f, fontSize: "10.5px", color: "#444", marginBottom: "2px" }}>
+                        <li
+                          key={j}
+                          style={{ fontFamily: f, fontSize: "10.5px", color: "#444", marginBottom: paragraphSpacing }}
+                        >
                           {b}
                         </li>
                       ))}
@@ -407,14 +539,12 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
 
         {education.length > 0 && (
           <section aria-labelledby="main-education">
-            <MainTitle font={f} accent={ac}>
+            <MainTitle font={f} accent={ac} divider={tk?.divider} sectionSpacing={sectionSpacing}>
               <span id="main-education">Education</span>
             </MainTitle>
             {education.map((e, i) => (
-              <div key={e.degree ?? i} style={{ marginBottom: "10px" }}>
-                <h3 style={{ fontFamily: f, fontWeight: 700, fontSize: "12px", margin: 0 }}>
-                  {e.degree}
-                </h3>
+              <div key={e.degree ?? i} style={{ marginBottom: paragraphSpacing }}>
+                <h3 style={{ fontFamily: f, fontWeight: 700, fontSize: "12px", margin: 0 }}>{e.degree}</h3>
                 <p style={{ fontFamily: f, fontSize: "10.5px", color: ac, margin: "1px 0 0" }}>
                   {[e.institute, e.year].filter(Boolean).join(" · ")}
                 </p>
@@ -428,21 +558,22 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
           </section>
         )}
 
-        {/* Achievements Section */}
         {achievements.length > 0 && (
           <section aria-labelledby="main-achievements">
-            <MainTitle font={f} accent={ac}>
+            <MainTitle font={f} accent={ac} divider={tk?.divider} sectionSpacing={sectionSpacing}>
               <span id="main-achievements">Achievements</span>
             </MainTitle>
-            <ul className="m-0 list-none p-0 space-y-2">
+            <ul className="m-0 list-none p-0" style={{ display: "flex", flexDirection: "column", gap: paragraphSpacing }}>
               {achievements.map((achievement, i) => {
                 const title = typeof achievement === "string" ? achievement : achievement.title;
                 const desc = typeof achievement === "string" ? null : achievement.description;
                 return (
-                  <li key={i} className="flex items-start gap-2" style={{ paddingLeft: "4px" }}>
-                    <span aria-hidden="true" style={{ color: ac, marginTop: "2px", opacity: 0.85 }}>
-                      <Trophy size={11} />
-                    </span>
+                  <li key={title ?? i} className="flex items-start gap-2" style={{ paddingLeft: "4px" }}>
+                    {showIcons && (
+                      <span aria-hidden="true" style={{ color: ac, marginTop: "2px", opacity: 0.85, flexShrink: 0 }}>
+                        <Trophy size={11} />
+                      </span>
+                    )}
                     <div>
                       <h3 style={{ fontFamily: f, fontWeight: 600, fontSize: "11px", margin: 0, color: "#222" }}>
                         {title}
@@ -460,41 +591,54 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
           </section>
         )}
 
-        {/* Certificates Section */}
         {certificates.length > 0 && (
           <section aria-labelledby="main-certificates">
-            <MainTitle font={f} accent={ac}>
+            <MainTitle font={f} accent={ac} divider={tk?.divider} sectionSpacing={sectionSpacing}>
               <span id="main-certificates">Certificates</span>
             </MainTitle>
-            <div className="grid grid-cols-1 gap-2">
+            <div className="grid grid-cols-1" style={{ gap: paragraphSpacing }}>
               {certificates.map((cert, i) => {
                 const title = typeof cert === "string" ? cert : cert.title;
                 const issuer = typeof cert === "string" ? null : cert.issuer;
                 const date = typeof cert === "string" ? null : cert.date;
-                const url = typeof cert === "string" ? undefined : cert.url
+                const url = typeof cert === "string" ? undefined : cert.url;
                 return (
-                  <div>
+                  <div
+                    key={title ?? i}
+                    style={
+                      showBadges
+                        ? { background: `${ac}08`, borderRadius: radius, padding: "6px 8px" }
+                        : undefined
+                    }
+                  >
                     <div className="flex items-center justify-between">
-
-                      <div key={i} className="flex items-start gap-2" style={{ paddingLeft: "4px" }}>
-                        <span aria-hidden="true" style={{ color: ac, marginTop: "2px", opacity: 0.85 }}>
-                          <Award size={11} />
-                        </span>
+                      <div className="flex items-start gap-2" style={{ paddingLeft: showBadges ? 0 : "4px" }}>
+                        {showIcons && (
+                          <span aria-hidden="true" style={{ color: ac, marginTop: "2px", opacity: 0.85, flexShrink: 0 }}>
+                            <Award size={11} />
+                          </span>
+                        )}
                         <h3 style={{ fontFamily: f, fontWeight: 600, fontSize: "11px", margin: 0, color: "#222" }}>
                           {title}
                         </h3>
                       </div>
-                      <a href={url} className="text-[10px] flex gap-1 items-center">Certificate <ArrowUpRight size={10}/></a>
+                      {url && (
+                        <a
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[10px] flex gap-1 items-center"
+                          style={{ color: ac }}
+                        >
+                          Certificate <ArrowUpRight size={10} />
+                        </a>
+                      )}
                     </div>
-                    <div>
-                      {
-                        (issuer || date) && (
-                          <p style={{ fontFamily: f, fontSize: "10px", color: ac, margin: "1px 0 0", opacity: 0.9 }}>
-                            {[issuer, date].filter(Boolean).join(" · ")}
-                          </p>
-                        )
-                      }
-                    </div>
+                    {(issuer || date) && (
+                      <p style={{ fontFamily: f, fontSize: "10px", color: ac, margin: "1px 0 0", opacity: 0.9 }}>
+                        {[issuer, date].filter(Boolean).join(" · ")}
+                      </p>
+                    )}
                   </div>
                 );
               })}
@@ -502,6 +646,6 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
           </section>
         )}
       </main>
-    </div >
+    </div>
   );
 }

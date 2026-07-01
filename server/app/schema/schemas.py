@@ -6,6 +6,7 @@ from pydantic import BaseModel, EmailStr, Field, field_validator
 
 # ─── Auth ─────────────────────────────────────────────────────────────────────
 
+
 class RegisterRequest(BaseModel):
     email: EmailStr
     password: str = Field(min_length=8)
@@ -39,6 +40,7 @@ class UserOut(BaseModel):
 
 
 # ─── Resume data sub-schemas ──────────────────────────────────────────────────
+
 
 class ExperienceItem(BaseModel):
     role: str = ""
@@ -98,6 +100,7 @@ class ResumeData(BaseModel):
 
 # ─── Resume CRUD ──────────────────────────────────────────────────────────────
 
+
 class ResumeCreateRequest(BaseModel):
     title: str = "My Resume"
     template_id: str = "classic"
@@ -125,9 +128,10 @@ class ResumeOut(BaseModel):
 
 # ─── AI ───────────────────────────────────────────────────────────────────────
 
+
 class AIGenerateRequest(BaseModel):
     resume_id: str
-    prompt: Optional[str] = None    # freeform, or None → auto-generate from resume
+    prompt: Optional[str] = None  # freeform, or None → auto-generate from resume
 
 
 class AIGenerateResponse(BaseModel):
@@ -141,7 +145,7 @@ class ATSRequest(BaseModel):
 
 
 class ATSResponse(BaseModel):
-    score: int                      # 0–100
+    score: int  # 0–100
     missing_keywords: List[str]
     suggestions: List[str]
     credits_remaining: int
@@ -149,20 +153,23 @@ class ATSResponse(BaseModel):
 
 # ─── Templates ────────────────────────────────────────────────────────────────
 
+
 class TemplateOut(BaseModel):
     id: str
     name: str
     description: str
-    layout: str          # "A" | "B" | "C" — frontend uses this to pick the layout component
+    layout: str  # "A" | "B" | "C" — frontend uses this to pick the layout component
     is_premium: bool
     preview_bg: str
     preview_url: Optional[str]
     tokens: dict
- 
+    sections: dict
+
     model_config = {"from_attributes": True}
 
 
 # ─── Credits ──────────────────────────────────────────────────────────────────
+
 
 class CreditOut(BaseModel):
     feature: str
@@ -180,13 +187,14 @@ class AllCreditsOut(BaseModel):
 
 # ─── Jobs ─────────────────────────────────────────────────────────────────────
 
+
 class JobResult(BaseModel):
     title: str
     company: str
     location: str
     url: str
     posted_at: Optional[str]
-    match_score: Optional[int]     # 0–100 relevance vs resume
+    match_score: Optional[int]  # 0–100 relevance vs resume
 
 
 class JobSearchResponse(BaseModel):

@@ -44,13 +44,7 @@ export interface UpdateResumePayload {
 
 
 export interface ContactItem {
-  prefix: string;
-  icon: ComponentType<{ size?: number; className?: string }>;
-  value?: string;
-}
-
-export interface ContactItem {
-  prefix: string;
+  href: string;
   icon: ComponentType<{ size?: number; className?: string }>;
   value?: string;
 }
@@ -62,15 +56,28 @@ export interface ResolvedContactItem extends ContactItem {
 export interface ThemeTokens {
   font?: string;
   displayFont?: string;
-  accent?: string;
-  bannerBg?: string;
   nameSize?: string;
-  sideWidth?: string;
+  accent?: string;
+  accentLight?: string;
+  bannerBg?: string;
   sidebarBg?: string;
   sidebarText?: string;
   sidebarAccent?: string;
-  skillStyle?: "pill" | "dot" | "bar";
-  avatar?: "circle" | "square";
+  padding?: string;
+  sidebarWidth?: string;
+  sectionSpacing?: string;
+  paragraphSpacing?: string;
+  borderRadius?: string;
+  headerStyle?: "left" | "centered" | "banner" | "split" | "sidebar";
+  divider?: "none" | "line" | "underline" | "thick" | "dashed";
+  skillStyle?: "tag" | "pill" | "dot" | "bar" | "grid";
+  avatar?: boolean;
+  avatarShape?: "circle" | "square";
+  sidebar?: boolean;
+  timeline?: boolean;
+  showIcons?: boolean;
+  showProgress?: boolean;
+  showBadges?: boolean;
 }
 
 export interface LayoutProps {

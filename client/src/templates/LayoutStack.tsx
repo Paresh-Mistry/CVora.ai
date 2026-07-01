@@ -1,515 +1,631 @@
 import * as React from "react";
-import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, Trophy, Award, ArrowUpRight } from "lucide-react";
 
+import { Separator } from "../components/ui/separator";
+import { Badge } from "../components/ui/badge";
+import type {
+  ContactItem,
+  LayoutProps,
+  ResolvedContactItem,
+} from "../services/resume.services";
 import { cn } from "../lib/utils";
 
-interface DesignTokens {
-  displayFont?: string;
-  bodyFont?: string;
-  primaryColor?: string;
-  secondaryColor?: string;
-  textColor?: string;
-  mutedTextColor?: string;
-  backgroundColor?: string;
-  borderColor?: string;
-  headerStyle?: "default" | "centered" | "split";
-  headerAlignment?: "left" | "center" | "right";
-  headerBackground?: string;
-  headerTextColor?: string;
-  sectionTitleStyle?: "uppercase" | "none";
-  sectionTitleColor?: string;
-  sectionTitleSize?: string;
-  sectionDivider?: "none" | "underline" | "leftbar" | "band";
-  nameSize?: string;
-  titleSize?: string;
-  bodySize?: string;
-  nameWeight?: number;
-  headingWeight?: number;
-  bodyWeight?: number;
-  lineHeight?: number;
-  pagePadding?: string;
-  sectionGap?: string;
-  itemGap?: string;
-  skillStyle?: "pill" | "tag" | "bar";
-  skillColor?: string;
-  skillBackground?: string;
-  showIcons?: boolean;
-  cardStyle?: "flat" | "elevated" | "bordered";
-  cardRadius?: string;
-  atsMode?: boolean;
-}
+const DEFAULT_FONT = "Inter, ui-sans-serif, sans-serif";
+const DEFAULT_ACCENT = "#2563eb";
 
-interface Props {
-  d: any;
-  tk: DesignTokens;
-}
 
-function normalizeBullets(bullets: unknown): string[] {
+function normalizeBullets(bullets: string[] | string | undefined): string[] {
   if (Array.isArray(bullets)) return bullets;
   if (typeof bullets === "string") {
-    return bullets
-      .split(/\n|•|◦|▪/)
-      .map((b) => b.trim())
-      .filter(Boolean);
+    return bullets.split(/\n|•|◦|▪/).map((b) => b.trim()).filter(Boolean);
   }
   return [];
 }
 
-function hasContent(arr: any[] | undefined, key?: string): boolean {
-  if (!Array.isArray(arr)) return false;
-  if (!key) return arr.filter(Boolean).length > 0;
-  return arr.some((item) => typeof item?.[key] === "string" && item[key].trim().length > 0);
+function getInitials(name?: string): string {
+  if (!name) return "";
+  return name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase();
 }
 
-export default function LayoutStack({ d = {}, tk = {} }: Props) {
-  // ── Resolve tokens with fallbacks ────────────────────────────────────────
-  const ats = tk.atsMode ?? false;
+function isExternal(prefix: string): boolean {
+  return prefix.startsWith("http");
+}
 
-  const bodyFont = tk.bodyFont || "Inter, ui-sans-serif, sans-serif";
-  const displayFont = tk.displayFont || bodyFont;
+/** Resolves the `divider` token into a hairline rule after a section heading. */
+function DividerLine({ divider, color }: { divider: string | undefined; color: string }) {
+  if (divider === "none") return null;
+  const style: React.CSSProperties =
+    divider === "thick"
+      ? { height: "2px", background: color }
+      : divider === "dashed"
+        ? { height: 0, borderTop: `1px dashed ${color}` }
+        : { height: "1px", background: color }; // line / underline (default)
+  return <span aria-hidden="true" className="flex-1" style={style} />;
+}
 
-  const accent = ats ? "#111827" : tk.primaryColor || "#2563eb";
-  const secondary = ats ? "#374151" : tk.secondaryColor || "#1e293b";
-  const textColor = ats ? "#111827" : tk.textColor || "#111827";
-  const mutedColor = ats ? "#4b5563" : tk.mutedTextColor || "#6b7280";
-  const borderColor = ats ? "#d1d5db" : tk.borderColor || "#e5e7eb";
-  const pageBg = tk.backgroundColor || "#ffffff";
+function SectionHeading({
+  children,
+  font,
+  accent,
+  divider,
+  sectionSpacing,
+}: {
+  children: React.ReactNode;
+  font: string;
+  accent: string;
+  divider?: string;
+  sectionSpacing: string;
+}) {
+  return (
+    <h2
+      className="mb-2 flex items-center gap-2"
+      style={{
+        fontFamily: font,
+        fontSize: "10px",
+        fontWeight: 700,
+        textTransform: "uppercase",
+        letterSpacing: "2.5px",
+        color: accent,
+        marginTop: sectionSpacing,
+      }}
+    >
+      <span>{children}</span>
+      <DividerLine divider={divider} color={`${accent}25`} />
+    </h2>
+  );
+}
 
-  const headerBg = ats ? "transparent" : tk.headerBackground;
-  const headerTextColor = headerBg ? tk.headerTextColor || "#ffffff" : accent;
-  const headerAlignment = tk.headerAlignment || "left";
-
-  const sectionTitleColor = ats ? textColor : tk.sectionTitleColor || accent;
-  const sectionTitleSize = tk.sectionTitleSize || "11px";
-  const sectionTitleUppercase = (tk.sectionTitleStyle || "uppercase") === "uppercase";
-  const divider = ats ? "underline" : tk.sectionDivider || "underline";
-
-  const nameSize = tk.nameSize || "34px";
-  const titleSize = tk.titleSize || "13px";
-  const bodySize = tk.bodySize || "13px";
-
-  const nameWeight = tk.nameWeight ?? 800;
-  const headingWeight = tk.headingWeight ?? 700;
-  const bodyWeight = tk.bodyWeight ?? 400;
-  const lineHeight = tk.lineHeight ?? 1.6;
-
-  const pagePadding = tk.pagePadding || "32px 36px";
-  const sectionGap = tk.sectionGap || "px";
-  const itemGap = tk.itemGap || "10px";
-
+export default function LayoutStack({ d, tk = {} }: LayoutProps) {
+  const f = tk.font || DEFAULT_FONT;
+  const ac = tk.accent || DEFAULT_ACCENT;
+  const pagePadding = "28px 32px";
+  const sectionSpacing = tk.sectionSpacing || "20px";
+  const paragraphSpacing = tk.paragraphSpacing || "8px";
+  const radius = tk.borderRadius || "6px";
   const showIcons = tk.showIcons ?? true;
+  const showProgress = tk.showProgress ?? true;
+  const showBadges = tk.showBadges ?? true;
+  const useTimeline = tk.timeline ?? false;
+  const showAvatar = Boolean(tk.avatar);
+  const hasBand = Boolean(tk.bannerBg);
+  const headerBg = tk.bannerBg || "transparent";
+  const headerText = hasBand ? tk.sidebarText || "#fff" : "#1a1a1a";
+  const headerMuted = hasBand ? "rgba(255,255,255,0.78)" : "#666";
+  const headerAccent = hasBand ? tk.sidebarAccent || "rgba(255,255,255,0.9)" : ac;
 
-  const skillColor = ats ? textColor : tk.skillColor || accent;
-  const skillTrackColor = tk.skillBackground || "#eef0f3";
+  const alignment: "left" | "centered" | "split" =
+    tk.headerStyle === "centered" ? "centered" : tk.headerStyle === "split" ? "split" : "left";
 
-  const cardStyle = tk.cardStyle || "elevated";
-  const cardRadius = tk.cardRadius || "10px";
+  const skills = (d.skill || []).filter(Boolean);
+  const photoUrl = (d as any)?.photo || (d as any)?.avatarUrl || null;
 
-  const bodyTextStyle: React.CSSProperties = {
-    fontFamily: bodyFont,
-    fontSize: bodySize,
-    fontWeight: bodyWeight,
-    lineHeight,
-    paddingInline:"8px",
-    color: mutedColor,
-  };
-
-  // ── Section title (handles all divider variants + empty-state hiding) ───
-  const SectionTitle = ({ children }: { children: React.ReactNode }) => {
-    const titleTextStyle: React.CSSProperties = {
-      fontFamily: bodyFont,
-      fontSize: sectionTitleSize,
-      fontWeight: headingWeight,
-      textTransform: sectionTitleUppercase ? "uppercase" : "none",
-      letterSpacing: sectionTitleUppercase ? "1.8px" : "0",
-      color: sectionTitleColor,
-    };
-
-    if (divider === "band") {
-      return (
-        <div
-          className="mb-2 inline-block rounded px-3 py-1 text-white"
-          style={{ ...titleTextStyle, color: "#fff", backgroundColor: accent, borderRadius: "6px" }}
-        >
-          {children}
-        </div>
-      );
-    }
-
-    if (divider === "leftbar") {
-      return (
-        <h2 className="mb-2 border-l-[3px] pl-2.5" style={{ ...titleTextStyle, borderColor: accent }}>
-          {children}
-        </h2>
-      );
-    }
-
-    if (divider === "none") {
-      return <h2 className="mb-2" style={titleTextStyle}>{children}</h2>;
-    }
-
-    // underline (default)
+  // ── Avatar ─────────────────────────────────────────────────────────────
+  const renderAvatar = () => {
+    if (!showAvatar) return null;
+    const isSquare = tk.avatarShape === "square";
     return (
-      <h2 className="mb-2 flex items-center gap-2.5" style={titleTextStyle}>
-        <span className="whitespace-nowrap">{children}</span>
-        <span aria-hidden="true" className="h-px flex-1" style={{ background: `${accent}30` }} />
-      </h2>
-    );
-  };
-
-  const Section = ({
-    title,
-    show,
-    children,
-  }: {
-    title: string;
-    show: boolean;
-    children: React.ReactNode;
-  }) => {
-    if (!show) return null;
-    return (
-      <section style={{ marginBottom: sectionGap }}>
-        <SectionTitle>{title}</SectionTitle>
-        {children}
-      </section>
-    );
-  };
-
-  // ── Header ────────────────────────────────────────────────────────────────
-  const contactLine = [d.email, d.phone, d.linkedin, d.github].filter(Boolean);
-
-  const contactIcon = (idx: number) => {
-    if (!showIcons) return null;
-    const icons = [Mail, Phone, Linkedin, Github];
-    const Icon = icons[idx] || Mail;
-    return <Icon size={11} aria-hidden="true" className="shrink-0" />;
-  };
-
-  const renderHeader = () => {
-    // const headerWrapStyle: React.CSSProperties = headerBg
-    //   ? { background: headerBg, color: headerTextColor, padding: pagePadding, margin: `-${pagePadding} -${pagePadding} ${sectionGap} -${pagePadding}` }
-    //   : { borderBottom: `2px solid ${accent}`, paddingBottom: "10px", marginBottom: sectionGap };
-
-    const nameStyle: React.CSSProperties = {
-      fontFamily: displayFont,
-      fontWeight: nameWeight,
-      fontSize: nameSize,
-      color: headerBg ? headerTextColor : accent,
-      letterSpacing: "-0.5px",
-      lineHeight: 1,
-    };
-
-    const domainStyle: React.CSSProperties = {
-      fontFamily: bodyFont,
-      fontSize: bodySize,
-      color: headerBg ? `${headerTextColor}cc` : mutedColor,
-      marginTop: "6px",
-    };
-
-    const metaStyle: React.CSSProperties = {
-      fontFamily: bodyFont,
-      fontSize: "11.5px",
-      color: headerBg ? `${headerTextColor}b3` : mutedColor,
-    };
-
-    if (tk.headerStyle === "centered") {
-      return (
-        <div className="text-center">
-          <h1 style={nameStyle}>{d.name}</h1>
-          {d.domain && <p style={domainStyle}>{d.domain}</p>}
-          {contactLine.length > 0 && (
-            <div className="mt-3 flex flex-wrap justify-center gap-2">
-              {contactLine.map((item, i) => (
-                <span key={i} className="flex items-center gap-1.5" style={metaStyle}>
-                  {contactIcon(i)}
-                  {item}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
-      );
-    }
-
-    if (tk.headerStyle === "split") {
-      return (
-        <div className="flex items-end justify-between">
-          <div>
-            <h1 style={nameStyle}>{d.name}</h1>
-            {d.domain && <p style={domainStyle}>{d.domain}</p>}
-          </div>
-          {contactLine.length > 0 && (
-            <div className="text-right">
-              {contactLine.map((item, i) => (
-                <div key={i} className="flex items-center justify-end gap-1.5" style={{ ...metaStyle, marginBottom: "2px" }}>
-                  {item}
-                  {contactIcon(i)}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      );
-    }
-
-    // default — respects headerAlignment
-    const justify =
-      headerAlignment === "center" ? "center" : headerAlignment === "right" ? "flex-end" : "flex-start";
-    const textAlign = headerAlignment as React.CSSProperties["textAlign"];
-
-    return (
-      <div style={{ textAlign }}>
-        <h1 style={nameStyle}>{d.name}</h1>
-        {d.domain && <span style={domainStyle}>{d.domain}</span>}
-        <div className="mt-2 flex flex-wrap items-center gap-3" style={{ justifyContent: justify }}>
-          {contactLine.length > 0 && (
-            <span className="flex flex-wrap items-center gap-3" style={metaStyle}>
-              {contactLine.map((item, i) => (
-                <span key={i} className="flex items-center gap-1.5">
-                  {contactIcon(i)}
-                  {item}
-                </span>
-              ))}
-            </span>
-          )}
-        </div>
+      <div
+        style={{
+          width: "76px",
+          height: "76px",
+          flexShrink: 0,
+          borderRadius: isSquare ? radius : "50%",
+          background: hasBand ? "rgba(255,255,255,0.15)" : `${ac}12`,
+          border: hasBand ? "2px solid rgba(255,255,255,0.35)" : `2px solid ${ac}30`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: f,
+          fontSize: "18px",
+          fontWeight: 700,
+          color: hasBand ? "#fff" : ac,
+          overflow: "hidden",
+        }}
+      >
+        {photoUrl ? (
+          <img src={photoUrl} alt={d.name || "Profile photo"} className="h-full w-full object-cover" />
+        ) : (
+          getInitials(d.name)
+        )}
       </div>
     );
   };
 
-  // ── Skills ────────────────────────────────────────────────────────────────
-  const skills: string[] = (d.skill || d.skills || []).filter(Boolean);
+  // ── Contact ────────────────────────────────────────────────────────────
+  const contactItems: ResolvedContactItem[] = (
+    [
+      { icon: Mail, value: d.email, href: d.email ? `mailto:${d.email}` : undefined },
+      { icon: Phone, value: d.phone, href: d.phone ? `tel:${d.phone}` : undefined },
+      { icon: Linkedin, value: d.linkedin, href: d.linkedin ? (d.linkedin.startsWith("http") ? d.linkedin : `https://${d.linkedin}`) : undefined },
+      { icon: Github, value: d.github, href: d.github ? (d.github.startsWith("http") ? d.github : `https://github.com/${d.github}`) : undefined },
+    ] as ContactItem[]
+  ).filter((c): c is ResolvedContactItem => Boolean(c.value));
 
-  const renderSkills = () => {
-    if (tk.skillStyle === "tag") {
-      return (
-        <div className="flex flex-wrap gap-2">
-          {skills.map((skill, i) => (
-            <span
-              key={i}
-              className="rounded border px-3 py-1"
-              style={{ fontFamily: bodyFont, fontSize: "11.5px", borderColor: skillColor, color: skillColor }}
+  const renderContactList = (justify: "start" | "center" | "end" = "start") => (
+    <ul
+      className={cn(
+        "m-0 flex flex-wrap list-none gap-x-5 gap-y-1.5 p-0",
+        justify === "center" && "justify-center",
+        justify === "end" && "justify-end"
+      )}
+    >
+      {contactItems.map((c, i) => {
+        const Icon = c.icon;
+        return (
+          <li
+            key={i}
+            className="flex items-center gap-1.5 text-[10px]"
+            style={{ color: headerMuted, fontFamily: f }}
+          >
+            {showIcons && <Icon size={10} aria-hidden="true" />}
+            <a
+              href={c.href}
+              {...(isExternal(c.href) ? { target: "_blank", rel: "noreferrer" } : {})}
+              style={{ color: "inherit", textDecoration: "none" }}
+              className="hover:underline"
             >
-              {skill}
-            </span>
+              {c.value}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  );
+
+  // ── Skills (all 5 skillStyle variants) ────────────────────────────────────
+  const renderSkills = () => {
+    if (skills.length === 0) return null;
+
+    switch (tk.skillStyle) {
+      case "pill":
+      case "tag":
+        return (
+          <ul className="m-0 flex list-none flex-wrap gap-1.5 p-0">
+            {skills.map((s, i) =>
+              showBadges ? (
+                <li key={i}>
+                  <Badge
+                    variant="secondary"
+                    className="border-0 font-medium"
+                    style={{
+                      fontFamily: f,
+                      fontSize: "9.5px",
+                      background: `${ac}15`,
+                      color: ac,
+                      borderRadius: tk.skillStyle === "pill" ? "999px" : radius,
+                      padding: "3px 9px",
+                    }}
+                  >
+                    {s}
+                  </Badge>
+                </li>
+              ) : (
+                <li
+                  key={i}
+                  style={{
+                    fontFamily: f,
+                    fontSize: "9.5px",
+                    color: ac,
+                    border: `1px solid ${ac}40`,
+                    borderRadius: tk.skillStyle === "pill" ? "999px" : radius,
+                    padding: "3px 9px",
+                  }}
+                >
+                  {s}
+                </li>
+              )
+            )}
+          </ul>
+        );
+
+      case "dot":
+        return (
+          <ul className="m-0 grid grid-cols-2 list-none gap-x-4 gap-y-1 p-0">
+            {skills.map((s, i) => (
+              <li key={i} style={{ fontFamily: f, fontSize: "10.5px", color: "#444" }}>
+                {showIcons && (
+                  <span aria-hidden="true" style={{ color: ac, marginRight: "5px" }}>
+                    ◆
+                  </span>
+                )}
+                {s}
+              </li>
+            ))}
+          </ul>
+        );
+
+      case "grid":
+        return (
+          <ul className="m-0 grid grid-cols-3 list-none gap-1.5 p-0">
+            {skills.map((s, i) => (
+              <li
+                key={i}
+                className="truncate text-center"
+                style={{
+                  fontFamily: f,
+                  fontSize: "9.5px",
+                  color: showBadges ? ac : "#444",
+                  background: showBadges ? `${ac}15` : "transparent",
+                  border: showBadges ? "none" : `1px solid ${ac}40`,
+                  borderRadius: radius,
+                  padding: "5px 6px",
+                }}
+              >
+                {s}
+              </li>
+            ))}
+          </ul>
+        );
+
+      case "bar":
+      default:
+        return (
+          <ul className="m-0 grid grid-cols-2 list-none gap-x-6 gap-y-2 p-0">
+            {skills.map((s, i) => (
+              <li key={i}>
+                <div style={{ fontFamily: f, fontSize: "10px", color: "#444", marginBottom: "3px" }}>{s}</div>
+                {showProgress && (
+                  <div
+                    aria-hidden="true"
+                    style={{ height: "3px", background: "#eee", borderRadius: radius, overflow: "hidden" }}
+                  >
+                    <div
+                      style={{
+                        height: "3px",
+                        borderRadius: radius,
+                        background: ac,
+                        width: `${60 + (i * 13) % 40}%`,
+                      }}
+                    />
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        );
+    }
+  };
+
+  // ── Timeline marker ───────────────────────────────────────────────────────
+  const TimelineDot = ({ active }: { active: boolean }) =>
+    useTimeline ? (
+      <span
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-5.5px",
+          top: "3px",
+          width: "9px",
+          height: "9px",
+          borderRadius: "50%",
+          background: active ? ac : "#fff",
+          border: `2px solid ${ac}`,
+        }}
+      />
+    ) : null;
+
+  // ── Experience ──────────────────────────────────────────────────────────
+  const renderExperience = () =>
+    (d.experience || []).map((exp, idx) => {
+      const bullets = normalizeBullets(exp.description);
+      const rawBulletsIsString = typeof exp.description === "string";
+      return (
+        <article
+          key={idx}
+          className="relative"
+          style={{ marginBottom: paragraphSpacing, paddingLeft: "14px", borderLeft: `2px solid ${ac}20` }}
+        >
+          <TimelineDot active={idx === 0} />
+          <div className="flex items-start justify-between gap-2">
+            <h3 style={{ fontFamily: f, fontWeight: 700, fontSize: "12px", color: "#1a1a1a", margin: 0 }}>
+              {exp.role}
+            </h3>
+            {exp.duration && (
+              <span className="whitespace-nowrap" style={{ fontFamily: f, fontSize: "9.5px", color: "#888" }}>
+                {exp.duration}
+              </span>
+            )}
+          </div>
+          {exp.company && (
+            <p style={{ fontFamily: f, fontSize: "10.5px", color: ac, fontWeight: 600, margin: "1px 0 4px" }}>
+              {exp.company}
+            </p>
+          )}
+          {bullets.length > 0 ? (
+            <ul style={{ margin: 0, paddingLeft: "14px", lineHeight: 1.5 }}>
+              {bullets.map((bullet, i) => (
+                <li key={i} style={{ fontFamily: f, fontSize: "10px", color: "#444", marginBottom: "2px" }}>
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+          ) : rawBulletsIsString ? (
+            <p style={{ fontFamily: f, fontSize: "10px", color: "#444", margin: 0, lineHeight: 1.5 }}>
+              {exp.description as string}
+            </p>
+          ) : null}
+        </article>
+      );
+    });
+
+  // ── Education ───────────────────────────────────────────────────────────
+  const renderEducation = () =>
+    (d.education || []).map((edu, idx) => (
+      <div
+        key={idx}
+        className="relative"
+        style={{ marginBottom: paragraphSpacing, paddingLeft: "14px", borderLeft: `2px solid ${ac}20` }}
+      >
+        <TimelineDot active={idx === 0} />
+        <h3 style={{ fontFamily: f, fontWeight: 700, fontSize: "12px", color: "#1a1a1a", margin: 0 }}>
+          {edu.degree || "—"}
+        </h3>
+        <p style={{ fontFamily: f, fontSize: "10.5px", color: "#666", margin: "1px 0 0" }}>
+          {[edu.institute, edu.year].filter(Boolean).join(" · ")}
+        </p>
+        {edu.grade && (
+          <p style={{ fontFamily: f, fontSize: "10px", color: "#888", margin: "1px 0 0" }}>Grade: {edu.grade}</p>
+        )}
+      </div>
+    ));
+
+  // ── Projects ─────────────────────────────────────────────────────────────
+  const projects = (d.projects || []).filter((p) => p.project_title);
+  const renderProjects = () =>
+    projects.length > 0 && (
+      <section aria-labelledby="section-projects">
+        <SectionHeading font={f} accent={ac} divider={tk.divider} sectionSpacing={sectionSpacing}>
+          <span id="section-projects">Projects</span>
+        </SectionHeading>
+        {projects.map((proj, idx) => (
+          <article
+            key={idx}
+            className="relative"
+            style={{ marginBottom: paragraphSpacing, paddingLeft: "14px", borderLeft: `2px solid ${ac}20` }}
+          >
+            <TimelineDot active={idx === 0} />
+            <div className="flex items-center justify-between gap-2">
+              <h3 style={{ fontFamily: f, fontWeight: 700, fontSize: "12px", color: "#1a1a1a", margin: 0 }}>
+                {proj.project_title}
+              </h3>
+              {proj.link && (
+                <a
+                  href={proj.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="whitespace-nowrap no-underline flex items-center gap-1"
+                  style={{ fontFamily: f, fontSize: "9.5px", color: ac }}
+                >
+                  Link <ArrowUpRight size={10} />
+                </a>
+              )}
+            </div>
+            {proj.tech_stack && (
+              <p style={{ fontFamily: f, fontSize: "9.5px", color: ac, fontWeight: 500, margin: "2px 0 3px" }}>
+                Tech stack: {proj.tech_stack}
+              </p>
+            )}
+            {proj.description && (
+              <p style={{ fontFamily: f, fontSize: "10.5px", color: "#555", margin: 0, lineHeight: 1.55 }}>
+                {proj.description}
+              </p>
+            )}
+          </article>
+        ))}
+      </section>
+    );
+
+  // ── Achievements ─────────────────────────────────────────────────────────
+  const achievements = (d.achievements || []).filter((a) => a.title);
+  const renderAchievements = () =>
+    achievements.length > 0 && (
+      <section aria-labelledby="section-achievements">
+        <SectionHeading font={f} accent={ac} divider={tk.divider} sectionSpacing={sectionSpacing}>
+          <span id="section-achievements">Achievements</span>
+        </SectionHeading>
+        <div className="grid grid-cols-2 gap-x-6" style={{ rowGap: paragraphSpacing }}>
+          {achievements.map((ach, idx) => (
+            <div key={idx} className="flex items-start gap-2">
+              {showIcons && (
+                <span aria-hidden="true" style={{ color: ac, marginTop: "2px", flexShrink: 0 }}>
+                  <Trophy size={11} />
+                </span>
+              )}
+              <div>
+                <h3 style={{ fontFamily: f, fontWeight: 600, fontSize: "11px", color: "#1a1a1a", margin: 0 }}>
+                  {ach.title}
+                </h3>
+                {ach.description && (
+                  <p style={{ fontFamily: f, fontSize: "10px", color: "#555", margin: "2px 0 0", lineHeight: 1.5 }}>
+                    {ach.description}
+                  </p>
+                )}
+              </div>
+            </div>
           ))}
         </div>
-      );
-    }
+      </section>
+    );
 
-    if (tk.skillStyle === "bar") {
-      return (
-        <ul className="m-0 grid list-none grid-cols-2 gap-x-6 gap-y-3 p-0">
-          {skills.map((skill, i) => (
-            <li key={i}>
-              <div style={{ fontFamily: bodyFont, fontSize: "11.5px", color: textColor, marginBottom: "4px" }}>
-                {skill}
+  // ── Certifications ───────────────────────────────────────────────────────
+  const certs = (d.certifications || []).filter((c) => c.title);
+  const renderCertifications = () =>
+    certs.length > 0 && (
+      <section aria-labelledby="section-certifications">
+        <SectionHeading font={f} accent={ac} divider={tk.divider} sectionSpacing={sectionSpacing}>
+          <span id="section-certifications">Certifications</span>
+        </SectionHeading>
+        <div className="grid grid-cols-2 gap-2">
+          {certs.map((cert, i) => (
+            <div
+              key={i}
+              style={showBadges ? { background: `${ac}08`, borderRadius: radius, padding: "8px 10px" } : undefined}
+            >
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5">
+                  {showIcons && (
+                    <span aria-hidden="true" style={{ color: ac, flexShrink: 0 }}>
+                      <Award size={11} />
+                    </span>
+                  )}
+                  <span style={{ fontFamily: f, fontSize: "10.5px", fontWeight: 600, color: "#1a1a1a" }}>
+                    {cert.title}
+                  </span>
+                </div>
+                {cert.url && (
+                  <a
+                    href={cert.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1 text-[9.5px]"
+                    style={{ color: ac }}
+                  >
+                    View <ArrowUpRight size={9} />
+                  </a>
+                )}
               </div>
-              <div
-                aria-hidden="true"
-                style={{ height: "4px", background: skillTrackColor, borderRadius: "3px", overflow: "hidden" }}
-              >
-                <div
-                  style={{
-                    height: "4px",
-                    borderRadius: "3px",
-                    background: skillColor,
-                    width: `${60 + ((i * 13) % 40)}%`,
-                  }}
-                />
-              </div>
+              {(cert.issuer || cert.date) && (
+                <p style={{ fontFamily: f, fontSize: "9.5px", color: "#888", margin: "3px 0 0" }}>
+                  {[cert.issuer, cert.date].filter(Boolean).join(" · ")}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+
+  // ── Languages ─────────────────────────────────────────────────────────────
+  const languages = (d.languages || []).filter((l) => l.language);
+  const renderLanguages = () =>
+    languages.length > 0 && (
+      <section aria-labelledby="section-languages">
+        <SectionHeading font={f} accent={ac} divider={tk.divider} sectionSpacing={sectionSpacing}>
+          <span id="section-languages">Languages</span>
+        </SectionHeading>
+        <ul className="m-0 flex flex-wrap list-none gap-x-6 gap-y-1.5 p-0">
+          {languages.map((l, i) => (
+            <li key={i} className="flex items-center gap-2 text-[10.5px]" style={{ fontFamily: f, color: "#444" }}>
+              <span>{l.language}</span>
+              {l.proficiency &&
+                (showBadges ? (
+                  <Badge
+                    variant="secondary"
+                    className="border-0 font-medium"
+                    style={{
+                      fontFamily: f,
+                      fontSize: "8.5px",
+                      background: `${ac}12`,
+                      color: ac,
+                      borderRadius: radius,
+                      padding: "2px 6px",
+                    }}
+                  >
+                    {l.proficiency}
+                  </Badge>
+                ) : (
+                  <span style={{ fontSize: "9px", color: "#999" }}>({l.proficiency})</span>
+                ))}
             </li>
           ))}
         </ul>
-      );
-    }
-
-    // pill (default) — modern soft chip
-    return (
-      <div className="flex flex-wrap gap-2">
-        {skills.map((skill, i) => (
-          <span
-            key={i}
-            className="rounded-full px-3.5 py-1.5 font-medium"
-            style={{
-              fontFamily: bodyFont,
-              fontSize: "11.5px",
-              backgroundColor: ats ? "#f3f4f6" : `${skillColor}16`,
-              color: skillColor,
-            }}
-          >
-            {skill}
-          </span>
-        ))}
-      </div>
+      </section>
     );
-  };
 
-  // ── Experience ────────────────────────────────────────────────────────────
-  const experience = d.experience || [];
-  const renderExperience = () => (
-    <div className="flex flex-col" style={{ gap: itemGap }}>
-      {experience.map((exp: any, idx: number) => {
-        const bullets = normalizeBullets(exp.description);
-        const rawIsString = typeof exp.description === "string";
-
-        return (
-          <div key={exp.id ?? idx}>
-            <div className="flex items-start justify-between gap-3">
-              <h3 style={{ fontFamily: displayFont, fontWeight: headingWeight, fontSize: "14.5px", color: textColor }}>
-                {exp.role}
-              </h3>
-              {exp.duration && (
-                <span className="whitespace-nowrap" style={{ fontFamily: bodyFont, fontSize: "11px", color: mutedColor }}>
-                  {exp.duration}
-                </span>
-              )}
-            </div>
-
-            {exp.company && (
-              <div
-                className="mt-0.5 mb-1.5 font-medium"
-                style={{ fontFamily: bodyFont, fontSize: "12.5px", color: ats ? secondary : accent }}
-              >
-                {exp.company}
-              </div>
-            )}
-
-            {bullets.length > 0 ? (
-              <ul className="list-disc space-y-1 pl-4">
-                {bullets.map((bullet, i) => (
-                  <li key={i} style={bodyTextStyle}>
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            ) : rawIsString ? (
-              <p style={bodyTextStyle}>{exp.description}</p>
-            ) : null}
-          </div>
-        );
-      })}
-    </div>
-  );
-
-  // ── Education ─────────────────────────────────────────────────────────────
-  const education = d.education || [];
-  const renderEducation = () => (
-    <div className="flex flex-col" style={{ gap: itemGap }}>
-      {education.map((edu: any, idx: number) => (
-        <div key={edu.id ?? idx} className="flex items-start justify-between gap-3">
-          <div>
-            <div style={{ fontFamily: displayFont, fontWeight: headingWeight, fontSize: "13.5px", color: textColor }}>
-              {edu.degree}
-            </div>
-            <div style={{ fontFamily: bodyFont, fontSize: "12px", color: mutedColor, marginTop: "1px" }}>
-              {edu.institute}
-            </div>
-            {edu.grade && (
-              <div style={{ fontFamily: bodyFont, fontSize: "11.5px", color: mutedColor, marginTop: "1px" }}>
-                Grade: {edu.grade}
-              </div>
-            )}
-          </div>
-          {edu.year && (
-            <span className="whitespace-nowrap" style={{ fontFamily: bodyFont, fontSize: "11px", color: mutedColor }}>
-              {edu.year}
-            </span>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-
-  // ── Projects ──────────────────────────────────────────────────────────────
-  const projects = (d.projects || []).filter((p: any) => p?.project_title);
-  const renderProjects = () => (
-    <div className="flex flex-col" style={{ gap: itemGap }}>
-      {projects.map((proj: any, idx: number) => (
-        <div key={proj.id ?? idx}>
-          <div className="flex items-center justify-between gap-3">
-            <h3 style={{ fontFamily: displayFont, fontWeight: headingWeight, fontSize: "14px", color: textColor }}>
-              {proj.project_title}
-            </h3>
-            {proj.link && (
-              <a
-                href={proj.link}
-                target="_blank"
-                rel="noreferrer"
-                className="whitespace-nowrap no-underline"
-                style={{ fontFamily: bodyFont, fontSize: "11px", color: ats ? secondary : accent }}
-              >
-                ↗ link
-              </a>
-            )}
-          </div>
-          {proj.tech_stack && (
-            <p
-              className="font-medium"
-              style={{ fontFamily: bodyFont, fontSize: "11.5px", color: ats ? secondary : accent, margin: "3px 0 4px" }}
-            >
-              {proj.tech_stack}
-            </p>
-          )}
-          {proj.description && <p style={bodyTextStyle}>{proj.description}</p>}
-        </div>
-      ))}
-    </div>
-  );
-
-  // ── Empty-state flags ─────────────────────────────────────────────────────
-  const hasSummary = Boolean(d.summary?.trim?.());
-  const hasExperience = hasContent(experience, "role");
-  const hasEducation = hasContent(education, "degree");
-  const hasProjects = projects.length > 0;
-  const hasSkills = skills.length > 0;
-
+  // ─── Render ────────────────────────────────────────────────────────────────
   return (
-    <div
-      className="w-full space-y-3"
-      style={{
-        padding: pagePadding,
-        fontFamily: bodyFont,
-        background: pageBg,
-        color: textColor,
-      }}
-    >
-      {renderHeader()}
-
-      <Section title="Summary" show={hasSummary}>
+    <div className="w-full overflow-hidden border border-black/5 shadow-lg" style={{ background: "#fff" }}>
+      {/* ── Header ────────────────────────────────────────────────────────── */}
+      <header style={{ background: headerBg, padding: pagePadding }}>
         <div
           className={cn(
-            cardStyle === "elevated" && "shadow-sm",
-            cardStyle === "bordered" && "border"
+            "flex gap-4",
+            alignment === "centered" && "flex-col items-center text-center",
+            alignment === "split" && "items-center justify-between",
+            alignment === "left" && "items-center"
           )}
-          style={{
-            borderRadius: cardRadius,
-            padding: cardStyle === "flat" ? 0 : "10px 14px",
-            background: ats || cardStyle === "flat" ? "transparent" : cardStyle === "elevated" ? `${accent}06` : pageBg,
-            borderColor: cardStyle === "bordered" ? borderColor : undefined,
-            borderLeft: cardStyle === "flat" ? `3px solid ${accent}` : undefined,
-            paddingLeft: cardStyle === "flat" ? "12px" : undefined,
-          }}
         >
-          <p style={bodyTextStyle}>{d.summary}</p>
+          <div className={cn("flex items-center gap-4", alignment === "split" && "flex-1")}>
+            {renderAvatar()}
+            <div>
+              <h1
+                className="font-extrabold leading-none"
+                style={{
+                  fontFamily: tk.displayFont || f,
+                  fontSize: tk.nameSize || "26px",
+                  color: headerText,
+                  letterSpacing: "-0.5px",
+                }}
+              >
+                {d.name}
+              </h1>
+              {d.domain && (
+                <p className="mb-2 mt-1.5 text-[12px]" style={{ color: headerAccent, fontFamily: f }}>
+                  {d.domain}
+                </p>
+              )}
+              {alignment !== "split" && contactItems.length > 0 && (
+                <div className="mt-2">{renderContactList(alignment === "centered" ? "center" : "start")}</div>
+              )}
+            </div>
+          </div>
+          {alignment === "split" && contactItems.length > 0 && renderContactList("end")}
         </div>
-      </Section>
+      </header>
 
-      <Section title="Experience" show={hasExperience}>
-        {renderExperience()}
-      </Section>
+      {tk.divider !== "none" && <Separator className="opacity-50" style={{ background: `${ac}20` }} />}
 
-      <Section title="Education" show={hasEducation}>
-        {renderEducation()}
-      </Section>
+      {/* ── Body (single column) ─────────────────────────────────────────── */}
+      <div style={{ padding: pagePadding }}>
+        {d.summary && (
+          <div
+            className={cn("rounded-md")}
+            style={{
+              marginBottom: sectionSpacing,
+              background: tk.accentLight || `${ac}08`,
+              borderLeft: `3px solid ${ac}`,
+              borderRadius: radius,
+              padding: "12px 16px",
+            }}
+          >
+            <p className="m-0 text-[11px] leading-relaxed" style={{ color: "#555", fontFamily: f }}>
+              {d.summary}
+            </p>
+          </div>
+        )}
 
-      <Section title="Projects" show={hasProjects}>
+        {d.experience && d.experience.length > 0 && (
+          <section aria-labelledby="section-experience">
+            <SectionHeading font={f} accent={ac} divider={tk.divider} sectionSpacing="0px">
+              <span id="section-experience">Experience</span>
+            </SectionHeading>
+            {renderExperience()}
+          </section>
+        )}
+
+        {skills.length > 0 && (
+          <section aria-labelledby="section-skills">
+            <SectionHeading font={f} accent={ac} divider={tk.divider} sectionSpacing={sectionSpacing}>
+              <span id="section-skills">Skills</span>
+            </SectionHeading>
+            {renderSkills()}
+          </section>
+        )}
+
+        {d.education && d.education.length > 0 && (
+          <section aria-labelledby="section-education">
+            <SectionHeading font={f} accent={ac} divider={tk.divider} sectionSpacing={sectionSpacing}>
+              <span id="section-education">Education</span>
+            </SectionHeading>
+            {renderEducation()}
+          </section>
+        )}
+
         {renderProjects()}
-      </Section>
-
-      <Section title="Skills" show={hasSkills}>
-        {renderSkills()}
-      </Section>
+        {renderCertifications()}
+        {renderAchievements()}
+        {renderLanguages()}
+      </div>
     </div>
   );
 }

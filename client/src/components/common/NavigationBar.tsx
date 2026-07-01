@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useCredits } from "../../hooks/useAI";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Separator } from "../ui/separator";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -54,13 +55,6 @@ const Navbar: React.FC = () => {
         >
           <Icon key={name} size={18} />
           {name}
-
-          {isActive && !mobile && (
-            <motion.span
-              layoutId="active-link"
-              className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#11a8e4] rounded-full"
-            />
-          )}
         </Link>
       </motion.div>
     );
@@ -237,11 +231,13 @@ const Navbar: React.FC = () => {
                 transition={{ duration: 0.25 }}
                 className="fixed top-0 right-0 h-screen w-[280px] bg-white shadow-xl z-50 p-6"
               >
-                <div className="flex justify-end mb-10">
+                <div className="flex justify-between">
+                  <h2 className="orbitron-head">Menu</h2>
                   <button onClick={() => setOpen(false)}>
-                    <X size={24} />
+                    <X size={20} />
                   </button>
                 </div>
+                <Separator className="my-4" />
 
                 <div className="flex flex-col gap-6">
                   {navItems.map((item) => (
@@ -251,16 +247,6 @@ const Navbar: React.FC = () => {
                       mobile
                     />
                   ))}
-                </div>
-
-                <div className="mt-6 flex flex-col gap-4">
-                  <Link
-                    to="/dashboard"
-                    onClick={() => setOpen(false)}
-                    className="bg-blue-600 text-white text-center rounded-full py-2 font-medium"
-                  >
-                    Get Started
-                  </Link>
                 </div>
               </motion.div>
             </>

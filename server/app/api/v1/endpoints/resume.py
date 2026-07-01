@@ -15,6 +15,7 @@ DB = Annotated[AsyncSession, Depends(get_db)]
 
 # ── List ──────────────────────────────────────────────────────────────────────
 
+
 @router.get("/", response_model=List[ResumeOut])
 async def list_resumes(user: CurrentUser, db: DB):
     return await Resume.get_by_user(db, user.id)
@@ -22,14 +23,15 @@ async def list_resumes(user: CurrentUser, db: DB):
 
 # ── Create ────────────────────────────────────────────────────────────────────
 
+
 @router.post("/", response_model=ResumeOut, status_code=201)
 async def create_resume(body: ResumeCreateRequest, user: CurrentUser, db: DB):
     # Verify template access
     tmpl = await Template.get_by_id(db, body.template_id)
     if not tmpl:
         raise HTTPException(status_code=404, detail="Template not found")
-    if tmpl.is_premium and user.plan != "premium":
-        raise HTTPException(status_code=402, detail="Premium template requires a premium plan")
+    # if tmpl.is_premium and user.plan != "premium":
+    #     raise HTTPException(status_code=402, detail="Premium template requires a premium plan")
 
     resume = Resume(
         user_id=user.id,
@@ -45,6 +47,7 @@ async def create_resume(body: ResumeCreateRequest, user: CurrentUser, db: DB):
 
 # ── Get one ───────────────────────────────────────────────────────────────────
 
+
 @router.get("/{resume_id}", response_model=ResumeOut)
 async def get_resume(resume_id: str, user: CurrentUser, db: DB):
     resume = await Resume.get_by_id(db, resume_id)
@@ -55,8 +58,11 @@ async def get_resume(resume_id: str, user: CurrentUser, db: DB):
 
 # ── Update ────────────────────────────────────────────────────────────────────
 
+
 @router.patch("/{resume_id}", response_model=ResumeOut)
-async def update_resume(resume_id: str, body: ResumeUpdateRequest, user: CurrentUser, db: DB):
+async def update_resume(
+    resume_id: str, body: ResumeUpdateRequest, user: CurrentUser, db: DB
+):
     resume = await Resume.get_by_id(db, resume_id)
     if not resume or resume.user_id != user.id:
         raise HTTPException(status_code=404, detail="Resume not found")
@@ -66,7 +72,9 @@ async def update_resume(resume_id: str, body: ResumeUpdateRequest, user: Current
         if not tmpl:
             raise HTTPException(status_code=404, detail="Template not found")
         if tmpl.is_premium and user.plan != "premium":
-            raise HTTPException(status_code=402, detail="Premium template requires a premium plan")
+            raise HTTPException(
+                status_code=402, detail="Premium template requires a premium plan"
+            )
         resume.template_id = body.template_id
 
     if body.title is not None:
@@ -82,6 +90,7 @@ async def update_resume(resume_id: str, body: ResumeUpdateRequest, user: Current
 
 
 # ── Delete ────────────────────────────────────────────────────────────────────
+
 
 @router.delete("/{resume_id}", status_code=204)
 async def delete_resume(resume_id: str, user: CurrentUser, db: DB):

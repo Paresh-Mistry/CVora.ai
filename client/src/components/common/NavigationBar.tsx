@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, CreditCard, CreditCardIcon, File, LayoutTemplate, LogOutIcon, Menu, Sparkles, Star, User, X, Zap } from "lucide-react";
+import { ChevronDown, CreditCardIcon, File, LayoutTemplate, LogOutIcon, Menu, Sparkles, Star, User, X, Zap } from "lucide-react";
 import { useLogout, useUser } from "../../hooks/useAuth";
 import { Button } from "../ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
   const navItems = [
     { path: "/", icon: Sparkles, name: "Features" },
     { path: "/dashboard", icon: LayoutTemplate, name: "Templates" },
-    { path: "/pricing", icon: CreditCard, name: "Pricing" },
+    { path: "/About", icon: File, name: "About" },
   ];
 
   const { data: credits } = useCredits();
@@ -26,7 +26,6 @@ const Navbar: React.FC = () => {
 
   const { data: user } = useUser();
   const logout = useLogout();
-  console.log("User data : ", user)
 
   const NavLink = ({
     path,
@@ -87,7 +86,8 @@ const Navbar: React.FC = () => {
                   <Button variant="ghost">
                     <Avatar>
                       <AvatarImage
-                        src="https://github.com/shadcn.png"
+                        className="object-cover"
+                        src={user?.image || "https://github.com/shadcn.png"}
                         alt="@shadcn"
                       />
                       <AvatarFallback>CN</AvatarFallback>
@@ -137,7 +137,7 @@ const Navbar: React.FC = () => {
 
             <Link
               to="/dashboard"
-              className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2 rounded-full transition"
+              className="bg-[#5F3DEE] hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2 rounded-full transition"
             >
               Get Started
             </Link>
@@ -152,7 +152,7 @@ const Navbar: React.FC = () => {
                   <DropdownMenuTrigger asChild>
                     <Avatar>
                       <AvatarImage
-                        src="https://github.com/shadcn.png"
+                        src={user?.image || "https://github.com/shadcn.png"}
                         alt="@shadcn"
                       />
                       <AvatarFallback>CN</AvatarFallback>

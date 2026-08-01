@@ -2,7 +2,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-
+from app.core.loggers import logger
 from app.core.dependencies import CurrentUser, PremiumUser
 from app.db.session import get_db
 from app.model.resume import Resume
@@ -37,13 +37,21 @@ async def get_credits(user: CurrentUser, db: DB):
 
 # ── Job search (Premium only) ─────────────────────────────────────────────────
 
+
+@router.post("/search")
+async def search_jobs_route(resume_data: dict):
+    jobs = await search_jobs(resume_data)
+    return jobs
+
 @router.get("/jobs/{resume_id}", response_model=JobSearchResponse)
-async def job_search(resume_id: str, user: PremiumUser, db: DB):
+async def job_search(resume_id: str, user: CurrentUser, db: DB):
     """
     Premium only. Verifies the resume belongs to the user, then searches
     for matching jobs based on their skills and role.
     """
+    print("Gets Start")
     resume = await Resume.get_by_id(db, resume_id)
+    logger.info("Data: ",resume)
     if not resume or resume.user_id != user.id:
         raise HTTPException(status_code=404, detail="Resume not found")
 

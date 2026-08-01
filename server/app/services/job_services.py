@@ -3,7 +3,7 @@ from app.core.config import settings
 from ..schema.schemas import JobResult
 
 
-JSEARCH_URL = "https://jsearch.p.rapidapi.com/search"
+JSEARCH_URL = "https://jsearch.p.rapidapi.com/search?query=python&page=1&num_pages=1"
 
 
 async def search_jobs(resume_data: dict) -> list[JobResult]:
@@ -15,6 +15,8 @@ async def search_jobs(resume_data: dict) -> list[JobResult]:
     role  = resume_data.get("domain") or resume_data.get("role") or "developer"
     skills = [s for s in (resume_data.get("skill") or []) if s][:3]
     query  = f"{role} {' '.join(skills)}".strip()
+
+    print("Query: ",query)
 
     headers = {
         "X-RapidAPI-Key": settings.JSEARCH_API_KEY,
@@ -50,6 +52,8 @@ async def search_jobs(resume_data: dict) -> list[JobResult]:
             posted_at   = item.get("job_posted_at_datetime_utc"),
             match_score = score,
         ))
+
+        print(jobs)
 
     # Sort by match score descending
     jobs.sort(key=lambda j: j.match_score or 0, reverse=True)

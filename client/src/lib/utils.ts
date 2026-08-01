@@ -1,5 +1,8 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import LayoutStack from "../templates/LayoutStack";
+import LayoutSidebar from "../templates/LayoutSidebar";
+import LayoutBanner from "../templates/LayoutBanner";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -20,3 +23,10 @@ export function formatRelativeTime(dateStr: string): string {
     if (diffDay < 7) return `${diffDay}d ago`;
     return date.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })
 }
+
+
+export const LAYOUT_MAP: Record<string, React.ComponentType<{ d: any; tk: any }>> = {
+  A: LayoutStack,
+  B: LayoutSidebar,
+  C: LayoutBanner,
+};

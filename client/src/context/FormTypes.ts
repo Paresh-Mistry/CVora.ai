@@ -6,9 +6,6 @@ export interface ExperienceItem {
   role: string;
   company: string;
   duration: string;
-  endDate: "";
-  startDate: "";
-  current: boolean;
   description: string[];
 }
 
@@ -63,12 +60,6 @@ export interface FormData {
   phone: string;
   github: string;
   linkedin: string;
-  dob: "",
-  nationality: "",
-  address: "",
-  country: "",
-  postalCode: "",
-  website: "",
   summary: string;
 
   // arrays
@@ -130,14 +121,6 @@ export const defaultFormData: FormData = {
   phone: "",
   github: "",
   linkedin: "",
-  dob: "",
-  nationality: "",
-  address: "",
-  country: "",
-  postalCode: "",
-  website: "",
-
-  // summary
   summary: "",
 
   // skills — start with 3 blank slots
@@ -145,7 +128,7 @@ export const defaultFormData: FormData = {
 
   // experience
   experience: [
-    { role: "", company: "", startDate:"", endDate:"", current: false, duration: "", description: [] },
+    { role: "", company: "", duration: "", description: [] },
   ],
 
   // projects

@@ -1,5 +1,4 @@
 import { useState, useMemo, useRef } from "react";
-import Layout from "../Layout/PageLayout";
 import MiniResumeThumbnail from "../components/common/MiniResumeThumbnail";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Clock, Crown, Search, Star } from "lucide-react";
@@ -8,6 +7,7 @@ import { useDeleteResume, useResumes } from "../hooks/useResume";
 import HistoryCard from "../components/common/HistoryCard";
 import { ResumeOut } from "../services/resume.services";
 import { TemplateOut } from "../services/ai.services";
+import DashboardLayout from "../Layout/DashboardLayout";
 
 type LayoutKey = "A" | "B" | "C";
 
@@ -83,15 +83,15 @@ const Generate: React.FC = () => {
   };
 
   return (
-    <Layout>
-      <section className="container max-w-7xl mx-auto py-8 md:py-14 px-4">
+    <DashboardLayout>
+      <section className="container max-w-7xl mx-auto  md:p-10 py-3 px-4">
 
         {/* Page header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10">
           <div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#212834] leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[#212834] leading-tight">
               Find Your
-              <span className="ml-2 bg-gradient-to-r from-[#11a8e4] to-[#63c5ea] bg-clip-text text-transparent mozilla-headline-hero">
+              <span className="ml-2 bg-gradient-to-r from-[#5F3DEE] to-[#63c5ea] bg-clip-text text-transparent mozilla-headline-hero">
                 Resume&apos;s
               </span>
             </h1>
@@ -101,28 +101,28 @@ const Generate: React.FC = () => {
           </div>
         </div>
 
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#9ca3af] uppercase tracking-[0.8px]">
-              <Clock size={12} />
-              Jump back in
-            </div>
-            <div className="flex gap-1.5">
-              <button
-                onClick={() => scrollCarousel(-1)}
-                className="w-6 h-6 rounded-full border border-[#e5e7eb] flex items-center justify-center text-[#9ca3af] hover:text-[#111] hover:border-[#c7cad1] transition-colors"
-                aria-label="Scroll left"
-              >
-                <ChevronLeft size={13} />
-              </button>
-              <button
-                onClick={() => scrollCarousel(1)}
-                className="w-6 h-6 rounded-full border border-[#e5e7eb] flex items-center justify-center text-[#9ca3af] hover:text-[#111] hover:border-[#c7cad1] transition-colors"
-                aria-label="Scroll right"
-              >
-                <ChevronRight size={13} />
-              </button>
-            </div>
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#9ca3af] uppercase tracking-[0.8px]">
+            <Clock size={12} />
+            Jump back in
           </div>
+          <div className="flex gap-1.5">
+            <button
+              onClick={() => scrollCarousel(-1)}
+              className="w-6 h-6 rounded-full border border-[#e5e7eb] flex items-center justify-center text-[#9ca3af] hover:text-[#111] hover:border-[#c7cad1] transition-colors"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft size={13} />
+            </button>
+            <button
+              onClick={() => scrollCarousel(1)}
+              className="w-6 h-6 rounded-full border border-[#e5e7eb] flex items-center justify-center text-[#9ca3af] hover:text-[#111] hover:border-[#c7cad1] transition-colors"
+              aria-label="Scroll right"
+            >
+              <ChevronRight size={13} />
+            </button>
+          </div>
+        </div>
 
         {resumesLoading ? (
           <div className="text-[12px] text-[#9ca3af] border border-dashed border-[#e5e7eb] rounded-[10px] p-6 text-center">
@@ -140,7 +140,7 @@ const Generate: React.FC = () => {
           <div
             ref={carouselRef}
             className="flex gap-4 overflow-x-auto mb-4"
-            style={{scrollbarColor:"transparent transparent"}}
+            style={{ scrollbarColor: "transparent transparent" }}
           >
             {resumes?.map((resume: ResumeOut, index) => {
               const tmpl = templates?.find(
@@ -169,7 +169,7 @@ const Generate: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-3 mt-4">
 
           <div className="lg:w-[280px] shrink-0 max-h-[80vh] overflow-y-auto">
-            <div className="px-4 pt-[14px] pb-[10px] border border-b-0 rounded-t-md border-[#e5e7eb]">
+            <div className="px-4 bg-[#F1EBFF] pt-[14px] pb-[10px] border border-b-0 rounded-t-md border-[#e5e7eb]">
               <div className="text-[10px] font-bold text-[#9ca3af] uppercase tracking-[0.8px] mb-[10px]">
                 My templates
               </div>
@@ -267,7 +267,7 @@ const Generate: React.FC = () => {
 
           {/* Template grid */}
           <div className="flex-1 md:px-4">
-            <div className="flex md:flex-row flex-col justify-between items-center text-[10px] font-bold text-[#9ca3af] uppercase tracking-[0.8px] mb-[10px]">
+            <div className="flex md:flex-row flex-col justify-between items-center text-[10px] font-bold text-[#9ca3af] uppercase tracking-[0.8px] mb-[20px]">
               {filterMine && filterLayout === "all"
                 ? "My templates"
                 : filterMine
@@ -412,7 +412,7 @@ const Generate: React.FC = () => {
         </div>
 
       </section>
-    </Layout>
+    </DashboardLayout>
   );
 };
 

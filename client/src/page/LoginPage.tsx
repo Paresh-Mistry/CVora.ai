@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLogin, useRegister } from "../hooks/useAuth";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Image } from "lucide-react";
 
 function Input({
   label, name, type = "text", placeholder, value, onChange, suffix,
@@ -38,6 +38,7 @@ export default function AuthPage() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [showPass, setShowPass] = useState(false);
+  const [image, setImage] = useState<File | null>(null);
 
   const login = useLogin();
   const register = useRegister();
@@ -59,7 +60,7 @@ export default function AuthPage() {
     if (mode === "login") {
       login.mutate({ email, password });
     } else {
-      register.mutate({ email, password, full_name: name });
+      register.mutate({ email, password, full_name: name, image: image });
     }
   };
 
@@ -146,14 +147,25 @@ export default function AuthPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div
                 className="overflow-hidden transition-all duration-300 ease-in-out"
-                style={{ maxHeight: mode === "register" ? "80px" : "0px", opacity: mode === "register" ? 1 : 0 }}
+                style={{ maxHeight: mode === "register" ? "300px" : "0px", opacity: mode === "register" ? 1 : 0 }}
               >
                 <Input label="Full name" name="full_name" placeholder="Jane Smith"
                   value={name} onChange={setName} />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    if (e.target.files?.length) {
+                      setImage(e.target.files[0] || null);
+                    }
+                  }}
+                />
               </div>
 
               <Input label="Email" name="email" type="email" placeholder="you@example.com"
                 value={email} onChange={setEmail} />
+
+
 
               <div>
                 <div className="flex items-center justify-between mb-2">

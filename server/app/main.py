@@ -8,13 +8,14 @@ from app.db.session import AsyncSessionLocal
 from .core.security import settings
 from app.db.session import create_tables
 from app.api.v1.router import api_router
+from app.core import cloudinary_config
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await create_tables()
     async with AsyncSessionLocal() as db:
-        await seed_templates(db)    # ← must be here
+        await seed_templates(db)  # ← must be here
     yield
 
 
@@ -38,7 +39,7 @@ app.add_middleware(
 app.include_router(api_router, prefix="/api/v1")
 
 
-@app.get("/health")
+@app.get("/")
 async def health():
     logger.info("App successfully Started!!")
     return {"status": "ok"}

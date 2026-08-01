@@ -109,3 +109,7 @@ export const faqs = [
     a: "Pro and Lifetime plans include AI-powered resume generation.",
   },
 ];
+
+
+export const A4_HEIGHT_PX = 1122;
+export const A4_WIDTH_PX = 794;

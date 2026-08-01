@@ -5,7 +5,7 @@ from app.core.config import settings
 from app.model.credit import Credit
 from app.model.user import User
 
-
+# Defining Credits Limit 
 CREDIT_LIMITS: dict[str, tuple[int, int]] = {
     "ai":           (settings.FREE_AI_CREDITS,           settings.PREMIUM_AI_CREDITS),
     "ats":          (settings.FREE_ATS_CREDITS,          9999),

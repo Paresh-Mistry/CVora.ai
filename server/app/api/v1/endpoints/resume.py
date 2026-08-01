@@ -30,8 +30,8 @@ async def create_resume(body: ResumeCreateRequest, user: CurrentUser, db: DB):
     tmpl = await Template.get_by_id(db, body.template_id)
     if not tmpl:
         raise HTTPException(status_code=404, detail="Template not found")
-    # if tmpl.is_premium and user.plan != "premium":
-    #     raise HTTPException(status_code=402, detail="Premium template requires a premium plan")
+    if tmpl.is_premium and user.plan != "premium":
+        raise HTTPException(status_code=402, detail="Premium template requires a premium plan")
 
     resume = Resume(
         user_id=user.id,

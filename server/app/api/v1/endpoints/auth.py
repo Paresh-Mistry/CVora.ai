@@ -1,6 +1,8 @@
 from typing import Annotated
+
+from pydantic import EmailStr
 from app.core.loggers import logger
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.security import (
     create_access_token,
@@ -20,43 +22,65 @@ from app.schema.schemas import (
     UserOut,
 )
 from app.services.credit_services import CreditService
-from app.db.redis_client import blacklist_token 
+from app.db.redis_client import blacklist_token
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from app.core.config import settings
+from app.services.cloudinary_services import CloudinaryService
 
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 DB = Annotated[AsyncSession, Depends(get_db)]
 
 
-# Register 
-@router.post("/register", response_model=TokenResponse, status_code=201)
-async def register(body: RegisterRequest, db: DB):
+@router.get("/check")
+def check():
+    return {"status": "ok"}
 
+
+# Register
+@router.post("/register", response_model=TokenResponse, status_code=201)
+async def register(
+    db: DB,
+    email: EmailStr = Form(...),
+    password: str = Form(..., min_length=8),
+    full_name: str | None = Form(None),
+    image: UploadFile | None = File(None),
+):
     try:
-        existing = await User.get_by_email(db, body.email)
+        logger.info(
+            f"Received: email={email!r}, password_len={len(password)}, full_name={full_name!r}, has_image={image is not None}"
+        )
+        existing = await User.get_by_email(db, email)
         if existing:
             raise HTTPException(status_code=400, detail="Email already registered")
-        
-        logger.info(body.password)
-        logger.info(type(body.password))
-        logger.info(len(body.password))
 
-        hashed_password = hash_password(body.password)
+        email = email.strip().lower()
+        hashed_password = hash_password(password)
 
-        logger.info(f"Hashed Password: {hash_password(body.password)}")
+        logger.info(
+            f"Cloudinary config: {settings.CLOUDINARY_CLOUD_NAME}, {settings.CLOUDINARY_API_KEY}, {settings.CLOUDINARY_API_SECRET}"
+        )
+
+        image_url = None
+        if image:
+            if image and image.filename:
+                if image.content_type not in ("image/jpeg", "image/png", "image/webp"):
+                    raise HTTPException(status_code=400, detail="Invalid image type")
+                result = await CloudinaryService.upload_image(image)
+                logger.info(f"Cloudinary upload result: {result}")
+                image_url = result["url"]
 
         user = User(
-            email=body.email,
+            email=email,
             hashed_password=hashed_password,
-            full_name=body.full_name,
+            full_name=full_name,
+            image=image_url,
             plan="free",
         )
         db.add(user)
         await db.commit()
         await db.refresh(user)
 
-        # Seed credits for all features
         await CreditService(db).ensure_credits(user)
 
         return TokenResponse(
@@ -64,13 +88,14 @@ async def register(body: RegisterRequest, db: DB):
             refresh_token=create_refresh_token(user.id),
         )
 
+    except HTTPException:
+        raise
     except Exception as e:
-        logger.exception(f"Error : [{str(e)}]")
-        HTTPException(status_code=404, detail="Error : {}".format(str(e)))
+        logger.exception(f"Error registering user: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
-
-# Login 
+# Login
 @router.post("/login", response_model=TokenResponse)
 async def login(body: LoginRequest, db: DB):
     user = await User.get_by_email(db, body.email)
@@ -102,12 +127,14 @@ async def refresh(body: RefreshRequest, db: DB):
     )
 
 
-# logout 
+# logout
 @router.post("/logout")
-async def logout(credentials: Annotated[HTTPAuthorizationCredentials, Depends(HTTPBearer())]):
+async def logout(
+    credentials: Annotated[HTTPAuthorizationCredentials, Depends(HTTPBearer())],
+):
     payload = decode_token(credentials.credentials)
     if payload:
-        jti = payload.get("jti") or credentials.credentials   # use token itself as key
+        jti = payload.get("jti") or credentials.credentials  # use token itself as key
         ttl = settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60
         await blacklist_token(jti, ttl)
     return {"detail": "Logged out"}

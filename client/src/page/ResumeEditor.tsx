@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../Layout/PageLayout";
 import { ArchiveRestoreIcon, ArrowLeftIcon, ArrowRightIcon, Brain, FileType, Languages, Milestone, UserIcon, Wallet } from "lucide-react";
-import { useFormContext } from "../context/FormContext";
 import { useParams, useLocation } from "react-router-dom";
 import FormFillStep from "../components/common/FormFillStep";
 import { ButtonGroup } from "../components/ui/button-group";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader } from "../components/ui/card";
-import { ScrollArea } from "../components/ui/scroll-area";
 import LayoutStack from "../templates/LayoutStack";
-import LayoutSidebar from "../templates/LayoutSidebar";
-import LayoutBanner from "../templates/LayoutBanner";
 import { DefaultData } from '../data.json'
-import { cn } from "../lib/utils";
+import { cn, LAYOUT_MAP } from "../lib/utils";
 import ResumeRightPanel from "../components/common/ResumeRightPanel";
 import { useTemplates } from "../hooks/useAI";
 import { useCreateResume, useResume, useUpdateResume } from "../hooks/useResume";
 import { toast } from "sonner";
+import DashboardLayout from "../Layout/DashboardLayout";
+import { useFormStore } from "../store/formStore";
 
 
 const steps: Record<string, React.ElementType> = {
@@ -33,13 +31,6 @@ const steps: Record<string, React.ElementType> = {
 
 const stepKeys = Object.keys(steps);
 
-
-const LAYOUT_MAP: Record<string, React.ComponentType<{ d: any; tk: any }>> = {
-  A: LayoutStack,
-  B: LayoutSidebar,
-  C: LayoutBanner,
-};
-
 const Editing: React.FC = () => {
   const { id: templateId } = useParams<{ id: string }>();
   const location = useLocation();
@@ -53,6 +44,8 @@ const Editing: React.FC = () => {
     data: existingResume,
     isLoading: resumeLoading,
   } = useResume(resumeId);
+  
+  console.log(resumeId)
 
   const createResume = useCreateResume();
   const updateResume = useUpdateResume(resumeId);
@@ -69,13 +62,15 @@ const Editing: React.FC = () => {
     ? (LAYOUT_MAP[activeTmpl.layout] ?? LayoutStack)
     : LayoutStack;
 
+  console.log(ActiveLayout)  
+
 
   const [step, setStep] = useState(0);
-  const { form, setForm } = useFormContext();
+  const { form, setForm } = useFormStore();
 
   useEffect(() => {
     if (!existingResume || !isEdit) return;
-    setForm(existingResume?.data);
+    setForm(existingResume.data);
   }, [existingResume, isEdit, setForm]);
 
 
@@ -126,50 +121,8 @@ const Editing: React.FC = () => {
   const capitalize = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
   return (
-    <Layout>
-      <div className="flex flex-col md:flex-row w-full ">  {/* //bg-[#f1f8fc] */}
-        {/* Tracker Sidebar */}
-        <aside className="hidden md:flex flex-col w-[14%] min-w-[180px] p-4  border-r">
-          <div className="flex justify-between text-[#213963] mb-4">
-            <h3 className={"font-semibold mozilla-headline-hero text-2xl"}>Tracker</h3>
-          </div>
-
-          <ScrollArea className="h-[80vh] pr-2">
-            <ol className="space-y-6">
-              {stepKeys.map((label, i) => {
-                const Icon = steps[label];
-                return (
-                  <div
-                    key={i}
-                    className={cn("flex items-center bg-[#f7f4f0] rounded-full gap-3 cursor-pointer", i === step ? "text-[#213963] bg-[#e6f4fd]" : "text-gray-500")}
-                    onClick={() => setStep(i)}
-                  >
-                    <>
-                      <div
-                        className={cn(
-                          "w-8 h-8 rounded-full flex items-center justify-center font-semibold border shrink-0",
-                          i === step
-                            ? "bg-[#11a8e4] text-white border-[#11a8e4]"
-                            : "border-gray-300 text-gray-500"
-                        )}
-                      >
-                        <Icon className="w-4 h-4" />
-                      </div>
-                      <span
-                        className={cn(
-                          "font-medium text-sm truncate",
-                          i === step ? "text-[#213963]" : "text-gray-600"
-                        )}
-                      >
-                        {capitalize(label)}
-                      </span>
-                    </>
-                  </div>
-                )
-              })}
-            </ol>
-          </ScrollArea>
-        </aside>
+    <DashboardLayout>
+      <div className="flex flex-col md:flex-row min-h-screen">
 
         {/* Main Content */}
         <main className="flex-1 flex flex-col md:flex-row">
@@ -261,10 +214,11 @@ const Editing: React.FC = () => {
             ActiveLayout={ActiveLayout}
             activeTmpl={activeTmpl}
             layoutMap={LAYOUT_MAP}
+            resumeId={resumeId}
           />
         </main>
       </div>
-    </Layout>
+    </DashboardLayout>
   );
 };
 

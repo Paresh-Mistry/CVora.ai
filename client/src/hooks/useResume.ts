@@ -1,15 +1,12 @@
-// src/hooks/useResume.ts
 import {
   useMutation,
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { useCallback, useRef } from "react";
 import { resumeApi, CreateResumePayload, UpdateResumePayload } from "../services/resume.services";
 import { queryKeys } from "../lib/queryKeys";
 
-// ── List all resumes ──────────────────────────────────────────────────────────
-
+// List all resumes
 export function useResumes() {
   return useQuery({
     queryKey: queryKeys.resumes(),
@@ -18,8 +15,7 @@ export function useResumes() {
   });
 }
 
-// ── Single resume ─────────────────────────────────────────────────────────────
-
+// Single resume
 export function useResume(id: string) {
   return useQuery({
     queryKey: queryKeys.resume(id),
@@ -29,8 +25,7 @@ export function useResume(id: string) {
   });
 }
 
-// ── Create ────────────────────────────────────────────────────────────────────
-
+// Create
 export function useCreateResume() {
   const queryClient = useQueryClient();
 
@@ -42,12 +37,12 @@ export function useCreateResume() {
       queryClient.setQueryData(queryKeys.resumes(), (old: any[] = []) => [newResume, ...old]);
       // Pre-populate single resume cache
       queryClient.setQueryData(queryKeys.resume(newResume.id), newResume);
+      queryClient.invalidateQueries({ queryKey: queryKeys.resumes() });
     },
   });
 }
 
-// ── Update ────────────────────────────────────────────────────────────────────
-
+// Update
 export function useUpdateResume(id: string) {
   const queryClient = useQueryClient();
 
@@ -75,12 +70,12 @@ export function useUpdateResume(id: string) {
 
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.resume(id) });
+      queryClient.invalidateQueries({ queryKey: queryKeys.resumes() });
     },
   });
 }
 
-// ── Delete ────────────────────────────────────────────────────────────────────
-
+// Delete
 export function useDeleteResume() {
   const queryClient = useQueryClient();
 
@@ -94,22 +89,4 @@ export function useDeleteResume() {
       queryClient.removeQueries({ queryKey: queryKeys.resume(id) });
     },
   });
-}
-
-// ── Autosave (debounced) ──────────────────────────────────────────────────────
-// Use this in the builder so every keystroke doesn't fire a request.
-
-export function useAutosave(resumeId: string, delayMs = 1500) {
-  const { mutate } = useUpdateResume(resumeId);
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const save = useCallback(
-    (payload: UpdateResumePayload) => {
-      if (timer.current) clearTimeout(timer.current);
-      timer.current = setTimeout(() => mutate(payload), delayMs);
-    },
-    [mutate, delayMs]
-  );
-
-  return save;
 }

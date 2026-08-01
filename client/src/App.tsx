@@ -1,14 +1,16 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import Home from "./routes/HomePage"
-import Generate from "./routes/TemplateView"
+import Home from "./page/HomePage"
+import Generate from "./page/TemplateView"
 import './App.css'
-import { Error } from "./routes/ErrorPage"
-import Editing from "./routes/ResumeEditor"
+import { Error } from "./page/ErrorPage"
+import Editing from "./page/ResumeEditor"
 import { FormProvider } from "./context/FormContext"
-import PricingPage from "./routes/PricingPage"
-import AuthPage from "./routes/LoginPage"
-import HistoryPage from "./routes/HistoryPage"
+import AuthPage from "./page/LoginPage"
+import HistoryPage from "./page/HistoryPage"
 import { Toaster } from "sonner"
+import { ResumeAnalytics } from "./page/AnalyticsPage"
+import PublicRoute from "./routes/PublicRoute"
+import PrivateRoute from "./routes/PrivateRoute"
 
 function App() {
 
@@ -18,13 +20,17 @@ function App() {
         <FormProvider>
           <Toaster />
           <Routes>
-            <Route path={"/login"} element={<AuthPage />} />
-            <Route path={"/"} element={<Home />} />
-            <Route path={"/dashboard"} element={<Generate />} />
-            <Route path={"/pricing"} element={<PricingPage />} />
-            <Route path={"/history"} element={<HistoryPage />} />
-            <Route path={"/template/:id/resume"} element={<Editing />} />
-            <Route path={"/*"} element={<Error />} />
+            <Route element={<PublicRoute />}>
+              <Route path={"/login"} element={<AuthPage />} />
+              <Route path={"/"} element={<Home />} />
+              <Route path={"/*"} element={<Error />} />
+            </Route>
+            <Route element={<PrivateRoute />}>
+              <Route path={"/dashboard"} element={<Generate />} />
+              <Route path={"/history"} element={<HistoryPage />} />
+              <Route path={"/analytics"} element={<ResumeAnalytics />} />
+              <Route path={"/template/:id/resume"} element={<Editing />} />
+            </Route>
           </Routes>
         </FormProvider>
       </Router>

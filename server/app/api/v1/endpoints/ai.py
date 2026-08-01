@@ -7,8 +7,10 @@ from app.core.dependencies import CurrentUser
 from app.db.session import get_db
 from app.model.resume import Resume
 from app.schema.schemas import (
-    AIGenerateRequest, AIGenerateResponse,
-    ATSRequest, ATSResponse,
+    AIGenerateRequest,
+    AIGenerateResponse,
+    ATSRequest,
+    ATSResponse,
 )
 from app.services import ai_services
 from app.services.credit_services import CreditService
@@ -29,7 +31,10 @@ async def ai_generate(body: AIGenerateRequest, user: CurrentUser, db: DB):
     svc = CreditService(db)
 
     if not await svc.has_credit(user, "ai"):
-        raise HTTPException(status_code=402, detail="No AI credits remaining. Upgrade to premium for 150 credits.")
+        raise HTTPException(
+            status_code=402,
+            detail="No AI credits remaining. Upgrade to premium for 150 credits.",
+        )
 
     resume = await _get_resume(db, body.resume_id, user.id)
 
@@ -40,14 +45,13 @@ async def ai_generate(body: AIGenerateRequest, user: CurrentUser, db: DB):
     )
 
     # Store insight on resume
-    resume.insight = insight
-    db.add(resume)
+    # resume.insight = insight
+    # db.add(resume)
 
     remaining = await svc.consume(user, "ai")
-    await db.commit()
+    # await db.commit()
 
     return AIGenerateResponse(insight=insight, credits_remaining=remaining)
-
 
 
 @router.post("/ats", response_model=ATSResponse)
@@ -63,7 +67,26 @@ async def ats_score(body: ATSRequest, user: CurrentUser, db: DB):
         data=resume.data,
         job_description=body.job_description,
     )
-    remaining = await svc.consume(user, "ats")  
+
+    insight = dict(resume.insight or {})
+    insight = {
+        "score": result.get("score", 0),
+        "missing_keywords": result.get("missing_keywords", []),
+        "suggestions":result.get("suggestions", [])
+    }
+    resume.insight = insight  # reassignment ensures SQLAlchemy tracks the change
+
+    print({
+        "score": result.get("score", 0),
+        "name":resume.title,
+        "Insight": resume.insight,
+    })
+
+    db.add(resume)
+    await db.commit()
+    await db.refresh(resume)    
+
+    remaining = await svc.consume(user, "ats")
 
     return ATSResponse(
         score=result.get("score", 0),

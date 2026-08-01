@@ -10,7 +10,7 @@ export interface ResumeData {
   linkedin: string;
   summary: string;
   skill: string[];
-  experience: { role: string; company: string; duration: string; description: string[] | string }[];
+  experience: { role: string; company: string; duration: string; description: string }[];
   projects: { project_title: string; tech_stack: string; link: string; description: string }[];
   education: { degree: string; institute: string; year: string; grade: string }[];
   achievements: { title: string; description: string }[];
@@ -42,6 +42,14 @@ export interface UpdateResumePayload {
   data?: Partial<ResumeData>;
 }
 
+export interface ResumeRightPanelProps {
+  form: any;
+  DefaultData: any;
+  activeTmpl: any;
+  ActiveLayout: React.ComponentType<{ d: any; tk: any }>;
+  layoutMap?: Record<string, React.ComponentType<{ d: any; tk: any }>>;
+  resumeId: string
+}
 
 export interface ContactItem {
   href: string;

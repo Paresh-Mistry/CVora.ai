@@ -6,6 +6,7 @@ import { useTemplates } from "../hooks/useAI";
 import HistoryCard from "../components/common/HistoryCard";
 import { ResumeOut } from "../services/resume.services";
 import { TemplateOut } from "../services/ai.services";
+import DashboardLayout from "../Layout/DashboardLayout";
 
 function ResumeCardSkeleton() {
     return (
@@ -49,14 +50,14 @@ const HistoryPage: React.FC = () => {
     };
 
     return (
-        <Layout>
+        <DashboardLayout>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14">
 
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10">
                     <div>
-                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#212834] leading-tight">
+                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[#212834] leading-tight">
                             Find Your
-                            <span className="ml-2 bg-gradient-to-r from-[#11a8e4] to-[#63c5ea] bg-clip-text text-transparent mozilla-headline-hero">
+                            <span className="ml-2 bg-gradient-to-r from-[#5F3DEE] to-[#63c5ea] bg-clip-text text-transparent mozilla-headline-hero">
                                 Resume&apos;s
                             </span>
                         </h1>
@@ -104,7 +105,7 @@ const HistoryPage: React.FC = () => {
                     </div>
                 )}
             </div>
-        </Layout>
+        </DashboardLayout>
     );
 };
 

@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import Navbar from '../components/common/NavigationBar';
+// import { useLocation } from 'react-router-dom';
 
 interface LayoutwrapProps {
   children: ReactNode;
@@ -9,7 +10,7 @@ const Layout: React.FC<LayoutwrapProps> = ({ children }) => {
   return (
     <main>
       <Navbar />
-      <div className="mx-auto pt-16">
+      <div className="mx-auto pt-15">
         <div className="font">{children}</div>
       </div>
     </main>

@@ -4,10 +4,14 @@ import { Button } from "../ui/button";
 import MiniResumeThumbnail from "./MiniResumeThumbnail";
 import { AI_QUICK_PROMPTS, SCORE_CHECKS, TABS } from "../../constants";
 import { Badge } from "../ui/badge";
-import { Download, Link } from "lucide-react";
 import { useTemplates, useAIGenerate, useATSScore, useCredits } from "../../hooks/useAI";
 import { useUser } from "../../hooks/useAuth";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
+import { PDFExportButton } from "./PdfExportButton";
+import { ResumeRightPanelProps } from "../../services/resume.services"
+import { PreviewTab } from "./PreviewTab";
+import { useResumeRightPanelStore } from "../../store/ResumePanelStore";
+import ReactMarkdown from "react-markdown"
 
 function useIsMobile(breakpointPx = 768) {
   const [isMobile, setIsMobile] = useState(false);
@@ -23,222 +27,7 @@ function useIsMobile(breakpointPx = 768) {
   return isMobile;
 }
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-interface ResumeRightPanelProps {
-  form: any;
-  DefaultData: any;
-  activeTmpl: any;
-  ActiveLayout: React.ComponentType<{ d: any; tk: any }>;
-  layoutMap?: Record<string, React.ComponentType<{ d: any; tk: any }>>;
-}
-
 type TabId = (typeof TABS)[number]["id"];
-
-// ─── PDF helpers ──────────────────────────────────────────────────────────────
-
-const A4_HEIGHT_PX = 1122;
-const A4_WIDTH_PX = 794;
-
-function PagedResumeWrapper({ children }: { children: React.ReactNode }) {
-  return (
-    <div style={{ width: A4_WIDTH_PX, position: "relative" }}>
-      <div
-        style={{
-          width: A4_WIDTH_PX,
-          backgroundImage: `repeating-linear-gradient(
-            to bottom,
-            transparent 0px,
-            transparent ${A4_HEIGHT_PX - 2}px,
-            #cbd5e1 ${A4_HEIGHT_PX - 2}px,
-            #cbd5e1 ${A4_HEIGHT_PX}px
-          )`,
-        }}
-      >
-        {children}
-      </div>
-    </div>
-  );
-}
-
-// Scales the true-A4-px page down to fit the available width on small screens,
-// without changing the underlying DOM size — previewRef stays attached to the
-// unscaled node so exportToPDF's scrollWidth/scrollHeight capture is unaffected.
-function ResponsivePageScaler({ children }: { children: React.ReactNode }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
-  const [contentHeight, setContentHeight] = useState(0);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const inner = container.firstElementChild as HTMLElement | null;
-
-    const recompute = () => {
-      const containerWidth = container.clientWidth;
-      const naturalWidth = inner?.scrollWidth || A4_WIDTH_PX;
-      const naturalHeight = inner?.scrollHeight || A4_HEIGHT_PX;
-      const nextScale = Math.min(1, containerWidth / naturalWidth);
-      setScale(nextScale);
-      setContentHeight(naturalHeight * nextScale);
-    };
-
-    recompute();
-
-    const resizeObserver = new ResizeObserver(recompute);
-    resizeObserver.observe(container);
-    if (inner) resizeObserver.observe(inner);
-
-    return () => resizeObserver.disconnect();
-  }, []);
-
-  return (
-    <div ref={containerRef} className="w-full" style={{ height: contentHeight || undefined }}>
-      <div
-        style={{
-          transform: `scale(${scale})`,
-          transformOrigin: "top left",
-          width: A4_WIDTH_PX,
-        }}
-      >
-        {children}
-      </div>
-    </div>
-  );
-}
-
-async function exportToPDF(
-  previewRef: React.RefObject<HTMLDivElement>,
-  filename = "resume.pdf"
-) {
-  const [{ toPng }, { jsPDF }] = await Promise.all([
-    import("html-to-image"),
-    import("jspdf"),
-  ]);
-  if (!previewRef.current) return;
-  const el = previewRef.current;
-  const elWidth = el.scrollWidth;
-  const elHeight = el.scrollHeight;
-  const imgData = await toPng(el, { pixelRatio: 2, width: elWidth, height: elHeight });
-  const pdf = new jsPDF({
-    orientation: "portrait",
-    unit: "px",
-    format: [A4_WIDTH_PX, A4_HEIGHT_PX],
-    hotfixes: ["px_scaling"],
-  });
-  const totalPages = Math.ceil(elHeight / A4_HEIGHT_PX);
-  for (let page = 0; page < totalPages; page++) {
-    if (page > 0) pdf.addPage([A4_WIDTH_PX, A4_HEIGHT_PX]);
-    pdf.addImage(imgData, "PNG", 0, -(page * A4_HEIGHT_PX), elWidth, elHeight);
-  }
-  pdf.save(filename);
-}
-
-function PDFExportButton({
-  previewRef,
-  resumeName,
-}: {
-  previewRef: React.RefObject<HTMLDivElement>;
-  resumeName?: string;
-}) {
-  const [loading, setLoading] = useState(false);
-
-  const handleExport = async () => {
-    setLoading(true);
-    try {
-      const filename = resumeName
-        ? `${resumeName.replace(/\s+/g, "_")}_resume.pdf`
-        : "resume.pdf";
-      await exportToPDF(previewRef, filename);
-    } catch (err) {
-      console.error("PDF export failed:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <Button
-      variant="outline"
-      size="sm"
-      onClick={handleExport}
-      disabled={loading}
-      className="text-xs h-7 px-2.5 border-gray-200 gap-1 whitespace-nowrap"
-    >
-      {loading ? (
-        <>
-          <span className="animate-spin inline-block w-3 h-3 border border-gray-400 border-t-transparent rounded-full" />
-          <span className="hidden sm:inline">Generating…</span>
-        </>
-      ) : (
-        <>
-          <Download size={10} /> <span className="hidden sm:inline">Download PDF</span>
-        </>
-      )}
-    </Button>
-  );
-}
-
-function SubmitFirstNotice({ feature }: { feature: string }) {
-  return (
-    <div className="flex-1 flex flex-col items-center justify-center gap-3 p-6 sm:p-8 text-center">
-      <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-2xl">
-        🔒
-      </div>
-      <p className="text-sm font-medium text-gray-700">Submit your resume first</p>
-      <p className="text-xs text-gray-400 max-w-[200px]">
-        Complete and submit the form to unlock {feature}.
-      </p>
-    </div>
-  );
-}
-
-
-// ── Preview ────────────────────────────────────────────────────────────────
-
-function PreviewTab({
-  form,
-  DefaultData,
-  activeTmpl,
-  ActiveLayout,
-  previewRef,
-}: {
-  form: any;
-  DefaultData: any;
-  activeTmpl: any;
-  ActiveLayout: React.ComponentType<{ d: any; tk: any }>;
-  previewRef: React.RefObject<HTMLDivElement>;
-}) {
-  const data = form.name !== "" ? form : DefaultData;
-  console.log("Preview actL : ", activeTmpl)
-
-  return (
-    <div className="flex flex-col h-full">
-      <div className="flex-1 overflow-auto bg-[#f7f4f0] flex items-start justify-center p-2 sm:p-2.5">
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35 }}
-          className="bg-white shadow-lg border border-gray-200 overflow-hidden w-full max-w-full"
-          style={{ scrollbarColor: "transparent transparent" }}
-        >
-          <ResponsivePageScaler>
-            <div ref={previewRef} style={{ background: "#fff" }}>
-              <PagedResumeWrapper>
-                <ActiveLayout d={data} tk={activeTmpl?.tokens} />
-              </PagedResumeWrapper>
-            </div>
-          </ResponsivePageScaler>
-        </motion.div>
-      </div>
-    </div>
-  );
-}
-
-// ── Templates ──────────────────────────────────────────────────────────────
-// CHANGE 2: Removed resumeId prop and useUpdateResume call entirely.
-// Template switch is now local-only — no backend call until Submit.
 
 function TemplatesTab({
   selectedTmpl,
@@ -339,7 +128,7 @@ function AiTab({ resumeId }: { resumeId: string | null }) {
   const noCredits = (aiCredits?.remaining ?? 1) === 0;
 
   // Show locked state until resume is submitted
-  if (!resumeId) return <SubmitFirstNotice feature="AI suggestions" />;
+  if (!resumeId) return "AI Suggestions";
 
   const handleGenerate = (customPrompt?: string) => {
     generate.mutate(
@@ -383,8 +172,8 @@ function AiTab({ resumeId }: { resumeId: string | null }) {
       </div>
 
       {generate.isSuccess && (
-        <div className="bg-blue-50 border border-blue-100 rounded-xl p-3 text-xs text-blue-800 whitespace-pre-wrap leading-relaxed">
-          {generate.data.insight}
+        <div className="bg-blue-50 border border-blue-100 rounded-xl p-3 text-sm text-blue-800 whitespace-pre-wrap leading-relaxed">
+          <ReactMarkdown>{generate.data.insight}</ReactMarkdown>
         </div>
       )}
       {generate.isError && (
@@ -419,8 +208,8 @@ function AiTab({ resumeId }: { resumeId: string | null }) {
   );
 }
 
-// ── Score (ATS) ────────────────────────────────────────────────────────────
-// CHANGE 4: Shows SubmitFirstNotice when resumeId is null.
+
+
 
 function ScoreTab({ resumeId }: { resumeId: string | null }) {
   const ats = useATSScore();
@@ -431,7 +220,7 @@ function ScoreTab({ resumeId }: { resumeId: string | null }) {
   const offset = circumference - (score / 100) * circumference;
   const noCredits = (credits?.ats.remaining ?? 1) === 0;
 
-  if (!resumeId) return <SubmitFirstNotice feature="ATS scoring" />;
+  if (!resumeId) return "ATS Scoring";
 
   return (
     <div className="p-3 sm:p-4 overflow-y-auto flex flex-col gap-4">
@@ -523,7 +312,7 @@ function ScoreTab({ resumeId }: { resumeId: string | null }) {
                 >
                   <span className="text-blue-400">→</span> {s}
                 </div>
-              )
+              ) 
             )}
           </div>
         </>
@@ -543,12 +332,18 @@ export default function ResumeRightPanel({
   DefaultData,
   activeTmpl,
   ActiveLayout,
+  resumeId
 }: ResumeRightPanelProps) {
-  const [activeTab, setActiveTab] = useState<TabId>("preview");
-  const [selectedTmpl, setSelectedTmpl] = useState(activeTmpl?.id ?? "");
-  const [localActiveTmpl, setLocalActiveTmpl] = useState(activeTmpl);
-  const [resumeId] = useState<string | null>(null);
-  const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
+
+  const {
+    activeTab,
+    selectedTmpl,
+    localActiveTmpl,
+    mobileSheetOpen,
+    selectTemplate,
+    openTab,
+    setMobileSheetOpen,
+  } = useResumeRightPanelStore();
 
   const isMobile = useIsMobile();
 
@@ -559,18 +354,13 @@ export default function ResumeRightPanel({
   // CHANGE 6: Template switch only updates local state — no backend call.
   const handleTemplateSelect = useCallback(
     (id: string) => {
-      setSelectedTmpl(id);
-      const found = templates?.find((t) => t.id === id);
-      if (found) setLocalActiveTmpl(found);
-      setActiveTab("preview");
-      setMobileSheetOpen(false);
+      selectTemplate(id, templates);
     },
-    [templates]
+    [selectTemplate, templates]
   );
 
   const handleTabClick = (id: TabId) => {
-    setActiveTab(id);
-    if (isMobile) setMobileSheetOpen(true);
+    openTab(id, isMobile);
   };
 
   const displayTmpl = localActiveTmpl ?? activeTmpl;

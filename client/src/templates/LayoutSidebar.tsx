@@ -8,6 +8,7 @@ import type {
 } from "../services/resume.services";
 import { Github, Linkedin, Mail, Phone, Trophy, Award, ArrowUpRight } from "lucide-react";
 import { LanguageItem } from "../context/FormTypes";
+import { useUser } from "../hooks/useAuth";
 
 const DEFAULT_FONT = "Inter, system-ui, sans-serif";
 const DEFAULT_ACCENT = "#2563eb";
@@ -154,7 +155,10 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
   const certificates = d.certifications || [];
   const achievements = d.achievements || [];
 
-  const photoUrl = (d as any)?.photo || (d as any)?.avatarUrl || null;
+  const { data: user } = useUser()
+  const photoUrl = (d as any)?.photo || `${user?.image}` || null;
+
+  console.log("Data form name: ",d.name)
 
   // ── Skills ──────────────────────────────────────────────────────────────
   const skillChipStyle = (i: number): React.CSSProperties => {
@@ -178,7 +182,7 @@ export default function LayoutSidebar({ d, tk }: LayoutProps) {
         return (
           <ul className="m-0 list-none p-0">
             {skills.map((s, i) => (
-              <li key={s ?? i} style={{ marginBottom: paragraphSpacing }}>
+              <li style={{ marginBottom: paragraphSpacing }}>
                 <div
                   style={{
                     fontFamily: f,

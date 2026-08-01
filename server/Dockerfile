@@ -2,10 +2,20 @@ FROM python:3.13-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install poetry
+
+# Copy dependency files first (better Docker caching)
+COPY pyproject.toml poetry.lock* ./
+
+# Disable Poetry virtualenv inside Docker
+RUN poetry config virtualenvs.create false
+
+# Install dependencies
+RUN poetry install 
 
 COPY . .
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+EXPOSE 8000
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

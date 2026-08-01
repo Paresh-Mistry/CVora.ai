@@ -1,7 +1,9 @@
 from __future__ import annotations
 from datetime import datetime
 from typing import List, Optional
+from fastapi import UploadFile
 from pydantic import BaseModel, EmailStr, Field, field_validator
+from fastapi import Form
 
 
 # ─── Auth ─────────────────────────────────────────────────────────────────────
@@ -11,6 +13,15 @@ class RegisterRequest(BaseModel):
     email: EmailStr
     password: str = Field(min_length=8)
     full_name: Optional[str] = None
+
+    @classmethod
+    def as_form(
+        cls,
+        email: EmailStr = Form(...),
+        password: str = Form(...),
+        full_name: str | None = Form(None),
+    ):
+        return cls(email=email, password=password, full_name=full_name)
 
 
 class LoginRequest(BaseModel):
@@ -32,6 +43,7 @@ class UserOut(BaseModel):
     id: str
     email: str
     full_name: Optional[str]
+    image: Optional[str]
     plan: str
     is_verified: bool
     created_at: datetime
@@ -119,7 +131,7 @@ class ResumeOut(BaseModel):
     title: str
     template_id: str
     data: dict
-    insight: Optional[str]
+    insight: Optional[dict]
     created_at: datetime
     updated_at: datetime
 

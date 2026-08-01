@@ -140,7 +140,7 @@ TEMPLATE_SEEDS = [
         "name": "Corporate Blue",
         "description": "Professional corporate resume with clean typography and subtle blue accents.",
         "layout": "A",
-        "is_premium": True,
+        "is_premium": False,
         "preview_bg": "#ffffff",
         "preview_url": "/previews/t11.png",
         "tokens": {
@@ -180,7 +180,7 @@ TEMPLATE_SEEDS = [
         "name": "Elegant Sidebar",
         "description": "Modern sidebar layout with elegant serif headings and rich profile section.",
         "layout": "B",
-        "is_premium": True,
+        "is_premium": False,
         "preview_bg": "#f8fafc",
         "preview_url": "/previews/t12.png",
         "tokens": {
@@ -226,7 +226,7 @@ TEMPLATE_SEEDS = [
         "name": "Gradient Banner",
         "description": "Contemporary banner layout featuring a bold colored header and minimal content styling.",
         "layout": "C",
-        "is_premium": True,
+        "is_premium": False,
         "preview_bg": "#ffffff",
         "preview_url": "/previews/t13.png",
         "tokens": {

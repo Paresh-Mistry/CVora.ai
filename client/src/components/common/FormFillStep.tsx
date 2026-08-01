@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useFormContext } from '../../context/FormContext';
 import {
   InputGroup,
@@ -29,6 +29,7 @@ import {
 import { Button } from '../ui/button';
 import { ButtonGroup, ButtonGroupSeparator } from '../ui/button-group';
 import SkillSelector from './SkillSelectors';
+import { useFormStore } from '../../store/formStore';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -88,8 +89,7 @@ const AddButtonGroup: React.FC<{ onAdd: () => void; label?: string }> = ({
 // ─── Component ────────────────────────────────────────────────────────────────
 
 const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
-  const { form, addField, removeField, updateSkills, setForm, handleChange } = useFormContext();
-  const [showAdditionalPersonal, setShowAdditionalPersonal] = useState(false);
+  const { form, addField, removeField, updateSkills, handleChange } = useFormStore();
 
 
   const renderStep = () => {
@@ -176,85 +176,6 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
                 className="!pl-0.5"
               />
             </InputGroup>
-
-            <button
-              type="button"
-              onClick={() => setShowAdditionalPersonal(!showAdditionalPersonal)}
-              className="w-full rounded-lg border border-dashed border-gray-300 py-2 text-sm font-medium text-gray-600 transition hover:border-blue-500 hover:text-blue-600"
-            >
-              {showAdditionalPersonal
-                ? "Hide Additional Personal Details"
-                : "+ Add Additional Personal Details"}
-            </button>
-
-            {showAdditionalPersonal && (
-              <div className="space-y-3 rounded-xl border bg-gray-50 p-4">
-
-                <FieldLabel
-                  icon={<UserIcon size={12} />}
-                  text="Additional Personal Details"
-                />
-
-                <div className="grid grid-cols-2 gap-3">
-
-                  <InputGroup>
-                    <InputGroupInput
-                      type="date"
-                      value={form.dob}
-                      onChange={(e) => handleChange(e, "dob")}
-                    />
-                  </InputGroup>
-                  <InputGroup>
-                    <InputGroupInput
-                      value={form.nationality}
-                      onChange={(e) => handleChange(e, "nationality")}
-                      placeholder="Nationality"
-                    />
-                  </InputGroup>
-                </div>
-
-                <InputGroup>
-                  <InputGroupInput
-                    value={form.address}
-                    onChange={(e) => handleChange(e, "address")}
-                    placeholder="Street Address"
-                  />
-                </InputGroup>
-
-                <div className="grid grid-cols-2 gap-3">
-
-                  <InputGroup>
-                    <InputGroupInput
-                      value={form.country}
-                      onChange={(e) => handleChange(e, "country")}
-                      placeholder="Country"
-                    />
-                  </InputGroup>
-
-                  <InputGroup>
-                    <InputGroupInput
-                      value={form.postalCode}
-                      onChange={(e) => handleChange(e, "postalCode")}
-                      placeholder="Postal Code"
-                    />
-                  </InputGroup>
-
-                </div>
-
-                <InputGroup>
-                  <InputGroupInput
-                    type="url"
-                    value={form.website}
-                    onChange={(e) => handleChange(e, "website")}
-                    placeholder="Portfolio / Personal Website"
-                  />
-                  <InputGroupAddon>
-                    <GlobeIcon size={15} />
-                  </InputGroupAddon>
-                </InputGroup>
-
-              </div>
-            )}
           </div>
         );
 
@@ -318,33 +239,17 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
                   <InputGroupAddon><BriefcaseIcon size={15} /></InputGroupAddon>
                 </InputGroup>
 
-                <div className="grid grid-cols-2 gap-4">
-                  {/* Start Date */}
-                  <InputGroup>
-                    <InputGroupInput
-                      type="date"
-                      value={exp.startDate}
-                      onChange={(e) =>
-                        handleChange(e, "experience", index, "startDate")
-                      }
-                    />
-                    <InputGroupAddon>Start</InputGroupAddon>
-                  </InputGroup>
+                 <InputGroup>
+                  <InputGroupInput
+                    type="text"
+                    value={exp.duration}
+                    onChange={(e) => handleChange(e, 'experience', index, 'duration')}
+                    placeholder="Worked From-to"
+                  />
+                  <InputGroupAddon><BriefcaseIcon size={15} /></InputGroupAddon>
+                </InputGroup>
 
-                  {/* End Date */}
-                  <InputGroup>
-                    <InputGroupInput
-                      type="date"
-                      value={exp.endDate}
-                      onChange={(e) =>
-                        handleChange(e, "experience", index, "endDate")
-                      }
-                    />
-                    <InputGroupAddon>End</InputGroupAddon>
-                  </InputGroup>
-                </div>
-
-                <div className="flex items-center gap-2 mt-2">
+                {/* <div className="flex items-center gap-2 mt-2">
                   <input
                     type="checkbox"
                     checked={exp.current || false}
@@ -358,7 +263,7 @@ const FormFillStep: React.FC<FormSteps> = ({ steps, step }) => {
                     }
                   />
                   <label>Currently Working</label>
-                </div>
+                </div> */}
 
                 <InputGroup>
                   <InputGroupTextarea

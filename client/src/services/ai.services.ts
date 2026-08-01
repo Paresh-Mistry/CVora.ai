@@ -69,7 +69,6 @@ export interface TemplateOut {
 export const templateApi = {
   list: async (): Promise<TemplateOut[]> => {
     const { data } = await api.get("/templates/");
-    console.log("Services Data Templates : ",data)
     return data;
   },
 };

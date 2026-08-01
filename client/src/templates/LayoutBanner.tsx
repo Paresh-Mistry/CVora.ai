@@ -9,6 +9,7 @@ import type {
 } from "../services/resume.services";
 import { Badge } from "../components/ui/badge";
 import { cn } from "../lib/utils";
+import { useUser } from "../hooks/useAuth";
 
 const DEFAULT_FONT = "Inter, ui-sans-serif, sans-serif";
 const DEFAULT_ACCENT = "#2563eb";
@@ -19,8 +20,8 @@ function hasItems<T>(arr: T[] | undefined, key: keyof T | null): boolean {
     typeof item === "string"
       ? item.trim().length > 0
       : key !== null && typeof (item as any)?.[key] === "string"
-      ? ((item as any)[key] as string).trim().length > 0
-      : false
+        ? ((item as any)[key] as string).trim().length > 0
+        : false
   );
 }
 
@@ -35,11 +36,6 @@ function normalizeBullets(bullets: string[] | string | undefined): string[] {
   return [];
 }
 
-function getInitials(name?: string): string {
-  if (!name) return "";
-  return name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase();
-}
-
 /** Resolves the `divider` token into a hairline rule after a section heading. */
 function DividerLine({ divider, color }: { divider: string | undefined; color: string }) {
   if (divider === "none") return null;
@@ -47,8 +43,8 @@ function DividerLine({ divider, color }: { divider: string | undefined; color: s
     divider === "thick"
       ? { height: "2px", background: color }
       : divider === "dashed"
-      ? { height: 0, borderTop: `1px dashed ${color}` }
-      : { height: "1px", background: color }; // line / underline (default)
+        ? { height: 0, borderTop: `1px dashed ${color}` }
+        : { height: "1px", background: color }; // line / underline (default)
   return <span aria-hidden="true" className="flex-1" style={style} />;
 }
 
@@ -93,8 +89,10 @@ export default function LayoutBanner({ d, tk = {} }: LayoutProps) {
   const ac = tk.accent || DEFAULT_ACCENT;
   const bg = tk.bannerBg || ac;
 
+  const {data:user} = useUser()
+
   // Spacing / shape tokens
-  const mainPadding ="24px 26px";
+  const mainPadding = "24px 26px";
   const sectionSpacing = tk.sectionSpacing || "18px";
   const paragraphSpacing = tk.paragraphSpacing || "8px";
   const radius = tk.borderRadius || "6px";
@@ -115,7 +113,7 @@ export default function LayoutBanner({ d, tk = {} }: LayoutProps) {
   const asideMuted = tk.sidebarBg ? "rgba(255,255,255,0.55)" : "#999";
 
   const skills = (d.skill || []).filter(Boolean);
-  const photoUrl = (d as any)?.photo || (d as any)?.avatarUrl || null;
+  const photoUrl = (d as any)?.photo || `${user.image}` || null;
 
   // ── Skills (all 5 skillStyle variants) ────────────────────────────────────
   const renderSkills = () => {
@@ -518,7 +516,7 @@ export default function LayoutBanner({ d, tk = {} }: LayoutProps) {
         className="flex items-center gap-4"
         style={{ background: bg, padding: mainPadding }}
       >
-        {showAvatar && (
+  
           <div
             style={{
               width: "80px",
@@ -538,12 +536,12 @@ export default function LayoutBanner({ d, tk = {} }: LayoutProps) {
             }}
           >
             {photoUrl ? (
-              <img src={photoUrl} alt={d.name || "Profile photo"} className="h-full w-full object-cover" />
+              <img src={photoUrl || "https://res.cloudinary.com/dpsezq6vx/image/upload/v1765606844/samples/smile.jpg"} alt={d.name || "Profile photo"} className="h-full w-full object-cover" />
             ) : (
-              getInitials(d.name)
+              <img src={photoUrl || "https://res.cloudinary.com/dpsezq6vx/image/upload/v1765606844/samples/smile.jpg"} alt={d.name || "Profile photo"} className="h-full w-full object-cover" />
             )}
           </div>
-        )}
+  
 
         <div>
           <h1

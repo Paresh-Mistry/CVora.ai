@@ -1,7 +1,9 @@
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase
-
+from app.core.loggers import logger
 from app.core.config import settings
+
+logger.info(settings.DATABASE_URL)
 
 engine = create_async_engine(
     settings.DATABASE_URL,
@@ -10,6 +12,7 @@ engine = create_async_engine(
     max_overflow=20,
     pool_pre_ping=True,   # auto-reconnect on stale connections
 )
+
 
 AsyncSessionLocal = async_sessionmaker(
     bind=engine,

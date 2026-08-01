@@ -52,6 +52,8 @@ async def generate_insight(
 ) -> str:
     resume_text = _resume_text(data)
 
+    print("Resume Data: ",resume_text)
+
     model = (
         settings.GEMINI_MODEL_PREMIUM
         if is_premium
@@ -59,7 +61,7 @@ async def generate_insight(
     )
 
     system_prompt = (
-        "You are an expert resume coach. Analyze the resume and provide concise, "
+        f"You are an expert resume coach. Analyze the resume i.e {resume_text} and provide concise, "
         "actionable feedback. Focus on impact, clarity, ATS optimization, grammar, "
         "professional wording, measurable achievements, and missing information. "
         "Respond with 3-5 bullet points in plain text."

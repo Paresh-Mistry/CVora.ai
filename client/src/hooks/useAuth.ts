@@ -22,7 +22,7 @@ export function useUser() {
 export function useRegister() {
   const queryClient = useQueryClient();
   const navigate    = useNavigate();
-  
+
 
   return useMutation({
     mutationFn: (payload: RegisterPayload) => authApi.register(payload),
@@ -53,7 +53,7 @@ export function useLogin() {
       localStorage.setItem("access_token",  tokens.access_token);
       localStorage.setItem("refresh_token", tokens.refresh_token);
       queryClient.invalidateQueries({ queryKey: queryKeys.user() });
-      navigate("/builder");
+      navigate("/");
     },
 
     onError: (err: any) => {
@@ -62,16 +62,24 @@ export function useLogin() {
   });
 }
 
-// ── Logout ────────────────────────────────────────────────────────────────────
-
 export function useLogout() {
   const queryClient = useQueryClient();
-  const navigate    = useNavigate();
+  const navigate = useNavigate();
 
-  return () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    queryClient.clear();         // wipe all cached data
-    navigate("/login");
-  };
+  return useMutation({
+    mutationFn: authApi.logout,
+
+    onSettled: () => {
+      // Remove tokens
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
+      // Clear cached user and all authenticated queries
+      queryClient.removeQueries({ queryKey: queryKeys.user() });
+      navigate("/login", { replace: true });
+    },
+
+    onError: (err: any) => {
+      console.error("Logout failed:", err.response?.data?.detail ?? err.message);
+    },
+  });
 }

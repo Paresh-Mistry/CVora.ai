@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -14,15 +14,9 @@ import {
   ArrowRight,
   Check,
   CircleCheck,
-  CircleX,
-  FileText,
   Gauge,
-  ListChecks,
   Sparkles,
-  Tag,
-  TrendingUp,
   X,
-  Zap,
 } from "lucide-react";
 
 import DashboardLayout from "../Layout/DashboardLayout";
@@ -31,7 +25,6 @@ import { useCredits } from "../hooks/useAI";
 import { useUser } from "../hooks/useAuth";
 
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import {
   Tabs,
   TabsList,
@@ -40,15 +33,9 @@ import {
 import { Separator } from "../components/ui/separator";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
+import { TooltipContent, TooltipTrigger } from "../components/ui/tooltip";
 
 const CREDIT_USAGE = [
-  { day: "Jul 12", used: 14 },
-  { day: "Jul 13", used: 22 },
-  { day: "Jul 14", used: 9 },
-  { day: "Jul 15", used: 31 },
-  { day: "Jul 16", used: 18 },
-  { day: "Jul 17", used: 27 },
-  { day: "Jul 18", used: 12 },
   { day: "Jul 19", used: 35 },
   { day: "Jul 20", used: 19 },
   { day: "Jul 21", used: 24 },
@@ -58,155 +45,12 @@ const CREDIT_USAGE = [
   { day: "Jul 25", used: 21 },
 ];
 
-const TYPE_META = {
-  keyword: {
-    icon: Tag,
-    color: "text-blue-700",
-    bg: "bg-blue-700/10",
-    label: "Keyword",
-  },
-  metric: {
-    icon: TrendingUp,
-    color: "text-emerald-700",
-    bg: "bg-emerald-700/10",
-    label: "Metric",
-  },
-  verb: {
-    icon: Zap,
-    color: "text-amber-700",
-    bg: "bg-amber-700/10",
-    label: "Wording",
-  },
-  grammar: {
-    icon: AlertTriangle,
-    color: "text-red-700",
-    bg: "bg-red-700/10",
-    label: "Grammar",
-  },
-};
-
-const PRIORITY_META = {
-  high: {
-    color: "text-red-700",
-    bg: "bg-red-700/10",
-  },
-  medium: {
-    color: "text-amber-700",
-    bg: "bg-amber-700/10",
-  },
-  low: {
-    color: "text-muted-foreground",
-    bg: "bg-muted",
-  },
-};
-
-function scoreColor(value: number) {
-  if (value >= 80) return "text-emerald-700";
-  if (value >= 60) return "text-amber-700";
-  return "text-red-700";
-}
-
-function scoreBackground(value: number) {
-  if (value >= 80) return "bg-emerald-700/10";
-  if (value >= 60) return "bg-amber-700/10";
-  return "bg-red-700/10";
-}
-
-function CreditTooltip({
-  active,
-  payload,
-  label,
-}: {
-  active?: boolean;
-  payload?: any[];
-  label?: string;
-}) {
-  if (!active || !payload?.length) {
-    return null;
-  }
-
-  return (
-    <div className="rounded-lg border bg-background px-3 py-2 text-xs shadow-lg">
-      <p className="mb-1 font-mono text-[11px] text-muted-foreground">
-        {label}
-      </p>
-
-      <p className="font-semibold">
-        {payload[0].value} credits used
-      </p>
-    </div>
-  );
-}
-
-function ScoreRing({
-  value,
-  label,
-  stroke = "hsl(var(--primary))",
-}: {
-  value: number;
-  label: string;
-  stroke?: string;
-}) {
-  const circumference = 2 * Math.PI * 54;
-  const dash = (value / 100) * circumference;
-
-  return (
-    <div className="relative h-32 w-32 shrink-0">
-      <svg
-        width="128"
-        height="128"
-        viewBox="0 0 128 128"
-        className="-rotate-90"
-      >
-        <circle
-          cx="64"
-          cy="64"
-          r="54"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="7"
-          className="text-white/15"
-        />
-
-        <circle
-          cx="64"
-          cy="64"
-          r="54"
-          fill="none"
-          stroke={stroke}
-          strokeWidth="7"
-          strokeDasharray={`${circumference} ${circumference}`}
-          strokeDashoffset={circumference - dash}
-          strokeLinecap="round"
-          className="transition-all duration-500"
-        />
-      </svg>
-
-      <div className="absolute inset-2.5 flex flex-col items-center justify-center rounded-full border border-dashed border-white/30">
-        <span className="font-serif text-3xl font-bold leading-none text-white">
-          {value}
-        </span>
-
-        <span className="mt-1 px-2 text-center font-mono text-[9px] uppercase tracking-wider text-white/70">
-          {label}
-        </span>
-      </div>
-    </div>
-  );
-}
-
 export const ResumeAnalytics = () => {
   const { data: credits } = useCredits();
   const { data: resumes } = useResumes();
   const { data: user } = useUser();
 
   const [selected, setSelected] = useState<string | null>(null);
-
-  const [resolvedIds, setResolvedIds] = useState<
-    Record<string, string[]>
-  >({});
-
-  const [applied, setApplied] = useState(0);
 
   useEffect(() => {
     if (!selected && resumes?.length) {
@@ -220,51 +64,19 @@ export const ResumeAnalytics = () => {
   const aiUsed = credits?.ai?.used ?? 0;
   const atsUsed = credits?.ats?.used ?? 0;
 
-  const aiRemaining = credits?.ai?.remaining ?? 0;
-  const atsRemaining = credits?.ats?.remaining ?? 0;
-
   const totalCredits = aiTotal + atsTotal;
   const creditsUsed = aiUsed + atsUsed;
-  const remaining = aiRemaining + atsRemaining;
-
-  const remainingPct =
-    totalCredits > 0
-      ? Math.round((remaining / totalCredits) * 100)
-      : 0;
-
-  const usedPct =
-    totalCredits > 0
-      ? Math.round((creditsUsed / totalCredits) * 100)
-      : 0;
-
-  const avgAts = useMemo(() => {
-    if (!resumes?.length) return 0;
-
-    const sum = resumes.reduce(
-      (total, resume) =>
-        total + (Number(resume?.insight?.score) || 0),
-      0
-    );
-
-    return Math.round(sum / resumes.length);
-  }, [resumes]);
 
   const activeResume =
     resumes?.find((resume) => resume.id === selected) ??
     resumes?.[0] ??
     null;
 
-  const activeResumeId = activeResume?.id ?? "";
-
-  const dismissedForActive =
-    resolvedIds[activeResumeId] || [];
-
   const activeSuggestions = (
     activeResume?.insight?.suggestions || []
-  ).filter(
-    (suggestion) =>
-      !dismissedForActive.includes(suggestion.id)
-  );
+  )
+
+  console.log("activeSuggestions", activeSuggestions);
 
   const matchedKeywords =
     activeResume?.insight?.matched_keywords || [];
@@ -272,40 +84,9 @@ export const ResumeAnalytics = () => {
   const missingKeywords =
     activeResume?.insight?.missing_keywords || [];
 
-  const checklist =
-    activeResume?.insight?.checklist || [];
-
-  const missingKeywordsTotal = useMemo(() => {
-    if (!resumes) return 0;
-
-    return resumes.reduce(
-      (total, resume) =>
-        total +
-        (resume?.insight?.missing_keywords?.length || 0),
-      0
-    );
-  }, [resumes]);
-
-  function resolveSuggestion(
-    id: string,
-    applying: boolean
-  ) {
-    if (!activeResumeId) return;
-
-    setResolvedIds((previous) => ({
-      ...previous,
-      [activeResumeId]: [
-        ...(previous[activeResumeId] || []),
-        id,
-      ],
-    }));
-
-    if (applying) {
-      setApplied((value) => value + 1);
-    }
-  }
-
   const isLoading = !resumes || !credits;
+
+  const circumference = 2 * Math.PI * 28;
 
   return (
     <DashboardLayout>
@@ -331,97 +112,6 @@ export const ResumeAnalytics = () => {
             </Card>
           ) : (
             <div className="space-y-6">
-              {/* HERO */}
-              <Card className="overflow-hidden border-0 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
-                <CardContent className="flex flex-col gap-8 p-6 md:flex-row md:items-center md:p-8">
-                  <div className="flex items-center gap-6">
-                    <ScoreRing
-                      value={remaining}
-                      label="Credits Left"
-                      stroke="hsl(var(--amber))"
-                    />
-
-                    <ScoreRing
-                      value={avgAts}
-                      label="Avg ATS Score"
-                      stroke="#ffffff"
-                    />
-                  </div>
-
-                  <div className="min-w-0 flex-1">
-                    <h2 className="font-serif text-xl font-medium">
-                      {user?.plan} plan · {creditsUsed} of{" "}
-                      {totalCredits} credits used
-                    </h2>
-
-                    <p className="mt-2 text-sm text-white/70">
-                      Resets Aug 1. Applying an AI suggestion
-                      uses 2 credits.
-                    </p>
-
-                    <div className="mt-4 max-w-md">
-                      {/* <Progress
-                        value={100 - remainingPct}
-                        className="h-2 bg-white/15"
-                      /> */}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* STAT CARDS */}
-              <div className="grid gap-4 md:grid-cols-3">
-                {[
-                  {
-                    label: "Resumes Created",
-                    value: resumes?.length ?? 0,
-                    icon: FileText,
-                    color: "text-blue-700",
-                    bg: "bg-blue-700/10",
-                  },
-                  {
-                    label: "Suggestions Applied",
-                    value: applied,
-                    icon: Sparkles,
-                    color: "text-emerald-700",
-                    bg: "bg-emerald-700/10",
-                  },
-                  {
-                    label: "Missing Keywords Left",
-                    value: missingKeywordsTotal,
-                    icon: Tag,
-                    color: "text-amber-700",
-                    bg: "bg-amber-700/10",
-                  },
-                ].map((stat) => {
-                  const Icon = stat.icon;
-
-                  return (
-                    <Card key={stat.label}>
-                      <CardContent className="flex flex-col gap-4 p-5">
-                        <div
-                          className={`flex h-9 w-9 items-center justify-center rounded-lg ${stat.bg}`}
-                        >
-                          <Icon
-                            className={`h-4 w-4 ${stat.color}`}
-                          />
-                        </div>
-
-                        <div>
-                          <p className="font-serif text-3xl font-semibold">
-                            {stat.value}
-                          </p>
-
-                          <p className="text-xs text-muted-foreground">
-                            {stat.label}
-                          </p>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
-
               {/* CREDIT USAGE + PLAN */}
               <div className="grid gap-4 lg:grid-cols-[1.6fr_1fr]">
                 {/* CHART */}
@@ -475,7 +165,14 @@ export const ResumeAnalytics = () => {
                         />
 
                         <Tooltip
-                          content={<CreditTooltip />}
+                          content={
+                            <Tooltip>
+                              <TooltipTrigger>Hover</TooltipTrigger>
+                              <TooltipContent>
+                                <p>Add to library</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          }
                           cursor={{
                             fill: "hsl(var(--muted))",
                             opacity: 0.3,
@@ -491,7 +188,7 @@ export const ResumeAnalytics = () => {
                               key={index}
                               fill={
                                 index ===
-                                CREDIT_USAGE.length - 1
+                                  CREDIT_USAGE.length - 1
                                   ? "hsl(var(--amber))"
                                   : "hsl(var(--primary))"
                               }
@@ -527,11 +224,6 @@ export const ResumeAnalytics = () => {
                         {creditsUsed} / {totalCredits}
                       </span>
                     </div>
-
-                    {/* <Progress
-                      value={usedPct}
-                      className="h-2"
-                    /> */}
 
                     <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
                       Optimizing a section costs 1 credit.
@@ -605,11 +297,10 @@ export const ResumeAnalytics = () => {
                               onClick={() =>
                                 setSelected(resume.id)
                               }
-                              className={`grid w-full grid-cols-1 gap-3 rounded-lg px-2 py-4 text-left transition-colors hover:bg-muted/50 md:grid-cols-[1.6fr_0.8fr_0.9fr_0.7fr] md:items-center ${
-                                selected === resume.id
-                                  ? "bg-blue-700/5"
-                                  : ""
-                              }`}
+                              className={`grid w-full grid-cols-1 gap-3 rounded-lg px-2 py-4 text-left transition-colors hover:bg-muted/50 md:grid-cols-[1.6fr_0.8fr_0.9fr_0.7fr] md:items-center ${selected === resume.id
+                                ? "bg-blue-700/5"
+                                : ""
+                                }`}
                             >
                               <div>
                                 <p className="text-sm font-semibold">
@@ -621,20 +312,24 @@ export const ResumeAnalytics = () => {
                                 </p>
                               </div>
 
-                              <Badge
-                                variant="secondary"
-                                className={`w-fit font-mono ${scoreColor(
-                                  score
-                                )} ${scoreBackground(score)}`}
-                              >
-                                {resume.insight?.score ?? "—"}%
-                              </Badge>
+                              <svg width="72" height="72" viewBox="0 0 72 72" className="shrink-0">
+                                <circle cx="36" cy="36" r="28" fill="none" stroke="#e5e7eb" strokeWidth="6" />
+                                <circle
+                                  cx="36" cy="36" r="28" fill="none"
+                                  stroke={score >= 70 ? "#16a34a" : score >= 40 ? "#d97706" : "#dc2626"}
+                                  strokeWidth="6"
+                                  strokeDasharray={circumference}
+                                  strokeDashoffset={circumference - (resume.insight?.score / 100) * circumference}
+                                  strokeLinecap="round"
+                                  transform="rotate(-90 36 36)"
+                                  style={{ transition: "stroke-dashoffset 0.6s ease" }}
+                                />
+                                <text x="36" y="41" textAnchor="middle" fontSize="14" fontWeight="600" fill="#111827">
+                                  {resume.insight?.score || 0}
+                                </text>
+                              </svg>
 
                               <div>
-                                {/* <Progress
-                                  value={completeness}
-                                  className="h-2 w-24"
-                                /> */}
 
                                 <span className="mt-1 block font-mono text-[11px] text-muted-foreground">
                                   {completeness}%
@@ -710,79 +405,16 @@ export const ResumeAnalytics = () => {
                     ) : (
                       <div className="space-y-3">
                         {activeSuggestions.map((suggestion) => {
-                          const meta =
-                            TYPE_META[suggestion.type] ||
-                            TYPE_META.keyword;
-
-                          const priority =
-                            PRIORITY_META[
-                              suggestion.priority
-                            ] || PRIORITY_META.low;
-
-                          const Icon = meta.icon;
-
                           return (
                             <div
                               key={suggestion.id}
-                              className="flex gap-3 rounded-xl border p-3"
+                              className="flex items-start gap-3 rounded-xl border px-4 py-3"
                             >
-                              <div
-                                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${meta.bg}`}
-                              >
-                                <Icon
-                                  className={`h-4 w-4 ${meta.color}`}
-                                />
-                              </div>
-
+                              <AlertTriangle className="h-4 w-4 mt-0.5 text-red-700" />
                               <div className="min-w-0 flex-1">
-                                <div className="mb-1 flex flex-wrap items-center gap-2">
-                                  <Badge
-                                    variant="secondary"
-                                    className={`font-mono text-[10px] uppercase ${priority.color} ${priority.bg}`}
-                                  >
-                                    {suggestion.priority}
-                                  </Badge>
-
-                                  <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                                    {meta.label}
-                                  </span>
-                                </div>
-
                                 <p className="text-sm leading-relaxed">
-                                  {suggestion.text}
+                                  {suggestion}
                                 </p>
-                              </div>
-
-                              <div className="flex shrink-0 gap-1">
-                                <Button
-                                  size="icon"
-                                  variant="outline"
-                                  title="Apply"
-                                  onClick={() =>
-                                    resolveSuggestion(
-                                      suggestion.id,
-                                      true
-                                    )
-                                  }
-                                  className="h-8 w-8 hover:border-emerald-700 hover:bg-emerald-700/10"
-                                >
-                                  <Check className="h-4 w-4 text-emerald-700" />
-                                </Button>
-
-                                <Button
-                                  size="icon"
-                                  variant="outline"
-                                  title="Dismiss"
-                                  onClick={() =>
-                                    resolveSuggestion(
-                                      suggestion.id,
-                                      false
-                                    )
-                                  }
-                                  className="h-8 w-8 hover:border-red-700 hover:bg-red-700/10"
-                                >
-                                  <X className="h-4 w-4 text-red-700" />
-                                </Button>
                               </div>
                             </div>
                           );
@@ -856,61 +488,6 @@ export const ResumeAnalytics = () => {
                           )}
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* CHECKLIST */}
-                  <Card>
-                    <CardHeader>
-                      <div className="flex items-center gap-2">
-                        <ListChecks className="h-4 w-4 text-blue-700" />
-
-                        <CardTitle className="font-serif text-lg">
-                          Health checklist
-                        </CardTitle>
-                      </div>
-
-                      <p className="text-xs text-muted-foreground">
-                        For {activeResume?.title || "—"}
-                      </p>
-                    </CardHeader>
-
-                    <CardContent>
-                      {checklist.length === 0 ? (
-                        <p className="py-4 text-xs text-muted-foreground">
-                          No checklist data available for this
-                          resume.
-                        </p>
-                      ) : (
-                        <div>
-                          {checklist.map(
-                            (item, index) => (
-                              <React.Fragment key={item.label}>
-                                <div className="flex items-center gap-3 py-3">
-                                  {item.pass ? (
-                                    <CircleCheck className="h-4 w-4 shrink-0 text-emerald-700" />
-                                  ) : (
-                                    <CircleX className="h-4 w-4 shrink-0 text-red-700" />
-                                  )}
-
-                                  <p className="flex-1 text-sm font-medium">
-                                    {item.label}
-                                  </p>
-
-                                  <span className="text-xs text-muted-foreground">
-                                    {item.detail}
-                                  </span>
-                                </div>
-
-                                {index <
-                                  checklist.length - 1 && (
-                                  <Separator />
-                                )}
-                              </React.Fragment>
-                            )
-                          )}
-                        </div>
-                      )}
                     </CardContent>
                   </Card>
                 </div>

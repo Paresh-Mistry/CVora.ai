@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import Navbar from '../components/common/NavigationBar';
-// import { useLocation } from 'react-router-dom';
 
 interface LayoutwrapProps {
   children: ReactNode;

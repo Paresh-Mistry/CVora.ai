@@ -8,5 +8,7 @@ export default function PublicRoute() {
 
   if (isLoading) return <div>Loading...</div>;
 
+  console.log("PublicRoute: user =", user);
+
   return user ? <Navigate to="/" replace /> : <Outlet />;
 }

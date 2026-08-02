@@ -9,12 +9,12 @@ import {
     LogOut,
     Home,
 } from "lucide-react";
-import { useSidebar } from "../../context/SidebarContext";
 import { cn } from "../../lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useLogout, useUser } from "../../hooks/useAuth";
 import { Separator } from "../ui/separator";
 import { Badge } from "../ui/badge";
+import { useSidebarStore } from "../../store/sidebar.store";
 
 const NAV_ITEMS = [
     { label: "Home", to: "/", icon: Home },
@@ -25,7 +25,7 @@ const NAV_ITEMS = [
 
 export default function Sidebar() {
     const { pathname } = useLocation();
-    const { collapsed, toggleCollapsed, mobileOpen, setMobileOpen } = useSidebar();
+    const { collapsed, toggleCollapsed, mobileOpen, setMobileOpen } = useSidebarStore();
     const { data: user } = useUser()
     const railWidth = collapsed ? 72 : 240;
     const { mutate: logout, isPending } = useLogout();

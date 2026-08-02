@@ -1,5 +1,4 @@
 import React from 'react'
-import { useFormContext } from '../../context/FormContext';
 import {
   InputGroup,
   InputGroupAddon,
@@ -29,7 +28,7 @@ import {
 import { Button } from '../ui/button';
 import { ButtonGroup, ButtonGroupSeparator } from '../ui/button-group';
 import SkillSelector from './SkillSelectors';
-import { useFormStore } from '../../store/formStore';
+import { useFormStore } from '../../store/form.store';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

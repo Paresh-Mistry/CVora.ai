@@ -10,7 +10,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
 import { PDFExportButton } from "./PdfExportButton";
 import { ResumeRightPanelProps } from "../../services/resume.services"
 import { PreviewTab } from "./PreviewTab";
-import { useResumeRightPanelStore } from "../../store/ResumePanelStore";
+import { useResumeRightPanelStore } from "../../store/resumePanel.store";
 import ReactMarkdown from "react-markdown"
 
 function useIsMobile(breakpointPx = 768) {

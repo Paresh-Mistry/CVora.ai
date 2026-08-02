@@ -1,10 +1,8 @@
 import { motion } from "framer-motion";
-import { SidebarProvider, useSidebar } from "../context/SidebarContext";
 import Sidebar from "../components/common/Sidebar";
 import Navbar from "../components/common/NavigationBar";
 
 function LayoutBody({ children }) {
-  const { collapsed } = useSidebar();
 
   return (
     <main className="min-h-screen bg-slate-50">
@@ -25,8 +23,6 @@ function LayoutBody({ children }) {
 
 export default function DashboardLayout({ children }) {
   return (
-    <SidebarProvider>
       <LayoutBody>{children}</LayoutBody>
-    </SidebarProvider>
   );
 }

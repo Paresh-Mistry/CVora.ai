@@ -11009,3 +11009,203 @@ cloudinary.exceptions.AuthorizationRequired: Invalid cloud_name Cvora_AI_Image
 2026-08-01 19:55:22 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
 2026-08-01 19:55:26 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
 2026-08-01 19:55:45 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:00:39 | INFO     | app.db.session:<module>:6 - postgresql+asyncpg://postgres.lwrwrbcoequzenutezhg:Pm-cvora_04@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
+2026-08-01 20:00:50 | INFO     | app.core.cloudinary_config:<module>:6 - CLOUDINARY CONFIG LOADING:
+2026-08-01 20:00:50 | INFO     | app.core.cloudinary_config:<module>:15 - CLOUDINARY CONFIGURED:
+2026-08-01 20:01:07 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:04:10 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:04:15 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:04:21 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:07:12 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:07:29 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:07:50 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:08:05 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:08:10 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:08:27 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:08:35 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:09:17 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:09:33 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:29:14 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:29:21 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:29:40 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:29:43 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:29:51 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:30:05 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:30:16 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:30:23 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:30:25 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:30:58 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:31:21 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:31:29 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:31:41 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:31:54 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:32:09 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:32:12 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:32:29 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:32:36 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:32:55 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:33:07 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:33:14 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:34:48 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:34:51 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:35:03 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:44:32 | INFO     | app.db.session:<module>:6 - postgresql+asyncpg://postgres.lwrwrbcoequzenutezhg:Pm-cvora_04@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
+2026-08-01 20:44:36 | INFO     | app.core.cloudinary_config:<module>:6 - CLOUDINARY CONFIG LOADING:
+2026-08-01 20:44:36 | INFO     | app.core.cloudinary_config:<module>:15 - CLOUDINARY CONFIGURED:
+2026-08-01 20:44:38 | INFO     | app.db.session:<module>:6 - postgresql+asyncpg://postgres.lwrwrbcoequzenutezhg:Pm-cvora_04@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
+2026-08-01 20:44:41 | INFO     | app.core.cloudinary_config:<module>:6 - CLOUDINARY CONFIG LOADING:
+2026-08-01 20:44:41 | INFO     | app.core.cloudinary_config:<module>:15 - CLOUDINARY CONFIGURED:
+2026-08-01 20:45:03 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:45:23 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:46:34 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:47:37 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-01 20:47:48 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-02 09:14:43 | INFO     | app.db.session:<module>:6 - postgresql+asyncpg://postgres.lwrwrbcoequzenutezhg:Pm-cvora_04@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
+2026-08-02 09:14:49 | INFO     | app.core.cloudinary_config:<module>:6 - CLOUDINARY CONFIG LOADING:
+2026-08-02 09:14:49 | INFO     | app.core.cloudinary_config:<module>:15 - CLOUDINARY CONFIGURED:
+2026-08-02 09:14:51 | INFO     | app.db.session:<module>:6 - postgresql+asyncpg://postgres.lwrwrbcoequzenutezhg:Pm-cvora_04@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
+2026-08-02 09:14:55 | INFO     | app.core.cloudinary_config:<module>:6 - CLOUDINARY CONFIG LOADING:
+2026-08-02 09:14:55 | INFO     | app.core.cloudinary_config:<module>:15 - CLOUDINARY CONFIGURED:
+2026-08-02 09:15:13 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-02 09:25:25 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-02 09:27:54 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Glenn Maxwell 
+2026-08-02 10:11:22 | INFO     | app.api.v1.endpoints.auth:register:50 - Received: email='h@gmail.com', password_len=8, full_name='Harkirat', has_image=True
+2026-08-02 10:11:24 | INFO     | app.api.v1.endpoints.auth:register:60 - Cloudinary config: dpsezq6vx, 697949849247573, NGwoOKk-ANTeNr15SnIJjLIFEos
+2026-08-02 10:11:27 | INFO     | app.services.cloudinary_services:upload_image:18 - Cloudinary upload result: {'asset_id': 'fdb4d4697c0ed704223c42b46413c8bb', 'public_id': 'cv_gen/avatars/j6trkvphfw1gdkk2imb4', 'version': 1785645686, 'version_id': '8f4ec9ab3547df394e71a230d5786647', 'signature': '4980673687aa644ccaf8606c587475b948239c9d', 'width': 480, 'height': 640, 'format': 'jpg', 'resource_type': 'image', 'created_at': '2026-08-02T04:41:26Z', 'tags': [], 'bytes': 30063, 'type': 'upload', 'etag': '2f4eb875a5ec0aab33b1247a49f314da', 'placeholder': False, 'url': 'http://res.cloudinary.com/dpsezq6vx/image/upload/v1785645686/cv_gen/avatars/j6trkvphfw1gdkk2imb4.jpg', 'secure_url': 'https://res.cloudinary.com/dpsezq6vx/image/upload/v1785645686/cv_gen/avatars/j6trkvphfw1gdkk2imb4.jpg', 'asset_folder': 'cv_gen/avatars', 'display_name': 'j6trkvphfw1gdkk2imb4', 'original_filename': 'stream', 'api_key': '697949849247573'}
+2026-08-02 10:11:27 | INFO     | app.api.v1.endpoints.auth:register:70 - Cloudinary upload result: {'url': 'https://res.cloudinary.com/dpsezq6vx/image/upload/v1785645686/cv_gen/avatars/j6trkvphfw1gdkk2imb4.jpg', 'public_id': 'cv_gen/avatars/j6trkvphfw1gdkk2imb4'}
+2026-08-02 10:11:31 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 10:14:35 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 10:14:58 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 10:16:00 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 10:16:50 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 10:17:06 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 10:25:45 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:06:34 | INFO     | app.db.session:<module>:6 - postgresql+asyncpg://postgres.lwrwrbcoequzenutezhg:Pm-cvora_04@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
+2026-08-02 18:06:41 | INFO     | app.core.cloudinary_config:<module>:6 - CLOUDINARY CONFIG LOADING:
+2026-08-02 18:06:41 | INFO     | app.core.cloudinary_config:<module>:15 - CLOUDINARY CONFIGURED:
+2026-08-02 18:06:44 | INFO     | app.db.session:<module>:6 - postgresql+asyncpg://postgres.lwrwrbcoequzenutezhg:Pm-cvora_04@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
+2026-08-02 18:06:47 | INFO     | app.core.cloudinary_config:<module>:6 - CLOUDINARY CONFIG LOADING:
+2026-08-02 18:06:47 | INFO     | app.core.cloudinary_config:<module>:15 - CLOUDINARY CONFIGURED:
+2026-08-02 18:06:58 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:06:59 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:10:06 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:11:19 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:11:20 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:11:45 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:12:44 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:14:05 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:17:34 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:18:28 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:18:35 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:18:52 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:20:18 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:20:42 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:21:02 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:21:21 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:21:30 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:21:47 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:21:48 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:22:00 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:22:18 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:23:31 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:24:35 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:30:01 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:30:13 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:30:34 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:31:25 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:33:17 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:33:52 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:34:53 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:35:42 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:36:00 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:36:14 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:36:38 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:36:51 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:37:05 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:39:56 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:40:35 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:44:37 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:48:40 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:49:27 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:51:16 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:51:31 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:53:08 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:53:20 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:53:34 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:55:34 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:55:41 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:58:36 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 18:59:37 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:00:54 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:01:02 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:01:12 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:01:21 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:01:38 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:02:49 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:03:12 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:03:28 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:03:34 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:03:51 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:03:53 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:04:03 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:04:18 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:05:14 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:05:34 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:09:16 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:10:25 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:10:30 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:12:14 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:12:24 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:12:39 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:12:55 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:13:22 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:13:32 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:14:25 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:14:32 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:14:33 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:15:29 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:15:38 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:17:46 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:18:38 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:19:01 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:20:39 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:21:04 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:21:37 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:21:52 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:22:46 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:23:10 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:23:40 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:24:11 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:24:20 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:24:40 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:25:07 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:25:32 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:25:58 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:26:10 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:26:17 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:26:32 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:26:51 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:27:07 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:27:18 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:27:26 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:27:35 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:28:16 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:28:38 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:28:56 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:31:05 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:32:41 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:33:24 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:35:42 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:36:04 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:37:44 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:38:13 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:43:18 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:45:12 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:47:33 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:47:36 | INFO     | app.api.v1.endpoints.auth:me:146 - Current User in Session: Harkirat
+2026-08-02 19:52:39 | INFO     | app.db.session:<module>:6 - postgresql+asyncpg://postgres.lwrwrbcoequzenutezhg:Pm-cvora_04@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
+2026-08-02 19:53:01 | INFO     | app.core.cloudinary_config:<module>:6 - CLOUDINARY CONFIG LOADING:
+2026-08-02 19:53:01 | INFO     | app.core.cloudinary_config:<module>:15 - CLOUDINARY CONFIGURED:
+2026-08-02 19:53:08 | INFO     | app.db.session:<module>:6 - postgresql+asyncpg://postgres.lwrwrbcoequzenutezhg:Pm-cvora_04@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
+2026-08-02 19:53:27 | INFO     | app.core.cloudinary_config:<module>:6 - CLOUDINARY CONFIG LOADING:
+2026-08-02 19:53:27 | INFO     | app.core.cloudinary_config:<module>:15 - CLOUDINARY CONFIGURED:

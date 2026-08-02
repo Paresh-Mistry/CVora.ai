@@ -32,6 +32,7 @@ export function useCredits() {
     queryKey: queryKeys.credits(),
     queryFn:  creditsApi.get,
     staleTime: 10 * 1000,   // 10 s — refresh after mutations
+    enabled:  !!localStorage.getItem("access_token"),
   });
 }
 

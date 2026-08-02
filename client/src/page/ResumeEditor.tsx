@@ -14,7 +14,7 @@ import { useTemplates } from "../hooks/useAI";
 import { useCreateResume, useResume, useUpdateResume } from "../hooks/useResume";
 import { toast } from "sonner";
 import DashboardLayout from "../Layout/DashboardLayout";
-import { useFormStore } from "../store/formStore";
+import { useFormStore } from "../store/form.store";
 
 
 const steps: Record<string, React.ElementType> = {
@@ -44,14 +44,11 @@ const Editing: React.FC = () => {
     data: existingResume,
     isLoading: resumeLoading,
   } = useResume(resumeId);
-  
-  console.log(resumeId)
 
   const createResume = useCreateResume();
   const updateResume = useUpdateResume(resumeId);
 
-  const activeTmpl =
-    templates?.find((t) => t.id === templateId);
+  const activeTmpl = templates?.find((t) => t.id === templateId);
 
   useEffect(() => {
     if (!activeTmpl) return;
@@ -61,8 +58,6 @@ const Editing: React.FC = () => {
   const ActiveLayout = activeTmpl?.layout
     ? (LAYOUT_MAP[activeTmpl.layout] ?? LayoutStack)
     : LayoutStack;
-
-  console.log(ActiveLayout)  
 
 
   const [step, setStep] = useState(0);

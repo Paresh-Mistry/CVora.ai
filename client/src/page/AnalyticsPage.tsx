@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ResponsiveContainer, RadialBarChart, PolarAngleAxis, RadialBar } from "recharts";
-import { AlertTriangle, ArrowRight, Check, CircleCheck, Gauge, Sparkles, X } from "lucide-react";
+import { AlertTriangle, ArrowRight, Check, CircleCheck, Gauge, X } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
 import DashboardLayout from "../Layout/DashboardLayout";
 import { useResumes } from "../hooks/useResume";
@@ -92,7 +92,7 @@ export const ResumeAnalytics = () => {
                     </div>
 
                     <ResponsiveContainer width="100%" height={180}>
-                      <RadialBarChart data={[credit]} innerRadius="70%" outerRadius="100%" startAngle={90} endAngle={-270}>                      >
+                      <RadialBarChart data={[credit]} innerRadius="70%" outerRadius="100%" startAngle={90} endAngle={-270}>                      
                         <PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
                         <RadialBar background dataKey="percentage" cornerRadius={10} fill={credit.fill} />
                       </RadialBarChart>

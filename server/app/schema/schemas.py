@@ -1,8 +1,7 @@
 from __future__ import annotations
 from datetime import datetime
 from typing import List, Optional
-from fastapi import UploadFile
-from pydantic import BaseModel, EmailStr, Field, field_validator
+from pydantic import BaseModel, EmailStr, Field
 from fastapi import Form
 
 
@@ -197,18 +196,3 @@ class AllCreditsOut(BaseModel):
     ats: CreditOut
 
 
-# ─── Jobs ─────────────────────────────────────────────────────────────────────
-
-
-class JobResult(BaseModel):
-    title: str
-    company: str
-    location: str
-    url: str
-    posted_at: Optional[str]
-    match_score: Optional[int]  # 0–100 relevance vs resume
-
-
-class JobSearchResponse(BaseModel):
-    jobs: List[JobResult]
-    query_used: str

@@ -8,14 +8,14 @@ from app.db.session import AsyncSessionLocal
 from .core.security import settings
 from app.db.session import create_tables
 from app.api.v1.router import api_router
-from app.core import cloudinary_config
+from prometheus_fastapi_instrumentator import Instrumentator
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await create_tables()
     async with AsyncSessionLocal() as db:
-        await seed_templates(db)  # ← must be here
+        await seed_templates(db) 
     yield
 
 
@@ -25,7 +25,6 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# ── Middleware ────────────────────────────────────────────────────────────────
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 app.add_middleware(
     CORSMiddleware,
@@ -35,9 +34,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ── Routes ────────────────────────────────────────────────────────────────────
+
+
 app.include_router(api_router, prefix="/api/v1")
 
+Instrumentator().instrument(app).expose(
+    app,
+    endpoint="/metrics",
+    include_in_schema=False,
+)
 
 @app.get("/")
 async def health():

@@ -312,7 +312,7 @@ function ScoreTab({ resumeId }: { resumeId: string | null }) {
                 >
                   <span className="text-blue-400">→</span> {s}
                 </div>
-              ) 
+              )
             )}
           </div>
         </>
@@ -346,7 +346,6 @@ export default function ResumeRightPanel({
   } = useResumeRightPanelStore();
 
   const isMobile = useIsMobile();
-
   const { data: templates } = useTemplates();
   const previewRef = useRef<HTMLDivElement>(null);
   const resumeName = (form.name !== "" ? form.name : DefaultData?.name) ?? "resume";
@@ -389,10 +388,7 @@ export default function ResumeRightPanel({
 
   return (
     <div className="md:w-7/12 flex flex-col border-l border-gray-200 bg-white min-w-0">
-      {/* <ResumeToolbar /> */}
-
-      {/* ── Tab bar + quick actions ── */}
-      <div className="flex flex-wrap sm:flex-nowrap justify-between items-end gap-y-1 border-b border-gray-200">
+      <div className="flex md:static fixed w-full bottom-0 flex-wrap sm:flex-nowrap justify-between items-end gap-y-1 border-b border-gray-200">
         <div className="flex items-end gap-0.5 px-2 sm:px-3 pt-2 bg-gray-50 overflow-x-auto scrollbar-none flex-shrink min-w-0">
           {TABS.map((tab: any) => (
             <button
@@ -405,7 +401,7 @@ export default function ResumeRightPanel({
                   : "bg-transparent text-gray-500 border-transparent hover:bg-white/60 hover:text-gray-700"
                 }`}
             >
-              <span className="text-sm leading-none">{tab.icon}</span>
+              <span className="lg:text-sm text-xl text leading-none">{tab.icon}</span>
               <span className="hidden xs:inline sm:inline">{tab.label}</span>
             </button>
           ))}
@@ -419,8 +415,7 @@ export default function ResumeRightPanel({
         </div>
       </div>
 
-      {/* ── Desktop: inline tab content (unchanged) ── */}
-      <div className="hidden md:block flex-1 overflow-hidden relative">
+      <div className="invisible md:visible flex-1 overflow-hidden relative">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}

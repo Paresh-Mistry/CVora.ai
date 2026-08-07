@@ -1,20 +1,14 @@
 from typing import Annotated
-
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.loggers import logger
-from app.core.dependencies import CurrentUser, PremiumUser
+from app.core.dependencies import CurrentUser
 from app.db.session import get_db
-from app.model.resume import Resume
-from app.schema.schemas import AllCreditsOut, CreditOut, JobSearchResponse
+from app.schema.schemas import AllCreditsOut, CreditOut
 from app.services.credit_services import CreditService
-from app.services.job_services import search_jobs
 
 router = APIRouter(tags=["user"])
 DB = Annotated[AsyncSession, Depends(get_db)]
 
-
-# ── Credits ───────────────────────────────────────────────────────────────────
 
 @router.get("/credits", response_model=AllCreditsOut)
 async def get_credits(user: CurrentUser, db: DB):
@@ -33,29 +27,3 @@ async def get_credits(user: CurrentUser, db: DB):
         ai=to_out(data["ai"]),
         ats=to_out(data["ats"]),
     )
-
-
-# ── Job search (Premium only) ─────────────────────────────────────────────────
-
-
-@router.post("/search")
-async def search_jobs_route(resume_data: dict):
-    jobs = await search_jobs(resume_data)
-    return jobs
-
-@router.get("/jobs/{resume_id}", response_model=JobSearchResponse)
-async def job_search(resume_id: str, user: CurrentUser, db: DB):
-    """
-    Premium only. Verifies the resume belongs to the user, then searches
-    for matching jobs based on their skills and role.
-    """
-    print("Gets Start")
-    resume = await Resume.get_by_id(db, resume_id)
-    logger.info("Data: ",resume)
-    if not resume or resume.user_id != user.id:
-        raise HTTPException(status_code=404, detail="Resume not found")
-
-    jobs  = await search_jobs(resume.data)
-    query = resume.data.get("domain") or "developer"
-
-    return JobSearchResponse(jobs=jobs, query_used=query)

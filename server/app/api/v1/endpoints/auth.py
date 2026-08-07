@@ -17,12 +17,11 @@ from app.model.user import User
 from app.schema.schemas import (
     LoginRequest,
     RefreshRequest,
-    RegisterRequest,
     TokenResponse,
     UserOut,
 )
 from app.services.credit_services import CreditService
-from app.db.redis_client import blacklist_token
+from app.db.redis_client import blacklist_token 
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from app.core.config import settings
 from app.services.cloudinary_services import CloudinaryService
@@ -31,13 +30,7 @@ from app.services.cloudinary_services import CloudinaryService
 router = APIRouter(prefix="/auth", tags=["auth"])
 DB = Annotated[AsyncSession, Depends(get_db)]
 
-
-@router.get("/check")
-def check():
-    return {"status": "ok"}
-
-
-# Register
+# Register 
 @router.post("/register", response_model=TokenResponse, status_code=201)
 async def register(
     db: DB,
@@ -47,9 +40,7 @@ async def register(
     image: UploadFile | None = File(None),
 ):
     try:
-        logger.info(
-            f"Received: email={email!r}, password_len={len(password)}, full_name={full_name!r}, has_image={image is not None}"
-        )
+        logger.info(f"Received: email={email!r}, password_len={len(password)}, full_name={full_name!r}, has_image={image is not None}")
         existing = await User.get_by_email(db, email)
         if existing:
             raise HTTPException(status_code=400, detail="Email already registered")
@@ -57,9 +48,7 @@ async def register(
         email = email.strip().lower()
         hashed_password = hash_password(password)
 
-        logger.info(
-            f"Cloudinary config: {settings.CLOUDINARY_CLOUD_NAME}, {settings.CLOUDINARY_API_KEY}, {settings.CLOUDINARY_API_SECRET}"
-        )
+        logger.info(f"Cloudinary config: {settings.CLOUDINARY_CLOUD_NAME}, {settings.CLOUDINARY_API_KEY}, {settings.CLOUDINARY_API_SECRET}")
 
         image_url = None
         if image:
@@ -95,7 +84,7 @@ async def register(
         raise HTTPException(status_code=500, detail="Internal server error")
 
 
-# Login
+# Login 
 @router.post("/login", response_model=TokenResponse)
 async def login(body: LoginRequest, db: DB):
     user = await User.get_by_email(db, body.email)
@@ -127,14 +116,12 @@ async def refresh(body: RefreshRequest, db: DB):
     )
 
 
-# logout
+# logout 
 @router.post("/logout")
-async def logout(
-    credentials: Annotated[HTTPAuthorizationCredentials, Depends(HTTPBearer())],
-):
+async def logout(credentials: Annotated[HTTPAuthorizationCredentials, Depends(HTTPBearer())]):
     payload = decode_token(credentials.credentials)
     if payload:
-        jti = payload.get("jti") or credentials.credentials  # use token itself as key
+        jti = payload.get("jti") or credentials.credentials   # use token itself as key
         ttl = settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60
         await blacklist_token(jti, ttl)
     return {"detail": "Logged out"}

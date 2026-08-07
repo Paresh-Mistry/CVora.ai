@@ -1,4 +1,4 @@
-from typing import Annotated, List
+from typing import Annotated, Counter, List
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -8,20 +8,19 @@ from app.db.session import get_db
 from app.model.resume import Resume
 from app.model.tenplates import Template
 from app.schema.schemas import ResumeCreateRequest, ResumeOut, ResumeUpdateRequest
+from prometheus_client import Counter
 
 router = APIRouter(prefix="/resumes", tags=["resumes"])
 DB = Annotated[AsyncSession, Depends(get_db)]
 
-
-# ── List ──────────────────────────────────────────────────────────────────────
-
+resume_generated = Counter(
+    "resume_generated_total",
+    "Total resumes generated"
+)
 
 @router.get("/", response_model=List[ResumeOut])
 async def list_resumes(user: CurrentUser, db: DB):
     return await Resume.get_by_user(db, user.id)
-
-
-# ── Create ────────────────────────────────────────────────────────────────────
 
 
 @router.post("/", response_model=ResumeOut, status_code=201)
@@ -42,10 +41,8 @@ async def create_resume(body: ResumeCreateRequest, user: CurrentUser, db: DB):
     db.add(resume)
     await db.commit()
     await db.refresh(resume)
+    resume_generated.inc()  # Increment the counter for resume generation
     return resume
-
-
-# ── Get one ───────────────────────────────────────────────────────────────────
 
 
 @router.get("/{resume_id}", response_model=ResumeOut)
@@ -54,9 +51,6 @@ async def get_resume(resume_id: str, user: CurrentUser, db: DB):
     if not resume or resume.user_id != user.id:
         raise HTTPException(status_code=404, detail="Resume not found")
     return resume
-
-
-# ── Update ────────────────────────────────────────────────────────────────────
 
 
 @router.patch("/{resume_id}", response_model=ResumeOut)
@@ -87,9 +81,6 @@ async def update_resume(
     await db.commit()
     await db.refresh(resume)
     return resume
-
-
-# ── Delete ────────────────────────────────────────────────────────────────────
 
 
 @router.delete("/{resume_id}", status_code=204)

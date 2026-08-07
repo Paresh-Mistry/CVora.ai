@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, CreditCardIcon, File, LayoutTemplate, LogOutIcon, Menu, Sparkles, Star, User, X, Zap } from "lucide-react";
+import { ChevronDown, CreditCardIcon, File, Info, LayoutTemplate, LogOutIcon, Mail, Menu, Sparkles, Star, User, X, Zap } from "lucide-react";
 import { useLogout, useUser } from "../../hooks/useAuth";
 import { Button } from "../ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useCredits } from "../../hooks/useAI";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Separator } from "../ui/separator";
+import { Badge } from "../ui/badge";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -25,7 +26,8 @@ const Navbar: React.FC = () => {
     (credits?.ats.remaining ?? 0)
 
   const { data: user } = useUser();
-  const logout = useLogout();
+  const { mutate: logout, isPending } = useLogout();
+
 
   const NavLink = ({
     path,
@@ -97,30 +99,29 @@ const Navbar: React.FC = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem>
-                    <User />
-                    Profile
+                    <Mail />
+                    <Badge variant="secondary">{user.email}</Badge>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <File />
-                    <Link to={"/history"}>My Templates</Link>
+                    <Link to={"/history"}>My Resumes</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <CreditCardIcon />
-                    Billing
+                    <Info />
+                    <Link to={"/history"}>FAQ</Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem className="bg-[#f6edd4]">
+                  <DropdownMenuItem>
                     <Star fill="#eab420" />
                     {user.plan.toUpperCase()} Plan
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                    className="bg-[#d4f0f6] mt-1"
                     title={`AI: ${credits?.ai.remaining} · ATS: ${credits?.ats.remaining}`}
                   >
                     <Zap fill="#46afc7" />
-                    {totalRemaining} CREDITS
+                    {totalRemaining}
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={logout} variant="destructive">
+                  <DropdownMenuItem onClick={() => logout()} variant="destructive">
                     <LogOutIcon />
                     Log out
                   </DropdownMenuItem>
@@ -161,32 +162,27 @@ const Navbar: React.FC = () => {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
                     <DropdownMenuItem>
-                      <User />
-                      Profile
+                      <Mail />
+                      <Badge variant="secondary">{user.email}</Badge>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                       <File />
-                      <Link to={"/history"}>My Templates</Link>
+                      <Link to={"/history"}>My Resumes</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <CreditCardIcon />
-                      Billing
+                      <Info />
+                      <Link to={"/history"}>FAQ</Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem className="bg-[#f6edd4]">
+                    <DropdownMenuItem>
                       <Star fill="#eab420" />
                       {user.plan.toUpperCase()} Plan
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                      className="bg-[#d4f0f6] mt-1"
                       title={`AI: ${credits?.ai.remaining} · ATS: ${credits?.ats.remaining}`}
                     >
                       <Zap fill="#46afc7" />
                       {totalRemaining} CREDITS
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={logout} variant="destructive">
-                      <LogOutIcon />
-                      Log out
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -229,24 +225,31 @@ const Navbar: React.FC = () => {
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ duration: 0.25 }}
-                className="fixed top-0 right-0 h-screen w-[280px] bg-white shadow-xl z-50 p-6"
+                className="fixed top-0 flex flex-col justify-between h-full right-0 h-screen w-[280px] bg-white shadow-xl z-50 p-6"
               >
-                <div className="flex justify-between">
-                  <h2 className="orbitron-head">Menu</h2>
-                  <button onClick={() => setOpen(false)}>
-                    <X size={20} />
-                  </button>
-                </div>
-                <Separator className="my-4" />
+                <div>
+                  <div className="flex justify-between">
+                    <h2 className="orbitron-head">Menu</h2>
+                    <button onClick={() => setOpen(false)}>
+                      <X size={20} />
+                    </button>
+                  </div>
+                  <Separator className="my-4" />
 
-                <div className="flex flex-col gap-6">
-                  {navItems.map((item) => (
-                    <NavLink
-                      key={item.path}
-                      {...item}
-                      mobile
-                    />
-                  ))}
+                  <div className="flex flex-col gap-6">
+                    {navItems.map((item) => (
+                      <NavLink
+                        key={item.path}
+                        {...item}
+                        mobile
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <Button className="w-full" variant="outline" onClick={() => logout()}>
+                    Logout
+                  </Button>
                 </div>
               </motion.div>
             </>

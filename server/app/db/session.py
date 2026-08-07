@@ -10,9 +10,8 @@ engine = create_async_engine(
     echo=settings.DEBUG,
     pool_size=10,
     max_overflow=20,
-    pool_pre_ping=True,   # auto-reconnect on stale connections
+    pool_pre_ping=True,  
 )
-
 
 AsyncSessionLocal = async_sessionmaker(
     bind=engine,
@@ -20,16 +19,13 @@ AsyncSessionLocal = async_sessionmaker(
     class_=AsyncSession,
 )
 
-
 class Base(DeclarativeBase):
     pass
-
 
 async def create_tables():
     """Create all tables on startup (use Alembic for production migrations)."""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-
 
 async def get_db():
     async with AsyncSessionLocal() as session:

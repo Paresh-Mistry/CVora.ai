@@ -117,7 +117,7 @@ const Editing: React.FC = () => {
 
   return (
     <DashboardLayout>
-      <div className="flex flex-col md:flex-row min-h-screen">
+      <div className="flex flex-col md:flex-row md:min-h-screen">
 
         {/* Main Content */}
         <main className="flex-1 flex flex-col md:flex-row">

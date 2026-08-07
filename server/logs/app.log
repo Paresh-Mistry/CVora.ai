@@ -11616,5 +11616,9 @@ cloudinary.exceptions.AuthorizationRequired: Invalid cloud_name Cvora_AI_Image
 2026-08-07 10:43:41 | INFO     | app.api.v1.endpoints.templates:list_templates:29 - Serving Redis
 2026-08-07 10:46:25 | INFO     | app.db.session:<module>:6 - postgresql+asyncpg://postgres.lwrwrbcoequzenutezhg:Pm-cvora_04@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
 2026-08-07 10:46:35 | INFO     | app.db.session:<module>:6 - postgresql+asyncpg://postgres.lwrwrbcoequzenutezhg:Pm-cvora_04@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
-2026-08-07 10:46:47 | INFO     | app.api.v1.endpoints.auth:me:140 - Current User in Session: Glenn Maxwell 
+2026-08-07 10:46:47 | INFO     | app.api.v1.endpoints.auth:me:140 - Current User in Session: Glenn Maxwell
 2026-08-07 10:46:51 | INFO     | app.api.v1.endpoints.templates:list_templates:29 - Serving Redis
+2026-08-07 10:50:07 | INFO     | app.db.session:<module>:6 - postgresql+asyncpg://postgres.lwrwrbcoequzenutezhg:Pm-cvora_04@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
+2026-08-07 10:52:05 | INFO     | app.api.v1.endpoints.auth:me:133 - Current User in Session: Glenn Maxwell
+2026-08-07 10:52:06 | INFO     | app.api.v1.endpoints.auth:me:133 - Current User in Session: Glenn Maxwell
+2026-08-07 10:52:07 | INFO     | app.api.v1.endpoints.templates:list_templates:29 - Serving Redis
